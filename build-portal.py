@@ -54,6 +54,7 @@ AREAS = [
 ]
 
 def area_of(path):
+    path = path[4:] if path.startswith("/api/v1/") else path  # /api/v1/x is grouped like /v1/x
     for slug, *_rest, pred in AREAS:
         if pred(path):
             return slug
@@ -62,8 +63,9 @@ def area_of(path):
 def ops():
     out = []
     for path, item in oa["paths"].items():
-        if path.startswith("/api/v1/data/") or path.startswith("/v1/admin") or path.startswith("/v1/observatory"):
-            continue  # aliases, admin and private-sharing routes are not part of the public reference
+        twin = path[4:] if path.startswith("/api/v1/") else None
+        if (twin and twin in oa["paths"]) or path.startswith("/v1/admin") or path.startswith("/v1/observatory"):
+            continue  # aliases of an existing /v1 route, admin and private-sharing routes are not part of the public reference
         for method, op in item.items():
             if not isinstance(op, dict):
                 continue
@@ -74,7 +76,7 @@ OPS = ops()
 by_area = collections.defaultdict(list)
 for o in OPS:
     by_area[o["area"]].append(o)
-assert None not in by_area, [x["path"] for x in by_area[None]]
+assert None not in by_area, "Unmapped paths need an AREAS rule: " + ", ".join(x["path"] for x in by_area[None])
 
 def access(op):
     return "key" if op.get("security") else "public"
