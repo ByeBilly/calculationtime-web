@@ -82,6 +82,7 @@ OPS = ops()
 by_area = collections.defaultdict(list)
 for o in OPS:
     by_area[o["area"]].append(o)
+AREAS = [a for a in AREAS if by_area.get(a[0])]  # areas with no operations in this contract get no page
 assert None not in by_area, "Unmapped paths need an AREAS rule: " + ", ".join(x["path"] for x in by_area[None])
 
 def access(op):
