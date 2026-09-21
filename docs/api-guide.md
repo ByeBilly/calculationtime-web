@@ -295,6 +295,16 @@ Generated from the OpenAPI contract (v0.1.0) by `build-portal.py`. "public" mean
 | POST | [`/v1/math/combinatorics`](reference/math-and-statistics.html#post--v1-math-combinatorics) | Permutations and combinations for n and r | key | 1 credit |
 | POST | [`/v1/stats/summary`](reference/math-and-statistics.html#post--v1-stats-summary) | Descriptive statistics for a numeric dataset | key | 3 credits |
 
+### [Unit conversion](reference/convert.html)
+
+| Method | Path | What it does | Access | Cost |
+|---|---|---|---|---|
+
+### [Hashing and encoding](reference/crypto.html)
+
+| Method | Path | What it does | Access | Cost |
+|---|---|---|---|---|
+
 ### [Health](reference/health.html)
 
 | Method | Path | What it does | Access | Cost |

@@ -17,6 +17,7 @@ The API provides time, date, geospatial, astronomy (including the Crux Sky Clock
 | `docs/api-guide.md` | The developer guide (source): base URL, authentication, public vs protected endpoints, rate limits, credits, errors, CORS and caching, reference data, a generated endpoint index, examples, and an explicit list of what is not documented yet. |
 | `docs/reference/` | Generated endpoint reference: one page per area (time and dates, astronomy, finance, math, health, reference data...) with a copy-paste request for every operation, taken from the contract's published examples. Do not edit by hand. |
 | `data/openapi.json`, `data/get-examples.json` | The vendored OpenAPI contract and the real GET query examples the generator uses. |
+| `check-routes.py` | Keyless check that every protected route in the contract exists on the live API (expects 401, flags 404). Run it before refreshing the contract. |
 | `sitemap.xml`, `robots.txt` | For search engines; regenerated with the pages. |
 | `docs/api-guide.html` | The same guide rendered as a web page - this is what the portal links to, because GitHub Pages does not render plain `.md` files. Regenerate it after editing the Markdown: `python3 build-portal.py`. |
 | `build-portal.py` | Builds everything generated: the guide HTML, the reference pages, the endpoint index inside the guide, `sitemap.xml` and `robots.txt`. Run `pip install markdown && python3 build-portal.py`. |
@@ -48,6 +49,7 @@ The portal only states what has been verified against the live service and its O
 
 ```bash
 curl -s https://api.calculationtime.com/openapi.json -o data/openapi.json
+python3 check-routes.py   # every protected route must answer 401, not 404
 python3 build-portal.py
 ```
 

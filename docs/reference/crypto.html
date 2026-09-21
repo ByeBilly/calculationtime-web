@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CalculationTime API endpoint reference</title>
-<meta name="description" content="All 105 documented operations of the CalculationTime API by area, with copy-paste requests: time, dates, astronomy, finance, maths, health and reference data.">
-<link rel="canonical" href="https://byebilly.github.io/calculationtime-web/docs/reference/">
-<meta property="og:title" content="CalculationTime API endpoint reference">
-<meta property="og:description" content="All 105 documented operations of the CalculationTime API by area, with copy-paste requests: time, dates, astronomy, finance, maths, health and reference data.">
+<title>Hashing and encoding API endpoints - CalculationTime API reference</title>
+<meta name="description" content="SHA-256, SHA-512 and MD5 hashes and Base64 encoding and decoding for small payloads.">
+<link rel="canonical" href="https://byebilly.github.io/calculationtime-web/docs/reference/crypto.html">
+<meta property="og:title" content="Hashing and encoding API endpoints - CalculationTime API reference">
+<meta property="og:description" content="SHA-256, SHA-512 and MD5 hashes and Base64 encoding and decoding for small payloads.">
 <meta property="og:type" content="website">
 <style>
   :root { --bg:#f7f1e4; --panel:#fff; --ink:#14110c; --muted:#5a5245; --line:#d9ccb0; --brand:#0b0d14; --gold:#c98b2c; --gold-soft:#e5b65f; --code-bg:#0d1018; --code-ink:#f3ead6; --radius:12px; }
@@ -51,6 +51,7 @@
   footer { background:var(--brand); color:#d8cdbd; padding:24px 0; font-size:14px; }
   footer a { color:var(--gold-soft); }
 </style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Hashing and encoding endpoints - CalculationTime API reference", "description": "SHA-256, SHA-512 and MD5 hashes and Base64 encoding and decoding for small payloads.", "dateModified": "2026-09-21", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "CalculationTime", "url": "https://www.calculationtime.com"}}</script>
 </head>
 <body>
 <header><div class="wrap">
@@ -58,11 +59,14 @@
   <nav aria-label="Primary"><a href="../../docs/api-guide.html">Guide</a><a href="../../docs/reference/">Endpoint reference</a><a href="https://api.calculationtime.com/openapi.json">OpenAPI</a><a href="https://www.calculationtime.com/developers/api/beta/">Request beta access</a><a href="https://www.calculationtime.com">Main site</a></nav>
 </div></header>
 <main><div class="wrap">
-<p class="crumbs"><a href="../../index.html">Portal</a> / Endpoint reference</p>
-<h1>CalculationTime API endpoint reference</h1>
-<p>Every documented operation in the CalculationTime API contract (v0.1.0), grouped by area, with a copy-paste request for each. 105 operations across 12 areas. Reference data and service probes are public; everything else needs a beta key.</p>
-<ul class="areas"><li><a href="service.html"><strong>Service and status</strong><span>7 operations. Public probes: health, status, the OpenAPI contract and a UTC clock.</span></a></li><li><a href="reference-data.html"><strong>Reference data</strong><span>11 operations. Public JSON tables: countries, time zones, elements, constants, materials, HTTP status, MIME types, Unicode blocks, constellations, bright stars, meteor showers.</span></a></li><li><a href="time-and-dates.html"><strong>Time and dates</strong><span>20 operations. Local time for a coordinate, date differences, date arithmetic, business days, ISO weeks, ages, epoch conversion and more.</span></a></li><li><a href="geo.html"><strong>Geo</strong><span>6 operations. Great-circle distance, midpoint, bounding box and elevation for latitude and longitude points.</span></a></li><li><a href="astronomy.html"><strong>Astronomy and Crux clock</strong><span>15 operations. Sun and moon position, twilight, sidereal time, Julian date, ephemeris, and the Crux Sky Clock engine.</span></a></li><li><a href="finance.html"><strong>Finance</strong><span>14 operations. Loan amortization, simple and compound interest, ROI, CAGR, margin, markup, break-even, discounts and sales tax.</span></a></li><li><a href="math-and-statistics.html"><strong>Math and statistics</strong><span>16 operations. Quadratics, triangles, circles, proportions, logarithms, exponents, percentages, combinatorics and statistics summaries.</span></a></li><li><a href="convert.html"><strong>Unit conversion</strong><span>0 operations. Length, weight, temperature, area, volume, speed, pressure, energy, power and data-storage conversion.</span></a></li><li><a href="crypto.html"><strong>Hashing and encoding</strong><span>0 operations. SHA-256, SHA-512 and MD5 hashes and Base64 encoding and decoding for small payloads.</span></a></li><li><a href="health.html"><strong>Health</strong><span>5 operations. BMI, BMR, TDEE, macro splits and pace, with the formula named in the result.</span></a></li><li><a href="payroll-and-trades.html"><strong>Payroll and trades</strong><span>7 operations. Decimal hours, job margin, mileage claims, tool depreciation, invoice aging and VAT summaries.</span></a></li><li><a href="account.html"><strong>Account</strong><span>4 operations. Credit balance, usage and plan limits for the key you call with.</span></a></li></ul>
-<p>New to the API? Start with the <a href="../api-guide.html">developer guide</a>. Administrative and private-sharing routes are deliberately left out of this reference.</p>
+<p class="crumbs"><a href="../../index.html">Portal</a> / <a href="./">Endpoint reference</a> / Hashing and encoding</p>
+<h1>Hashing and encoding endpoints</h1>
+<p>Hash and encode small text payloads. MD5 is included for checksums and legacy compatibility only; it is not safe for passwords or security, so use SHA-256 or SHA-512 for anything that matters. Do not send secrets to any remote service.</p>
+<p class="meta">0 operations &middot; contract v0.1.0 &middot; base URL <code>https://api.calculationtime.com</code></p>
+<div class="scroll"><table><thead><tr><th>Method</th><th>Path</th><th>What it does</th><th>Access</th><th>Cost</th></tr></thead><tbody></tbody></table></div>
+<blockquote>Request bodies below are the examples published in the API's OpenAPI contract. The contract declares body fields only as free-form JSON, so it does not say which fields are required or optional; treat each example as a known-good shape and read the result's fields. Replace <code>YOUR_KEY</code> with a beta key; never put a key in public code. Endpoints marked public work as shown with no key.</blockquote>
+
+<p><a href="../api-guide.html">Read the full guide</a> for authentication, limits, credits and errors, or <a href="./">browse every area</a>.</p>
 </div></main>
 <footer><div class="wrap">Contract v0.1.0 &middot; built 2026-09-21 &middot; <a href="../../index.html">Portal home</a> &middot; <a href="https://www.calculationtime.com">calculationtime.com</a> &middot; <a href="https://github.com/ByeBilly/calculationtime-web">Source on GitHub</a></div></footer>
 </body>
