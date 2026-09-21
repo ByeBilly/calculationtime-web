@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CalculationTime API - developer portal</title>
+<meta name="description" content="Time, date, astronomy, geo, finance and reference-data endpoints with visible assumptions. Public reference data needs no key; calculation endpoints use beta API keys.">
+<link rel="canonical" href="https://www.calculationtime.com/developers/api/">
+<style>
+  :root {
+    --bg: #f7f1e4; --panel: #ffffff; --ink: #14110c; --muted: #5a5245; --line: #d9ccb0;
+    --brand: #0b0d14; --gold: #c98b2c; --gold-soft: #e5b65f; --code-bg: #0d1018; --code-ink: #f3ead6; --ok: #2e7d32;
+    --radius: 12px; --max: 1080px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0b0d14; --panel: #12151f; --ink: #f4ecd9; --muted: #b9ae98; --line: #2b2f3d; --code-bg: #07080d; --ok: #7fd48a; }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+  a { color: inherit; }
+  .wrap { width: min(var(--max), 100% - 32px); margin-inline: auto; }
+  header.nav { background: var(--brand); color: #f4ecd9; }
+  header.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; flex-wrap: wrap; }
+  .logo { font-family: Georgia, "Times New Roman", serif; font-size: 20px; font-weight: 700; text-decoration: none; }
+  .logo span { color: var(--gold-soft); }
+  nav a { margin-left: 18px; text-decoration: none; font-size: 14px; opacity: .92; }
+  nav a:hover, nav a:focus-visible { text-decoration: underline; opacity: 1; }
+  .hero { background: var(--brand); color: #f4ecd9; padding: 56px 0 64px; border-bottom: 3px solid var(--gold); }
+  .kicker { color: var(--gold-soft); font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; margin: 0 0 12px; }
+  h1 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(34px, 6vw, 58px); line-height: 1.05; margin: 0 0 16px; max-width: 16ch; }
+  .lede { font-size: clamp(17px, 2.2vw, 20px); max-width: 60ch; color: #d8cdbd; margin: 0 0 26px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .btn { display: inline-block; padding: 12px 20px; border-radius: 999px; font-weight: 800; text-decoration: none; border: 2px solid var(--gold-soft); }
+  .btn.primary { background: var(--gold-soft); color: #14110c; }
+  .btn.ghost { color: #f4ecd9; }
+  .btn:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+  .pill { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; padding: 7px 14px; border: 1px solid rgba(229,182,95,.5); border-radius: 999px; font-size: 13px; color: #d8cdbd; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: #8a8577; }
+  .dot.live { background: #7fd48a; box-shadow: 0 0 0 4px rgba(127,212,138,.2); }
+  section { padding: 52px 0; }
+  section + section { border-top: 1px solid var(--line); }
+  h2 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(26px, 4vw, 36px); margin: 0 0 10px; line-height: 1.1; }
+  .sub { color: var(--muted); max-width: 68ch; margin: 0 0 26px; }
+  .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; }
+  .card h3 { margin: 0 0 6px; font-size: 18px; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .card .n { display: inline-block; margin-bottom: 8px; padding: 2px 10px; border-radius: 999px; background: rgba(201,139,44,.15); color: var(--gold); font-size: 12px; font-weight: 800; }
+  pre { margin: 0; padding: 16px 18px; overflow-x: auto; background: var(--code-bg); color: var(--code-ink); border-radius: var(--radius); font: 13.5px/1.55 ui-monospace, SFMono-Regular, Consolas, monospace; }
+  code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: .92em; }
+  .try { display: grid; gap: 14px; grid-template-columns: 1fr 1fr; align-items: start; }
+  @media (max-width: 800px) { .try { grid-template-columns: 1fr; } }
+  button.run { margin-top: 12px; padding: 10px 18px; border-radius: 999px; border: 2px solid var(--gold); background: var(--gold-soft); color: #14110c; font-weight: 800; cursor: pointer; }
+  button.run:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+  #out { min-height: 150px; max-height: 320px; overflow: auto; white-space: pre-wrap; }
+  table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; font-size: 14.5px; }
+  th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  tr:last-child td { border-bottom: 0; }
+  .scroll { overflow-x: auto; }
+  .note { margin: 14px 0 0; padding: 12px 16px; border-left: 4px solid var(--gold); background: rgba(201,139,44,.09); border-radius: 0 var(--radius) var(--radius) 0; font-size: 15px; }
+  ul.clean { margin: 0; padding-left: 20px; }
+  ul.clean li { margin: 6px 0; }
+  .soon { opacity: .9; }
+  .tag { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 11px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
+  .tag.live { background: rgba(46,125,50,.15); color: var(--ok); }
+  .tag.plan { background: rgba(201,139,44,.18); color: var(--gold); }
+  footer { background: var(--brand); color: #d8cdbd; padding: 32px 0; font-size: 14px; }
+  footer a { color: var(--gold-soft); }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: space-between; }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="./">Calculation<span>Time</span> API</a>
+    <nav aria-label="Primary">
+      <a href="docs/api-guide.html">API guide</a>
+      <a href="https://api.calculationtime.com/openapi.json">OpenAPI</a>
+      <a href="https://www.calculationtime.com/developers/api/status/">Status</a>
+      <a href="https://www.calculationtime.com">Main site</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="hero">
+  <div class="wrap">
+    <p class="kicker">Developer portal</p>
+    <h1>Calculations you can audit, over a plain JSON API.</h1>
+    <p class="lede">Time, dates, astronomy, geospatial, finance, health and math endpoints from CalculationTime, built around visible assumptions and repeatable methods. Public reference data works today with no key at all.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://www.calculationtime.com/developers/api/beta/">Request beta access</a>
+      <a class="btn ghost" href="#try">Try a live call</a>
+      <a class="btn ghost" href="docs/api-guide.html">Read the guide</a>
+    </div>
+    <div class="pill" id="statusPill" role="status" aria-live="polite"><span class="dot" id="statusDot"></span><span id="statusText">Checking live API status...</span></div>
+  </div>
+</div>
+
+<section id="try" aria-labelledby="try-h">
+  <div class="wrap">
+    <h2 id="try-h">Try it now - no key needed</h2>
+    <p class="sub">Reference-data endpoints are public. This runs a real request from your browser (the API sends open CORS headers). They support <code>q</code> to filter and <code>limit</code> to cap the rows.</p>
+    <div class="try">
+      <div>
+<pre>curl 'https://api.calculationtime.com/v1/data/http-status?q=teapot'
+
+curl 'https://api.calculationtime.com/v1/data/stars/bright?q=crux'</pre>
+        <button class="run" id="runBtn" type="button">Run the first request</button>
+        <p class="note">Every data response carries <code>dataset_version</code>, <code>source</code> and <code>count</code>, so you always know what you are reading and how fresh it is.</p>
+      </div>
+      <pre id="out" aria-live="polite">Response appears here.</pre>
+    </div>
+  </div>
+</section>
+
+<section id="inside" aria-labelledby="inside-h">
+  <div class="wrap">
+    <h2 id="inside-h">What is in the API</h2>
+    <p class="sub">Endpoint counts come from the live OpenAPI contract (v0.1.0). Calculation endpoints need an API key; reference data does not.</p>
+    <div class="grid">
+      <div class="card"><span class="n">17 endpoints</span><h3>Dates and time</h3><p>Date differences, business days, ISO weeks, age breakdowns, epoch conversion, quarters, leap years and local time for a coordinate.</p></div>
+      <div class="card"><span class="n">15 endpoints</span><h3>Solar and astronomy</h3><p>Sun and moon position, moon phase, twilight, day length, sidereal time, Julian date, equinoxes and solstices.</p></div>
+      <div class="card"><span class="n">14 endpoints</span><h3>Finance</h3><p>Loan amortization, simple and compound interest, ROI, CAGR, margin and markup, break-even, discounts and sales tax.</p></div>
+      <div class="card"><span class="n">16 endpoints</span><h3>Math and statistics</h3><p>Quadratics, triangles, circles, statistics summaries, proportions, logarithms, exponents, percentages and combinatorics.</p></div>
+      <div class="card"><span class="n">6 + 3 endpoints</span><h3>Geo and holidays</h3><p>Distance, midpoint, bounding boxes, elevation, plus holidays and business-day checks by jurisdiction.</p></div>
+      <div class="card"><span class="n">5 endpoints</span><h3>Health</h3><p>BMI, BMR, TDEE, macro splits and pace, with the formula stated.</p></div>
+      <div class="card"><span class="n">7 endpoints</span><h3>Payroll and trades</h3><p>Decimal hours, job margin, mileage claims, tool depreciation, invoice aging and VAT summaries.</p></div>
+      <div class="card"><span class="n">11 datasets</span><h3>Reference data</h3><p>Public JSON tables for countries, time zones, elements, constants, materials, HTTP status, MIME types, Unicode, stars and more.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="crux" aria-labelledby="crux-h">
+  <div class="wrap">
+    <h2 id="crux-h">Astronomy engines: the Crux Sky Clock</h2>
+    <p class="sub">Three endpoints turn a sidereal clock model, calibrated to Parkes Observatory, into positions you can use in your own instruments and dashboards. It is the same engine behind the Crux Sky Clock calculator on the main site.</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Endpoint</th><th>What it returns</th><th>Credits</th></tr></thead>
+      <tbody>
+        <tr><td><code>POST /v1/astronomy/crux-midnight</code></td><td>Sidereal position of the Crux clock hand at local midnight for a run of consecutive dates</td><td>2 per call</td></tr>
+        <tr><td><code>POST /v1/astronomy/crux-hourly</code></td><td>A full 24-hour sidereal breakdown for one local date</td><td>5 per call</td></tr>
+        <tr><td><code>POST /v1/astronomy/crux-current</code></td><td>Live clock-hand position and the Parkes alignment delta for a timestamp</td><td>2 per call</td></tr>
+      </tbody>
+    </table></div>
+<pre style="margin-top:16px">curl 'https://api.calculationtime.com/v1/astronomy/crux-midnight' \
+  -X POST \
+  -H 'X-API-Key: YOUR_KEY' \
+  -H 'Content-Type: application/json' \
+  -d '{"start_date":"2026-03-31","days":3,"timezone":"+10:00"}'</pre>
+  </div>
+</section>
+
+<section id="data" aria-labelledby="data-h">
+  <div class="wrap">
+    <h2 id="data-h">Reference data tables</h2>
+    <p class="sub">Public, cacheable and CORS-open. Row counts as at dataset version 2026-09-21.</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Endpoint</th><th>Rows</th><th>What it holds</th></tr></thead>
+      <tbody>
+        <tr><td><code>/v1/data/countries</code></td><td>250</td><td>Names, ISO codes, capitals, dialing codes</td></tr>
+        <tr><td><code>/v1/data/timezones</code></td><td>418</td><td>IANA zones with current UTC offset and DST status</td></tr>
+        <tr><td><code>/v1/data/elements</code></td><td>118</td><td>Periodic table reference values</td></tr>
+        <tr><td><code>/v1/data/constants</code></td><td>10</td><td>Physical and mathematical constants</td></tr>
+        <tr><td><code>/v1/data/materials/density</code></td><td>33</td><td>Typical engineering densities (kg/m3)</td></tr>
+        <tr><td><code>/v1/data/http-status</code></td><td>63</td><td>HTTP status codes and phrases</td></tr>
+        <tr><td><code>/v1/data/mime-types</code></td><td>2,522</td><td>MIME types with extensions and charset hints</td></tr>
+        <tr><td><code>/v1/data/unicode-blocks</code></td><td>23</td><td>A curated subset of Unicode block ranges</td></tr>
+        <tr><td><code>/v1/data/constellations</code></td><td>88</td><td>IAU constellations, genitives, abbreviations</td></tr>
+        <tr><td><code>/v1/data/stars/bright</code></td><td>20</td><td>Bright stars with coordinates and magnitude</td></tr>
+        <tr><td><code>/v1/data/meteor-showers</code></td><td>10</td><td>Major annual meteor showers</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">Some tables are curated subsets (Unicode blocks, constants, bright stars) rather than complete catalogues; each response names its <code>source</code>. Treat them as reference aids and check primary sources for anything critical.</p>
+  </div>
+</section>
+
+<section id="access" aria-labelledby="access-h">
+  <div class="wrap">
+    <h2 id="access-h">Access, limits and honesty</h2>
+    <div class="grid">
+      <div class="card"><h3>Public</h3><p>Status, health, OpenAPI, the UTC clock and all reference data. No key. Observed limit: 60 requests per minute, reported in <code>x-ratelimit-*</code> headers.</p></div>
+      <div class="card"><h3>Beta keys</h3><p>Calculation endpoints require a key, issued privately on request. Send it as <code>X-API-Key</code>. The contract also declares <code>Authorization: Bearer</code>.</p></div>
+      <div class="card"><h3>Credits</h3><p>Protected calls are credit-metered. <code>GET /v1/account/credits</code> and <code>/v1/account/limits</code> show your balance and plan limits and are free to call.</p></div>
+      <div class="card"><h3>No SLA yet</h3><p>The status endpoint says so deliberately. Reliability claims stay conservative until monitoring history exists.</p></div>
+    </div>
+    <p class="note">Beta access is by request, not self-service. Pricing, a customer dashboard and automated key rotation are not live yet.</p>
+  </div>
+</section>
+
+<section id="soon" class="soon" aria-labelledby="soon-h">
+  <div class="wrap">
+    <h2 id="soon-h">On the roadmap <span class="tag plan">planned, not live</span></h2>
+    <ul class="clean">
+      <li>Published request and response schemas for every calculation endpoint (today most POST bodies are described only as free-form objects).</li>
+      <li>Self-service key requests, a usage dashboard and public pricing.</li>
+      <li>Larger reference tables: full Unicode block list, a longer bright-star catalogue and material properties beyond density.</li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>CalculationTime API portal &middot; documentation site for <a href="https://www.calculationtime.com">calculationtime.com</a></div>
+    <div><a href="docs/api-guide.html">API guide</a> &middot; <a href="https://api.calculationtime.com/openapi.json">OpenAPI</a> &middot; <a href="https://www.calculationtime.com/developers/api/beta/">Request beta access</a></div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var API = 'https://api.calculationtime.com';
+  var dot = document.getElementById('statusDot');
+  var text = document.getElementById('statusText');
+  fetch(API + '/v1/status', { cache: 'no-store' })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (j) {
+      dot.className = 'dot live';
+      var up = j.uptime_seconds != null ? ' - process up ' + Math.floor(j.uptime_seconds / 3600) + 'h ' + Math.floor((j.uptime_seconds % 3600) / 60) + 'm' : '';
+      text.textContent = 'Live: API v' + (j.version || '?') + ' responding' + up;
+    })
+    .catch(function () { text.textContent = 'Live status unavailable right now (this does not affect the docs).'; });
+
+  var out = document.getElementById('out');
+  document.getElementById('runBtn').addEventListener('click', function () {
+    out.textContent = 'Loading...';
+    fetch(API + '/v1/data/http-status?q=teapot')
+      .then(function (r) { return r.json(); })
+      .then(function (j) { out.textContent = JSON.stringify(j, null, 2); })
+      .catch(function () { out.textContent = 'The request could not be completed from this browser. Try the curl command instead.'; });
+  });
+})();
+</script>
+</body>
+</html>
