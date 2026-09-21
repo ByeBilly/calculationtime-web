@@ -5,7 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CalculationTime API - developer portal</title>
 <meta name="description" content="Time, date, astronomy, geo, finance and reference-data endpoints with visible assumptions. Public reference data needs no key; calculation endpoints use beta API keys.">
-<link rel="canonical" href="https://www.calculationtime.com/developers/api/">
+<link rel="canonical" href="https://byebilly.github.io/calculationtime-web/">
+<meta property="og:title" content="CalculationTime API - developer portal">
+<meta property="og:description" content="Time, date, astronomy, geo, finance and reference-data endpoints with visible assumptions. Public reference data needs no key.">
+<meta property="og:type" content="website">
 <style>
   :root {
     --bg: #f7f1e4; --panel: #ffffff; --ink: #14110c; --muted: #5a5245; --line: #d9ccb0;
@@ -50,7 +53,8 @@
   pre { margin: 0; padding: 16px 18px; overflow-x: auto; background: var(--code-bg); color: var(--code-ink); border-radius: var(--radius); font: 13.5px/1.55 ui-monospace, SFMono-Regular, Consolas, monospace; }
   code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: .92em; }
   .try { display: grid; gap: 14px; grid-template-columns: 1fr 1fr; align-items: start; }
-  @media (max-width: 800px) { .try { grid-template-columns: 1fr; } }
+  .try > * { min-width: 0; }
+  @media (max-width: 800px) { .try { grid-template-columns: minmax(0, 1fr); } }
   button.run { margin-top: 12px; padding: 10px 18px; border-radius: 999px; border: 2px solid var(--gold); background: var(--gold-soft); color: #14110c; font-weight: 800; cursor: pointer; }
   button.run:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
   #out { min-height: 150px; max-height: 320px; overflow: auto; white-space: pre-wrap; }
@@ -77,6 +81,7 @@
     <a class="logo" href="./">Calculation<span>Time</span> API</a>
     <nav aria-label="Primary">
       <a href="docs/api-guide.html">API guide</a>
+      <a href="docs/reference/">Endpoint reference</a>
       <a href="https://api.calculationtime.com/openapi.json">OpenAPI</a>
       <a href="https://www.calculationtime.com/developers/api/status/">Status</a>
       <a href="https://www.calculationtime.com">Main site</a>
@@ -94,6 +99,7 @@
       <a class="btn primary" href="https://www.calculationtime.com/developers/api/beta/">Request beta access</a>
       <a class="btn ghost" href="#try">Try a live call</a>
       <a class="btn ghost" href="docs/api-guide.html">Read the guide</a>
+      <a class="btn ghost" href="docs/reference/">Browse all endpoints</a>
     </div>
     <div class="pill" id="statusPill" role="status" aria-live="polite"><span class="dot" id="statusDot"></span><span id="statusText">Checking live API status...</span></div>
   </div>
@@ -119,16 +125,16 @@ curl 'https://api.calculationtime.com/v1/data/stars/bright?q=crux'</pre>
 <section id="inside" aria-labelledby="inside-h">
   <div class="wrap">
     <h2 id="inside-h">What is in the API</h2>
-    <p class="sub">Endpoint counts come from the live OpenAPI contract (v0.1.0). Calculation endpoints need an API key; reference data does not.</p>
+    <p class="sub">Endpoint counts come from the live OpenAPI contract (v0.1.0). Calculation endpoints need an API key; reference data does not. Each area links to its full reference with a copy-paste request for every endpoint.</p>
     <div class="grid">
-      <div class="card"><span class="n">17 endpoints</span><h3>Dates and time</h3><p>Date differences, business days, ISO weeks, age breakdowns, epoch conversion, quarters, leap years and local time for a coordinate.</p></div>
-      <div class="card"><span class="n">15 endpoints</span><h3>Solar and astronomy</h3><p>Sun and moon position, moon phase, twilight, day length, sidereal time, Julian date, equinoxes and solstices.</p></div>
-      <div class="card"><span class="n">14 endpoints</span><h3>Finance</h3><p>Loan amortization, simple and compound interest, ROI, CAGR, margin and markup, break-even, discounts and sales tax.</p></div>
-      <div class="card"><span class="n">16 endpoints</span><h3>Math and statistics</h3><p>Quadratics, triangles, circles, statistics summaries, proportions, logarithms, exponents, percentages and combinatorics.</p></div>
-      <div class="card"><span class="n">6 + 3 endpoints</span><h3>Geo and holidays</h3><p>Distance, midpoint, bounding boxes, elevation, plus holidays and business-day checks by jurisdiction.</p></div>
-      <div class="card"><span class="n">5 endpoints</span><h3>Health</h3><p>BMI, BMR, TDEE, macro splits and pace, with the formula stated.</p></div>
-      <div class="card"><span class="n">7 endpoints</span><h3>Payroll and trades</h3><p>Decimal hours, job margin, mileage claims, tool depreciation, invoice aging and VAT summaries.</p></div>
-      <div class="card"><span class="n">11 datasets</span><h3>Reference data</h3><p>Public JSON tables for countries, time zones, elements, constants, materials, HTTP status, MIME types, Unicode, stars and more.</p></div>
+      <div class="card"><span class="n">17 endpoints</span><h3><a href="docs/reference/time-and-dates.html" style="color:inherit">Dates and time</a></h3><p>Date differences, business days, ISO weeks, age breakdowns, epoch conversion, quarters, leap years and local time for a coordinate.</p></div>
+      <div class="card"><span class="n">15 endpoints</span><h3><a href="docs/reference/astronomy.html" style="color:inherit">Solar and astronomy</a></h3><p>Sun and moon position, moon phase, twilight, day length, sidereal time, Julian date, equinoxes and solstices.</p></div>
+      <div class="card"><span class="n">14 endpoints</span><h3><a href="docs/reference/finance.html" style="color:inherit">Finance</a></h3><p>Loan amortization, simple and compound interest, ROI, CAGR, margin and markup, break-even, discounts and sales tax.</p></div>
+      <div class="card"><span class="n">16 endpoints</span><h3><a href="docs/reference/math-and-statistics.html" style="color:inherit">Math and statistics</a></h3><p>Quadratics, triangles, circles, statistics summaries, proportions, logarithms, exponents, percentages and combinatorics.</p></div>
+      <div class="card"><span class="n">6 + 3 endpoints</span><h3><a href="docs/reference/geo.html" style="color:inherit">Geo and holidays</a></h3><p>Distance, midpoint, bounding boxes, elevation, plus holidays and business-day checks by jurisdiction.</p></div>
+      <div class="card"><span class="n">5 endpoints</span><h3><a href="docs/reference/health.html" style="color:inherit">Health</a></h3><p>BMI, BMR, TDEE, macro splits and pace, with the formula stated.</p></div>
+      <div class="card"><span class="n">7 endpoints</span><h3><a href="docs/reference/payroll-and-trades.html" style="color:inherit">Payroll and trades</a></h3><p>Decimal hours, job margin, mileage claims, tool depreciation, invoice aging and VAT summaries.</p></div>
+      <div class="card"><span class="n">11 datasets</span><h3><a href="docs/reference/reference-data.html" style="color:inherit">Reference data</a></h3><p>Public JSON tables for countries, time zones, elements, constants, materials, HTTP status, MIME types, Unicode, stars and more.</p></div>
     </div>
   </div>
 </section>
@@ -205,7 +211,7 @@ curl 'https://api.calculationtime.com/v1/data/stars/bright?q=crux'</pre>
 <footer>
   <div class="wrap">
     <div>CalculationTime API portal &middot; documentation site for <a href="https://www.calculationtime.com">calculationtime.com</a></div>
-    <div><a href="docs/api-guide.html">API guide</a> &middot; <a href="https://api.calculationtime.com/openapi.json">OpenAPI</a> &middot; <a href="https://www.calculationtime.com/developers/api/beta/">Request beta access</a></div>
+    <div><a href="docs/api-guide.html">API guide</a> &middot; <a href="docs/reference/">Endpoint reference</a> &middot; <a href="https://api.calculationtime.com/openapi.json">OpenAPI</a> &middot; <a href="https://www.calculationtime.com/developers/api/beta/">Request beta access</a></div>
   </div>
 </footer>
 

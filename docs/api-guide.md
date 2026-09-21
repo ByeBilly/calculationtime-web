@@ -2,7 +2,7 @@
 
 Reliable time, date, geospatial, astronomy, finance, health and math calculations, plus public reference-data tables, over a plain JSON API.
 
-This guide describes the API **as it is today (contract v0.1.0, beta)**. Everything here was checked against the live service and its OpenAPI contract on 2026-09-21. Where something is not documented or not yet available, the guide says so instead of guessing. The authoritative machine-readable contract is always <https://api.calculationtime.com/openapi.json>, and the service itself serves Markdown documentation at <https://api.calculationtime.com/>.
+This guide describes the API **as it is today (contract v0.1.0, beta)**. The contract is published in the API's public repository and matched the live service on 2026-09-21. Details the contract does not carry (keyed rate limits, header forms) come from the API's own user guide, <https://github.com/ByeBilly/calculationtime-api/blob/main/docs/api-user-guide.md>, and are marked as such; this portal has no key, so it has not run the protected endpoints itself. Where something is not documented or not yet available, the guide says so instead of guessing. The authoritative machine-readable contract is always <https://api.calculationtime.com/openapi.json>, and the service itself serves Markdown documentation at <https://api.calculationtime.com/>.
 
 - Main site: <https://www.calculationtime.com>
 - Developer page and beta access: <https://www.calculationtime.com/developers/api/>
@@ -48,8 +48,8 @@ Endpoints marked "public" below need no credentials. Every other endpoint needs 
 
 | Scheme | How to send it | Notes |
 |---|---|---|
-| API key | Header `X-API-Key: YOUR_KEY` | The scheme used in all of CalculationTime's own examples. Keys look like `ct_live_...`. |
-| Bearer token | Header `Authorization: Bearer YOUR_KEY` | Declared as `BearerAuth` in the OpenAPI contract. Prefer `X-API-Key`, which the published examples use. |
+| API key header | `X-API-Key: YOUR_KEY` | Declared as `ApiKeyAuth` in the contract. Used in every example on this site. Keys look like `ct_live_...`. |
+| Bearer token | `Authorization: Bearer YOUR_KEY` | Declared as `BearerAuth`. The API's own guide accepts either form and uses Bearer in its examples. Send one, not both. |
 
 A missing or invalid key returns:
 
@@ -72,7 +72,7 @@ The full list is in section 10.
 
 ## 5. Rate limits
 
-Normal limited responses include rate-limit headers. Observed on the public tier on 2026-09-21:
+Every response includes rate-limit headers. Observed on the public tier on 2026-09-21:
 
 | Header | Meaning | Observed |
 |---|---|---|
@@ -80,23 +80,23 @@ Normal limited responses include rate-limit headers. Observed on the public tier
 | `x-ratelimit-remaining` | Requests left in the window | counts down from 59 |
 | `x-ratelimit-reset` | When the window resets, as **Unix epoch seconds** | about 60 seconds after the first request of a window |
 
-So the public tier behaves as roughly **60 requests per minute**. Keyed customers have plan-specific limits: call `GET /v1/account/limits` to see yours, including documented batch limits.
-
-When you exceed a limit the contract lists `429 Too Many Requests`. Back off until `x-ratelimit-reset`, and add jitter if several workers share a key. Do not retry in a tight loop.
+- **Public routes:** 60 requests per minute per client IP (observed).
+- **Keyed routes:** the API's own guide states a default of 120 requests per minute per customer, with per-customer overrides. We could not confirm this with a key. `GET /v1/account/limits` (free) shows your actual plan and batch limits.
+- **When you hit the limit** the API returns `429` with a `Retry-After` header (seconds, per the API guide). Wait that long, add jitter if several workers share a key, and do not retry in a tight loop.
 
 ## 6. Credits
 
-Protected calculation endpoints are credit-metered. The live OpenAPI contract exposes known per-route costs as `x-credit-cost`. Common astronomy costs:
+Protected endpoints are credit-metered, and the contract publishes the cost of each one as `x-credit-cost`. Across the documented protected calculation endpoints:
 
-| Endpoint | Credits per call |
+| Cost | Endpoints |
 |---|---|
-| `POST /v1/astronomy/crux-midnight` | 2 (regardless of how many days are requested) |
-| `POST /v1/astronomy/crux-hourly` | 5 (all 24 hours of the date) |
-| `POST /v1/astronomy/crux-current` | 2 |
-| `GET /v1/astronomy/ephemeris` | 1 |
-| Other phase-one astronomy POST routes | 1 each |
+| 1 credit | 71 (most lightweight maths, date, geo, finance and health calls) |
+| 2 credits | 6 (including `crux-midnight` and `crux-current`) |
+| 3 credits | 4 |
+| 5 credits | 2 (including `crux-hourly`, which returns all 24 hours) |
+| free | the account endpoints (`/v1/account/credits`, `/usage`, `/limits`) |
 
-Check the live OpenAPI contract for exact per-endpoint costs before building billing displays. Check your balance with `GET /v1/account/credits` and your usage with `GET /v1/account/usage`. The contract also lists `402` as a possible response, consistent with a credit or payment condition.
+The exact cost of every endpoint is shown on its reference entry, for example on [Finance](reference/finance.html) and [Astronomy](reference/astronomy.html). Check your balance with `GET /v1/account/credits` and your usage with `GET /v1/account/usage`. When credits run out the API answers `402`. Credit prices in money terms are not published yet.
 
 ## 7. Responses, errors and status codes
 
@@ -114,7 +114,9 @@ Check the live OpenAPI contract for exact per-endpoint costs before building bil
 { "error": { "code": "not_found", "message": "Endpoint not found" } }
 ```
 
-Status codes documented in the contract for protected endpoints: `200`, `400` (bad request), `401` (missing/invalid key), `402`, `403` (forbidden), `429` (rate limited). Unknown routes return `404`. Handle unknown codes generically.
+Status codes documented in the contract for protected endpoints: `200`, `400` (bad request), `401` (missing or invalid key), `402` (credits exhausted), `403` (suspended account or expired trial), `429` (rate limited). Unknown routes return `404`. The API guide also lists `500` and `503` (an optional store or provider is unavailable). A malformed JSON body returns `400` with code `invalid_json`. Handle unknown codes generically.
+
+Route check (2026-09-21): every one of the 89 documented protected routes answered `401` with the standard error envelope when called without a key, so each route exists and is protected as documented. Nothing was called with a key.
 
 ## 8. CORS and caching
 
@@ -149,7 +151,7 @@ All endpoints are `GET`, need no key and return the envelope from section 7. Que
 | `extension` | `/v1/data/mime-types` | Match one file extension | `?extension=json` returns `application/json` |
 | `at` | `/v1/data/timezones` | ISO timestamp at which offsets are computed (default: now) | Sydney: `UTC+11:00` at 2026-01-15, `UTC+10:00` at 2026-07-15 |
 
-Every dataset is also served under `/api/v1/data/...` with identical behaviour (for example `/api/v1/data/http-status?q=429`). Both the `/v1/data/...` routes and the `/api/v1/data/...` compatibility aliases are present in the live OpenAPI contract.
+Every dataset is also served under `/api/v1/data/...` with identical behaviour (for example `/api/v1/data/http-status?q=429`). `/v1/data/...` is the canonical form used in the OpenAPI contract.
 
 **Read `observes_dst_now` carefully.** In the timezone dataset this flag is `true` for any zone that uses daylight saving at all - it stayed `true` for `Europe/London` in January (offset `UTC+00:00`) and for `Australia/Sydney` in July (offset `UTC+10:00`) - so it does **not** tell you whether DST is in force at the requested time. To find out, compare `offset_minutes` at different `at` values, or use the standard offset for the zone.
 
@@ -167,179 +169,164 @@ Several tables are curated subsets rather than complete catalogues. Each respons
 
 ## 10. Endpoint index
 
-Generated from the live OpenAPI contract (v0.1.0). "public" means no key; "key" means an API key is required. This customer-facing index omits administrative routes, private-sharing routes, and duplicate `/api/v1/data/...` compatibility aliases; the live contract currently exposes 122 unique paths.
+Generated from the OpenAPI contract (v0.1.0) by `build-portal.py`. "public" means no key; "key" means an API key is required. Each area has its own reference page with a copy-paste request per endpoint. Administrative and private-sharing routes are omitted, and the `/api/v1/data/...` aliases are covered in section 9.
 
-### Public service and utility
+### [Service and status](reference/service.html)
 
-| Method | Path | What it does | Access |
-|---|---|---|---|
-| GET | `/` | Markdown API documentation | public |
-| GET | `/health` | Low-level service health | public |
-| GET | `/openapi.json` | OpenAPI contract for live routes | public |
-| GET | `/v1/status` | Public measured service status and endpoint inventory | public |
-| GET | `/v1/time/utc` | Current UTC timestamp and clock-model metadata | public |
-| GET | `/api/v1/utility/tagline` | Deterministic daily CalculationTime tagline | public |
+| Method | Path | What it does | Access | Cost |
+|---|---|---|---|---|
+| GET | [`/`](reference/service.html#get) | Markdown API documentation | public | - |
+| GET | [`/health`](reference/service.html#get--health) | Low-level service health | public | - |
+| GET | [`/openapi.json`](reference/service.html#get--openapi.json) | OpenAPI contract for live routes | public | - |
+| GET | [`/v1/status`](reference/service.html#get--v1-status) | Public measured service status and endpoint inventory | public | - |
+| GET | [`/v1/time/utc`](reference/service.html#get--v1-time-utc) | Current UTC timestamp and clock-model metadata | public | - |
+| GET | [`/api/v1/utility/tagline`](reference/service.html#get--api-v1-utility-tagline) | Deterministic daily CalculationTime tagline | public | - |
+| GET | [`/v1/canary`](reference/service.html#get--v1-canary) | Protected monitoring canary for API-key path checks | key | free |
 
-### Reference data (public)
+### [Reference data](reference/reference-data.html)
 
-| Method | Path | What it does | Access |
-|---|---|---|---|
-| GET | `/v1/data/countries` | Country reference table with capitals, ISO codes, dialing codes, and currencies | public |
-| GET | `/v1/data/timezones` | IANA timezone reference with current UTC offsets and DST status | public |
-| GET | `/v1/data/elements` | Periodic table reference values | public |
-| GET | `/v1/data/constants` | Physical and mathematical constants reference table | public |
-| GET | `/v1/data/materials/density` | Common material density reference table | public |
-| GET | `/v1/data/http-status` | HTTP status code directory | public |
-| GET | `/v1/data/mime-types` | MIME type and extension reference table | public |
-| GET | `/v1/data/unicode-blocks` | Unicode block range reference table | public |
-| GET | `/v1/data/constellations` | IAU constellation names, genitives, abbreviations, and quadrants | public |
-| GET | `/v1/data/stars/bright` | Bright star reference table | public |
-| GET | `/v1/data/meteor-showers` | Major annual meteor shower reference table | public |
+| Method | Path | What it does | Access | Cost |
+|---|---|---|---|---|
+| GET | [`/v1/data/countries`](reference/reference-data.html#get--v1-data-countries) | Country reference table with capitals, ISO codes, dialing codes, and currencies | public | - |
+| GET | [`/v1/data/timezones`](reference/reference-data.html#get--v1-data-timezones) | IANA timezone reference with current UTC offsets and DST status | public | - |
+| GET | [`/v1/data/elements`](reference/reference-data.html#get--v1-data-elements) | Periodic table reference values | public | - |
+| GET | [`/v1/data/constants`](reference/reference-data.html#get--v1-data-constants) | Physical and mathematical constants reference table | public | - |
+| GET | [`/v1/data/materials/density`](reference/reference-data.html#get--v1-data-materials-density) | Common material density reference table | public | - |
+| GET | [`/v1/data/http-status`](reference/reference-data.html#get--v1-data-http-status) | HTTP status code directory | public | - |
+| GET | [`/v1/data/mime-types`](reference/reference-data.html#get--v1-data-mime-types) | MIME type and extension reference table | public | - |
+| GET | [`/v1/data/unicode-blocks`](reference/reference-data.html#get--v1-data-unicode-blocks) | Unicode block range reference table | public | - |
+| GET | [`/v1/data/constellations`](reference/reference-data.html#get--v1-data-constellations) | IAU constellation names, genitives, abbreviations, and quadrants | public | - |
+| GET | [`/v1/data/stars/bright`](reference/reference-data.html#get--v1-data-stars-bright) | Bright star reference table | public | - |
+| GET | [`/v1/data/meteor-showers`](reference/reference-data.html#get--v1-data-meteor-showers) | Major annual meteor shower reference table | public | - |
 
-### Time and dates
+### [Time and dates](reference/time-and-dates.html)
 
-| Method | Path | What it does | Access |
-|---|---|---|---|
-| GET | `/v1/time` | Get local time for one coordinate | key |
-| POST | `/v1/time/batch` | Get local time for up to 100 coordinates | key |
-| GET | `/v1/date/difference` | Calendar day difference | key |
-| POST | `/v1/date/difference/batch` | Batch calendar day differences | key |
-| GET | `/v1/date/add` | Add calendar units to a date | key |
-| POST | `/v1/date/business-days` | Business-day count with supplied holidays | key |
-| POST | `/v1/date/business-days/jurisdiction` | Business-day count for a supported jurisdiction | key |
-| POST | `/v1/date/business-days-add` | Add or subtract configurable business days | key |
-| POST | `/v1/date/iso-week` | ISO week number, week-year, and weekday | key |
-| POST | `/v1/date/age-breakdown` | Exact age duration breakdown from birth date to timestamp | key |
-| POST | `/v1/date/countdown-precise` | Precise calendar delta between timestamps | key |
-| POST | `/v1/date/epoch-converter` | Unix epoch seconds or milliseconds to ISO/RFC strings | key |
-| POST | `/v1/date/quarter-calculator` | Calendar and fiscal quarter with progress percentage | key |
-| POST | `/v1/date/leap-year-check` | Gregorian and Julian leap-year proof check | key |
-| POST | `/v1/date/days-in-month` | Days in a Gregorian month | key |
-| POST | `/v1/date/timezone-offset` | Fixed UTC offset conversion without DST lookup | key |
-| POST | `/v1/date/calendar-range` | Generate a deterministic date range with weekday and ISO week facts | key |
+| Method | Path | What it does | Access | Cost |
+|---|---|---|---|---|
+| GET | [`/v1/time`](reference/time-and-dates.html#get--v1-time) | Get local time for one coordinate | key | 1 credit |
+| POST | [`/v1/time/batch`](reference/time-and-dates.html#post--v1-time-batch) | Get local time for up to 100 coordinates | key | 1 credit |
+| GET | [`/v1/date/difference`](reference/time-and-dates.html#get--v1-date-difference) | Calendar day difference | key | 1 credit |
+| POST | [`/v1/date/difference/batch`](reference/time-and-dates.html#post--v1-date-difference-batch) | Batch calendar day differences | key | 1 credit |
+| GET | [`/v1/date/add`](reference/time-and-dates.html#get--v1-date-add) | Add calendar units to a date | key | 1 credit |
+| POST | [`/v1/date/business-days`](reference/time-and-dates.html#post--v1-date-business-days) | Business-day count with supplied holidays | key | 1 credit |
+| POST | [`/v1/date/business-days/jurisdiction`](reference/time-and-dates.html#post--v1-date-business-days-jurisdiction) | Business-day count for a supported jurisdiction | key | 1 credit |
+| POST | [`/v1/date/business-days-add`](reference/time-and-dates.html#post--v1-date-business-days-add) | Add or subtract configurable business days | key | 1 credit |
+| POST | [`/v1/date/iso-week`](reference/time-and-dates.html#post--v1-date-iso-week) | ISO week number, week-year, and weekday | key | 1 credit |
+| POST | [`/v1/date/age-breakdown`](reference/time-and-dates.html#post--v1-date-age-breakdown) | Exact age duration breakdown from birth date to timestamp | key | 1 credit |
+| POST | [`/v1/date/countdown-precise`](reference/time-and-dates.html#post--v1-date-countdown-precise) | Precise calendar delta between timestamps | key | 1 credit |
+| POST | [`/v1/date/epoch-converter`](reference/time-and-dates.html#post--v1-date-epoch-converter) | Unix epoch seconds or milliseconds to ISO/RFC strings | key | 1 credit |
+| POST | [`/v1/date/quarter-calculator`](reference/time-and-dates.html#post--v1-date-quarter-calculator) | Calendar and fiscal quarter with progress percentage | key | 1 credit |
+| POST | [`/v1/date/leap-year-check`](reference/time-and-dates.html#post--v1-date-leap-year-check) | Gregorian and Julian leap-year proof check | key | 1 credit |
+| POST | [`/v1/date/days-in-month`](reference/time-and-dates.html#post--v1-date-days-in-month) | Days in a Gregorian month | key | 1 credit |
+| POST | [`/v1/date/timezone-offset`](reference/time-and-dates.html#post--v1-date-timezone-offset) | Fixed UTC offset conversion without DST lookup | key | 1 credit |
+| POST | [`/v1/date/calendar-range`](reference/time-and-dates.html#post--v1-date-calendar-range) | Generate a deterministic date range with weekday and ISO week facts | key | 1 credit |
+| GET | [`/v1/holidays`](reference/time-and-dates.html#get--v1-holidays) | Holidays for a jurisdiction and year | key | 1 credit |
+| GET | [`/v1/holidays/next`](reference/time-and-dates.html#get--v1-holidays-next) | Next holiday for a jurisdiction | key | 1 credit |
+| GET | [`/v1/holidays/is-business-day`](reference/time-and-dates.html#get--v1-holidays-is-business-day) | Business-day check for one date | key | 1 credit |
 
-### Holidays and business days
+### [Geo](reference/geo.html)
 
-| Method | Path | What it does | Access |
-|---|---|---|---|
-| GET | `/v1/holidays` | Holidays for a jurisdiction and year | key |
-| GET | `/v1/holidays/next` | Next holiday for a jurisdiction | key |
-| GET | `/v1/holidays/is-business-day` | Business-day check for one date | key |
+| Method | Path | What it does | Access | Cost |
+|---|---|---|---|---|
+| GET | [`/v1/geo/distance`](reference/geo.html#get--v1-geo-distance) | Distance between two coordinates | key | 1 credit |
+| POST | [`/v1/geo/distance/batch`](reference/geo.html#post--v1-geo-distance-batch) | Batch distance calculations | key | 1 credit |
+| GET | [`/v1/geo/midpoint`](reference/geo.html#get--v1-geo-midpoint) | Midpoint between two coordinates | key | 1 credit |
+| GET | [`/v1/geo/bounding-box`](reference/geo.html#get--v1-geo-bounding-box) | Bounding box around a coordinate | key | 1 credit |
+| GET | [`/v1/geo/elevation`](reference/geo.html#get--v1-geo-elevation) | Elevation for one coordinate | key | 1 credit |
+| GET | [`/v1/geo/nearby`](reference/geo.html#get--v1-geo-nearby) | Nearby stored geo points | key | 1 credit |
 
-### Geospatial
+### [Astronomy and Crux clock](reference/astronomy.html)
 
-| Method | Path | What it does | Access |
-|---|---|---|---|
-| GET | `/v1/geo/distance` | Distance between two coordinates | key |
-| POST | `/v1/geo/distance/batch` | Batch distance calculations | key |
-| GET | `/v1/geo/midpoint` | Midpoint between two coordinates | key |
-| GET | `/v1/geo/bounding-box` | Bounding box around a coordinate | key |
-| GET | `/v1/geo/elevation` | Elevation for one coordinate | key |
-| GET | `/v1/geo/nearby` | Nearby stored geo points | key |
+| Method | Path | What it does | Access | Cost |
+|---|---|---|---|---|
+| GET | [`/v1/solar/position`](reference/astronomy.html#get--v1-solar-position) | Solar position for date and coordinate | key | 1 credit |
+| GET | [`/v1/astronomy/ephemeris`](reference/astronomy.html#get--v1-astronomy-ephemeris) | Astronomy ephemeris for a date | key | 1 credit |
+| POST | [`/v1/astronomy/crux-midnight`](reference/astronomy.html#post--v1-astronomy-crux-midnight) | Crux clock hand midnight sidereal positions from Parkes Observatory calibration | key | 2 credits |
+| POST | [`/v1/astronomy/crux-hourly`](reference/astronomy.html#post--v1-astronomy-crux-hourly) | Crux clock hand hourly sidereal breakdown for one local date | key | 5 credits |
+| POST | [`/v1/astronomy/crux-current`](reference/astronomy.html#post--v1-astronomy-crux-current) | Current Crux clock hand position and Parkes alignment delta | key | 2 credits |
+| POST | [`/v1/astronomy/solar-noon`](reference/astronomy.html#post--v1-astronomy-solar-noon) | Solar transit/noon timestamp for a coordinate and date | key | 1 credit |
+| POST | [`/v1/astronomy/equinox-solstice`](reference/astronomy.html#post--v1-astronomy-equinox-solstice) | Equinox and solstice timestamps for a year | key | 1 credit |
+| POST | [`/v1/astronomy/moon-phase`](reference/astronomy.html#post--v1-astronomy-moon-phase) | Moon illumination, age, and phase name for a timestamp | key | 1 credit |
+| POST | [`/v1/astronomy/julian-date`](reference/astronomy.html#post--v1-astronomy-julian-date) | Gregorian timestamp to Julian Day and Modified Julian Date | key | 1 credit |
+| POST | [`/v1/astronomy/sidereal-time`](reference/astronomy.html#post--v1-astronomy-sidereal-time) | Greenwich and local sidereal time for a timestamp and longitude | key | 1 credit |
+| POST | [`/v1/astronomy/twilight-calculator`](reference/astronomy.html#post--v1-astronomy-twilight-calculator) | Civil, nautical, and astronomical twilight crossings | key | 1 credit |
+| POST | [`/v1/astronomy/sun-position`](reference/astronomy.html#post--v1-astronomy-sun-position) | Sun right ascension, declination, azimuth, and elevation | key | 1 credit |
+| POST | [`/v1/astronomy/moon-position`](reference/astronomy.html#post--v1-astronomy-moon-position) | Moon right ascension, declination, azimuth, and elevation | key | 1 credit |
+| POST | [`/v1/astronomy/day-length`](reference/astronomy.html#post--v1-astronomy-day-length) | Daylight duration between sunrise and sunset | key | 1 credit |
+| POST | [`/v1/astronomy/polar-night-check`](reference/astronomy.html#post--v1-astronomy-polar-night-check) | Check midnight sun or polar night state for a latitude/date | key | 1 credit |
 
-### Solar and astronomy
+### [Finance](reference/finance.html)
 
-| Method | Path | What it does | Access |
-|---|---|---|---|
-| GET | `/v1/solar/position` | Solar position for date and coordinate | key |
-| GET | `/v1/astronomy/ephemeris` | Astronomy ephemeris for a date | key |
-| POST | `/v1/astronomy/crux-midnight` | Crux clock hand midnight sidereal positions from Parkes Observatory calibration | key |
-| POST | `/v1/astronomy/crux-hourly` | Crux clock hand hourly sidereal breakdown for one local date | key |
-| POST | `/v1/astronomy/crux-current` | Current Crux clock hand position and Parkes alignment delta | key |
-| POST | `/v1/astronomy/solar-noon` | Solar transit/noon timestamp for a coordinate and date | key |
-| POST | `/v1/astronomy/equinox-solstice` | Equinox and solstice timestamps for a year | key |
-| POST | `/v1/astronomy/moon-phase` | Moon illumination, age, and phase name for a timestamp | key |
-| POST | `/v1/astronomy/julian-date` | Gregorian timestamp to Julian Day and Modified Julian Date | key |
-| POST | `/v1/astronomy/sidereal-time` | Greenwich and local sidereal time for a timestamp and longitude | key |
-| POST | `/v1/astronomy/twilight-calculator` | Civil, nautical, and astronomical twilight crossings | key |
-| POST | `/v1/astronomy/sun-position` | Sun right ascension, declination, azimuth, and elevation | key |
-| POST | `/v1/astronomy/moon-position` | Moon right ascension, declination, azimuth, and elevation | key |
-| POST | `/v1/astronomy/day-length` | Daylight duration between sunrise and sunset | key |
-| POST | `/v1/astronomy/polar-night-check` | Check midnight sun or polar night state for a latitude/date | key |
+| Method | Path | What it does | Access | Cost |
+|---|---|---|---|---|
+| POST | [`/v1/finance/margin-markup`](reference/finance.html#post--v1-finance-margin-markup) | Gross margin, markup, selling price, and cost variance | key | 1 credit |
+| POST | [`/v1/finance/loan-amortization`](reference/finance.html#post--v1-finance-loan-amortization) | Fixed-rate loan amortization schedule | key | 5 credits |
+| POST | [`/v1/finance/tax-extraction`](reference/finance.html#post--v1-finance-tax-extraction) | Tax add-on and inclusive reverse extraction | key | 2 credits |
+| POST | [`/v1/finance/freelancer-rate`](reference/finance.html#post--v1-finance-freelancer-rate) | Freelancer hourly and daily rate target | key | 2 credits |
+| POST | [`/v1/finance/simple-interest`](reference/finance.html#post--v1-finance-simple-interest) | Simple interest from principal, rate, and time | key | 1 credit |
+| POST | [`/v1/finance/compound-interest`](reference/finance.html#post--v1-finance-compound-interest) | Future value with compound interest frequency options | key | 1 credit |
+| POST | [`/v1/finance/loan-amortization-summary`](reference/finance.html#post--v1-finance-loan-amortization-summary) | Loan payment, total interest, and total cost summary | key | 1 credit |
+| POST | [`/v1/finance/rule-of-72`](reference/finance.html#post--v1-finance-rule-of-72) | Estimated investment doubling time using the rule of 72 | key | 1 credit |
+| POST | [`/v1/finance/roi`](reference/finance.html#post--v1-finance-roi) | Return on investment percentage from cost and net gain | key | 1 credit |
+| POST | [`/v1/finance/discount-calculator`](reference/finance.html#post--v1-finance-discount-calculator) | Final price and savings from original price and discount rate | key | 1 credit |
+| POST | [`/v1/finance/markup-margin`](reference/finance.html#post--v1-finance-markup-margin) | Convert between gross margin and markup percentages | key | 1 credit |
+| POST | [`/v1/finance/break-even`](reference/finance.html#post--v1-finance-break-even) | Break-even units from fixed costs, variable cost, and price | key | 1 credit |
+| POST | [`/v1/finance/salestax`](reference/finance.html#post--v1-finance-salestax) | Add or extract sales tax/GST from an amount and tax rate | key | 1 credit |
+| POST | [`/v1/finance/cagr`](reference/finance.html#post--v1-finance-cagr) | Compound annual growth rate from beginning value, ending value, and years | key | 1 credit |
 
-### Finance
+### [Math and statistics](reference/math-and-statistics.html)
 
-| Method | Path | What it does | Access |
-|---|---|---|---|
-| POST | `/v1/finance/margin-markup` | Gross margin, markup, selling price, and cost variance | key |
-| POST | `/v1/finance/loan-amortization` | Fixed-rate loan amortization schedule | key |
-| POST | `/v1/finance/tax-extraction` | Tax add-on and inclusive reverse extraction | key |
-| POST | `/v1/finance/freelancer-rate` | Freelancer hourly and daily rate target | key |
-| POST | `/v1/finance/simple-interest` | Simple interest from principal, rate, and time | key |
-| POST | `/v1/finance/compound-interest` | Future value with compound interest frequency options | key |
-| POST | `/v1/finance/loan-amortization-summary` | Loan payment, total interest, and total cost summary | key |
-| POST | `/v1/finance/rule-of-72` | Estimated investment doubling time using the rule of 72 | key |
-| POST | `/v1/finance/roi` | Return on investment percentage from cost and net gain | key |
-| POST | `/v1/finance/discount-calculator` | Final price and savings from original price and discount rate | key |
-| POST | `/v1/finance/markup-margin` | Convert between gross margin and markup percentages | key |
-| POST | `/v1/finance/break-even` | Break-even units from fixed costs, variable cost, and price | key |
-| POST | `/v1/finance/salestax` | Add or extract sales tax/GST from an amount and tax rate | key |
-| POST | `/v1/finance/cagr` | Compound annual growth rate from beginning value, ending value, and years | key |
+| Method | Path | What it does | Access | Cost |
+|---|---|---|---|---|
+| POST | [`/v1/math/quadratic-solver`](reference/math-and-statistics.html#post--v1-math-quadratic-solver) | Solve a quadratic equation with real or complex roots and vertex coordinates | key | 1 credit |
+| POST | [`/v1/math/pythagorean-solve`](reference/math-and-statistics.html#post--v1-math-pythagorean-solve) | Solve the missing side of a right triangle from any two sides | key | 1 credit |
+| POST | [`/v1/math/triangle-heron`](reference/math-and-statistics.html#post--v1-math-triangle-heron) | Triangle area, perimeter, and angles from three side lengths | key | 1 credit |
+| POST | [`/v1/math/circle-geometry`](reference/math-and-statistics.html#post--v1-math-circle-geometry) | Circle area, circumference, diameter, arc length, and sector area | key | 1 credit |
+| POST | [`/v1/math/sphere-geometry`](reference/math-and-statistics.html#post--v1-math-sphere-geometry) | Sphere diameter, surface area, and volume from radius | key | 1 credit |
+| POST | [`/v1/math/cylinder-geometry`](reference/math-and-statistics.html#post--v1-math-cylinder-geometry) | Cylinder base area, surface area, and volume from radius and height | key | 1 credit |
+| POST | [`/v1/math/statistics-summary`](reference/math-and-statistics.html#post--v1-math-statistics-summary) | Mean, median, mode, variance, standard deviation, and IQR for numbers | key | 1 credit |
+| POST | [`/v1/math/percentage-change`](reference/math-and-statistics.html#post--v1-math-percentage-change) | Absolute and percentage change from baseline to current value | key | 1 credit |
+| POST | [`/v1/math/percent-error`](reference/math-and-statistics.html#post--v1-math-percent-error) | Absolute, relative, and percent error against an accepted true value | key | 1 credit |
+| POST | [`/v1/math/gcd-lcm`](reference/math-and-statistics.html#post--v1-math-gcd-lcm) | Greatest common divisor and least common multiple for integer sets | key | 1 credit |
+| POST | [`/v1/math/matrix-determinant`](reference/math-and-statistics.html#post--v1-math-matrix-determinant) | Determinants for 2x2 and 3x3 matrices | key | 1 credit |
+| POST | [`/v1/math/proportion-solver`](reference/math-and-statistics.html#post--v1-math-proportion-solver) | Solve x in equivalent ratios a/b = c/x | key | 1 credit |
+| POST | [`/v1/math/logarithm-eval`](reference/math-and-statistics.html#post--v1-math-logarithm-eval) | Evaluate logarithms with custom bases using change of base | key | 1 credit |
+| POST | [`/v1/math/exponent-eval`](reference/math-and-statistics.html#post--v1-math-exponent-eval) | Evaluate exponentiation and optional real root extraction | key | 1 credit |
+| POST | [`/v1/math/combinatorics`](reference/math-and-statistics.html#post--v1-math-combinatorics) | Permutations and combinations for n and r | key | 1 credit |
+| POST | [`/v1/stats/summary`](reference/math-and-statistics.html#post--v1-stats-summary) | Descriptive statistics for a numeric dataset | key | 3 credits |
 
-### Math and statistics
+### [Health](reference/health.html)
 
-| Method | Path | What it does | Access |
-|---|---|---|---|
-| POST | `/v1/math/quadratic-solver` | Solve a quadratic equation with real or complex roots and vertex coordinates | key |
-| POST | `/v1/math/pythagorean-solve` | Solve the missing side of a right triangle from any two sides | key |
-| POST | `/v1/math/triangle-heron` | Triangle area, perimeter, and angles from three side lengths | key |
-| POST | `/v1/math/circle-geometry` | Circle area, circumference, diameter, arc length, and sector area | key |
-| POST | `/v1/math/sphere-geometry` | Sphere diameter, surface area, and volume from radius | key |
-| POST | `/v1/math/cylinder-geometry` | Cylinder base area, surface area, and volume from radius and height | key |
-| POST | `/v1/math/statistics-summary` | Mean, median, mode, variance, standard deviation, and IQR for numbers | key |
-| POST | `/v1/math/percentage-change` | Absolute and percentage change from baseline to current value | key |
-| POST | `/v1/math/percent-error` | Absolute, relative, and percent error against an accepted true value | key |
-| POST | `/v1/math/gcd-lcm` | Greatest common divisor and least common multiple for integer sets | key |
-| POST | `/v1/math/matrix-determinant` | Determinants for 2x2 and 3x3 matrices | key |
-| POST | `/v1/math/proportion-solver` | Solve x in equivalent ratios a/b = c/x | key |
-| POST | `/v1/math/logarithm-eval` | Evaluate logarithms with custom bases using change of base | key |
-| POST | `/v1/math/exponent-eval` | Evaluate exponentiation and optional real root extraction | key |
-| POST | `/v1/math/combinatorics` | Permutations and combinations for n and r | key |
-| POST | `/v1/stats/summary` | Descriptive statistics for a numeric dataset | key |
+| Method | Path | What it does | Access | Cost |
+|---|---|---|---|---|
+| POST | [`/v1/health/bmi`](reference/health.html#post--v1-health-bmi) | Body Mass Index and category classification | key | 1 credit |
+| POST | [`/v1/health/bmr`](reference/health.html#post--v1-health-bmr) | Basal Metabolic Rate using Mifflin-St Jeor | key | 1 credit |
+| POST | [`/v1/health/tdee`](reference/health.html#post--v1-health-tdee) | Total Daily Energy Expenditure from BMR and activity multiplier | key | 1 credit |
+| POST | [`/v1/health/macro-split`](reference/health.html#post--v1-health-macro-split) | Protein, carbs, and fat grams from calories and macro percentages | key | 1 credit |
+| POST | [`/v1/health/pace-calculator`](reference/health.html#post--v1-health-pace-calculator) | Running or walking pace and speed from distance and duration | key | 1 credit |
 
-### Health
+### [Payroll and trades](reference/payroll-and-trades.html)
 
-| Method | Path | What it does | Access |
-|---|---|---|---|
-| POST | `/v1/health/bmi` | Body Mass Index and category classification | key |
-| POST | `/v1/health/bmr` | Basal Metabolic Rate using Mifflin-St Jeor | key |
-| POST | `/v1/health/tdee` | Total Daily Energy Expenditure from BMR and activity multiplier | key |
-| POST | `/v1/health/macro-split` | Protein, carbs, and fat grams from calories and macro percentages | key |
-| POST | `/v1/health/pace-calculator` | Running or walking pace and speed from distance and duration | key |
+| Method | Path | What it does | Access | Cost |
+|---|---|---|---|---|
+| POST | [`/v1/payroll/decimal-hours`](reference/payroll-and-trades.html#post--v1-payroll-decimal-hours) | Clock time to decimal hours and overtime conversion | key | 1 credit |
+| POST | [`/v1/tradie/job-margin`](reference/payroll-and-trades.html#post--v1-tradie-job-margin) | Tradie job margin from labour, materials, subcontractors, overhead, and quote | key | 2 credits |
+| POST | [`/v1/tradie/vat-return-summary`](reference/payroll-and-trades.html#post--v1-tradie-vat-return-summary) | Tradie VAT return summary from sales and purchases | key | 3 credits |
+| POST | [`/v1/tradie/cis-deduction`](reference/payroll-and-trades.html#post--v1-tradie-cis-deduction) | UK CIS-style deduction model for labour and materials | key | 2 credits |
+| POST | [`/v1/tradie/mileage-claim`](reference/payroll-and-trades.html#post--v1-tradie-mileage-claim) | Mileage claim and unreimbursed/reimbursed excess calculation | key | 1 credit |
+| POST | [`/v1/tradie/tool-depreciation`](reference/payroll-and-trades.html#post--v1-tradie-tool-depreciation) | Straight-line tool and equipment depreciation schedule | key | 3 credits |
+| POST | [`/v1/tradie/invoice-aging`](reference/payroll-and-trades.html#post--v1-tradie-invoice-aging) | Receivables aging buckets for unpaid invoices | key | 3 credits |
 
-### Payroll and trades
+### [Account](reference/account.html)
 
-| Method | Path | What it does | Access |
-|---|---|---|---|
-| POST | `/v1/payroll/decimal-hours` | Clock time to decimal hours and overtime conversion | key |
-| POST | `/v1/tradie/job-margin` | Tradie job margin from labour, materials, subcontractors, overhead, and quote | key |
-| POST | `/v1/tradie/vat-return-summary` | Tradie VAT return summary from sales and purchases | key |
-| POST | `/v1/tradie/cis-deduction` | UK CIS-style deduction model for labour and materials | key |
-| POST | `/v1/tradie/mileage-claim` | Mileage claim and unreimbursed/reimbursed excess calculation | key |
-| POST | `/v1/tradie/tool-depreciation` | Straight-line tool and equipment depreciation schedule | key |
-| POST | `/v1/tradie/invoice-aging` | Receivables aging buckets for unpaid invoices | key |
-
-### Account
-
-| Method | Path | What it does | Access |
-|---|---|---|---|
-| GET | `/v1/canary` | Protected monitoring canary for API-key path checks | key |
-| GET | `/v1/account/profile` | Authenticated customer profile | key |
-| GET | `/v1/account/usage` | Authenticated customer usage summary | key |
-| GET | `/v1/account/limits` | Authenticated customer plan and batch limits | key |
-| GET | `/v1/account/credits` | Authenticated customer credit balance | key |
+| Method | Path | What it does | Access | Cost |
+|---|---|---|---|---|
+| GET | [`/v1/account/profile`](reference/account.html#get--v1-account-profile) | Authenticated customer profile | key | free |
+| GET | [`/v1/account/usage`](reference/account.html#get--v1-account-usage) | Authenticated customer usage summary | key | free |
+| GET | [`/v1/account/limits`](reference/account.html#get--v1-account-limits) | Authenticated customer plan and batch limits | key | free |
+| GET | [`/v1/account/credits`](reference/account.html#get--v1-account-credits) | Authenticated customer credit balance | key | free |
 
 ## 11. Examples
-
-### Contract checks for status, canary and ephemeris
-
-These three routes were checked against the live Munich API and OpenAPI contract on 2026-09-21:
-
-| Route | Live method/access | Contract details | Unauthenticated live behaviour |
-|---|---|---|---|
-| `/v1/status` | `GET`, public | No security requirement; returns service, version, uptime, cache mode and endpoint-family inventory | `200 OK` |
-| `/v1/canary` | `GET`, key required | Accepts `X-API-Key` or `Authorization: Bearer`; protected monitoring route | `401` with `{"error":{"code":"unauthorized","message":"A valid API key is required"}}` |
-| `/v1/astronomy/ephemeris` | `GET`, key required | Optional `date` query parameter; `x-credit-cost: 1`; accepts `X-API-Key` or `Authorization: Bearer` | `401` with the same unauthorized error envelope |
 
 ### Local time for a coordinate (key required)
 
@@ -397,11 +384,12 @@ The Crux clock is calibrated to Parkes Observatory (latitude -32.99, longitude 1
 
 Being direct about the gaps so you can plan around them:
 
-- **Request bodies.** In the OpenAPI contract, the POST request bodies for the finance, math, statistics, date, payroll, health and most astronomy endpoints are declared only as free-form JSON objects (`additionalProperties: true`), and response schemas are not published. Field names are therefore not specified here for those endpoints. Ask for the field list when you request a beta key; the Crux endpoints above are fully documented.
-- **Per-endpoint credit costs** beyond the three Crux endpoints.
-- **Keyed rate limits and batch limits** are returned per customer by `GET /v1/account/limits` rather than published.
+- **Request schemas.** The contract publishes a known-good example body for each of the 74 POST operations (see the reference pages), but declares the body only as free-form JSON (`additionalProperties: true`): it does not list required versus optional fields, types or limits. Response schemas are not published either. Copy an example, change the values, and inspect the response.
+- **Query parameter values.** A few GET endpoints (holidays, `geo/nearby`) list parameter names without sample values; the reference shows the names in capitals as placeholders. Which jurisdictions the holiday endpoints accept is not documented.
+- **Keyed rate limits.** Stated in the API guide (default 120 per minute) but not returned by the contract; `GET /v1/account/limits` is authoritative.
 - **Uptime.** No public SLA is claimed. `GET /v1/status` reports this deliberately.
-- **Pricing and self-service.** Not live; beta access is by request.
+- **Pricing and self-service.** Not live; beta access is by request. Credit costs are published, money prices are not.
+- **Data caveats.** `observes_dst_now` in the timezone table means the zone uses daylight saving at all, not that it is in effect now; compare `offset_minutes` at the `at` timestamp you care about. Several reference tables are curated subsets (for example, 23 Unicode blocks and 20 bright stars).
 
 ## 13. Good practice
 

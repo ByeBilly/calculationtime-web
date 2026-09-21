@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Math and statistics API endpoints - CalculationTime API reference</title>
+<meta name="description" content="Quadratics, triangles, circles, proportions, logarithms, exponents, percentages, combinatorics and statistics summaries.">
+<link rel="canonical" href="https://byebilly.github.io/calculationtime-web/docs/reference/math-and-statistics.html">
+<meta property="og:title" content="Math and statistics API endpoints - CalculationTime API reference">
+<meta property="og:description" content="Quadratics, triangles, circles, proportions, logarithms, exponents, percentages, combinatorics and statistics summaries.">
+<meta property="og:type" content="website">
+<style>
+  :root { --bg:#f7f1e4; --panel:#fff; --ink:#14110c; --muted:#5a5245; --line:#d9ccb0; --brand:#0b0d14; --gold:#c98b2c; --gold-soft:#e5b65f; --code-bg:#0d1018; --code-ink:#f3ead6; --radius:12px; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0b0d14; --panel:#12151f; --ink:#f4ecd9; --muted:#b9ae98; --line:#2b2f3d; --code-bg:#07080d; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; }
+  header { background:var(--brand); color:#f4ecd9; }
+  header .wrap { display:flex; flex-wrap:wrap; gap:12px 20px; align-items:center; justify-content:space-between; padding:14px 0; }
+  .wrap { width:min(880px, 100% - 32px); margin-inline:auto; }
+  header a { color:inherit; text-decoration:none; font-size:14px; margin-left:16px; }
+  header a.logo { margin:0; font:700 20px Georgia,"Times New Roman",serif; }
+  header a.logo span { color:var(--gold-soft); }
+  header a:hover { text-decoration:underline; }
+  main { padding:36px 0 64px; }
+  h1,h2,h3 { font-family:Georgia,"Times New Roman",serif; line-height:1.15; }
+  h1 { font-size:clamp(30px,5vw,44px); margin:0 0 12px; }
+  h2 { font-size:28px; margin:44px 0 10px; padding-top:20px; border-top:1px solid var(--line); }
+  h3 { font-size:20px; margin:28px 0 6px; }
+  h3 code { font-size:.85em; }
+  a { color:var(--gold); }
+  code { font-family:ui-monospace,SFMono-Regular,Consolas,monospace; font-size:.9em; background:rgba(201,139,44,.12); padding:1px 5px; border-radius:5px; }
+  pre { margin:12px 0; padding:16px 18px; overflow-x:auto; background:var(--code-bg); color:var(--code-ink); border-radius:var(--radius); font-size:13.5px; line-height:1.55; }
+  pre code { background:none; padding:0; color:inherit; }
+  .scroll { overflow-x:auto; margin:14px 0; }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--line); font-size:14.5px; }
+  th,td { padding:9px 12px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+  details.toc { margin:18px 0 8px; padding:12px 18px; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); }
+  details.toc summary { cursor:pointer; font-weight:800; }
+  .toc ul { margin:8px 0 0; padding-left:20px; }
+  blockquote { margin:14px 0; padding:10px 16px; border-left:4px solid var(--gold); background:rgba(201,139,44,.09); }
+  .meta { color:var(--muted); font-size:14px; margin:0 0 6px; }
+  .pill { display:inline-block; padding:1px 9px; border-radius:99px; font-size:12px; font-weight:700; border:1px solid var(--line); background:var(--panel); margin-right:6px; }
+  .crumbs { font-size:14px; color:var(--muted); margin:0 0 10px; }
+  .areas { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px; margin:18px 0; padding:0; list-style:none; }
+  .areas a { display:block; height:100%; padding:16px; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); text-decoration:none; color:inherit; }
+  .areas a:hover { border-color:var(--gold); }
+  .areas strong { display:block; font:700 18px Georgia,serif; }
+  .areas span { font-size:14px; color:var(--muted); }
+  li, p, td { overflow-wrap:anywhere; }
+  footer { background:var(--brand); color:#d8cdbd; padding:24px 0; font-size:14px; }
+  footer a { color:var(--gold-soft); }
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Math and statistics endpoints - CalculationTime API reference", "description": "Quadratics, triangles, circles, proportions, logarithms, exponents, percentages, combinatorics and statistics summaries.", "dateModified": "2026-09-21", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "CalculationTime", "url": "https://www.calculationtime.com"}}</script>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="logo" href="../../index.html">Calculation<span>Time</span> API</a>
+  <nav aria-label="Primary"><a href="../../docs/api-guide.html">Guide</a><a href="../../docs/reference/">Endpoint reference</a><a href="https://api.calculationtime.com/openapi.json">OpenAPI</a><a href="https://www.calculationtime.com/developers/api/beta/">Request beta access</a><a href="https://www.calculationtime.com">Main site</a></nav>
+</div></header>
+<main><div class="wrap">
+<p class="crumbs"><a href="../../index.html">Portal</a> / <a href="./">Endpoint reference</a> / Math and statistics</p>
+<h1>Math and statistics endpoints</h1>
+<p>Pure-maths endpoints. The request examples show the exact field names; results are computed with standard double-precision arithmetic, so display rounding is your decision.</p>
+<p class="meta">16 operations &middot; contract v0.1.0 &middot; base URL <code>https://api.calculationtime.com</code></p>
+<div class="scroll"><table><thead><tr><th>Method</th><th>Path</th><th>What it does</th><th>Access</th><th>Cost</th></tr></thead><tbody><tr><td>POST</td><td><a href="#post--v1-math-quadratic-solver"><code>/v1/math/quadratic-solver</code></a></td><td>Solve a quadratic equation with real or complex roots and vertex coordinates</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-pythagorean-solve"><code>/v1/math/pythagorean-solve</code></a></td><td>Solve the missing side of a right triangle from any two sides</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-triangle-heron"><code>/v1/math/triangle-heron</code></a></td><td>Triangle area, perimeter, and angles from three side lengths</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-circle-geometry"><code>/v1/math/circle-geometry</code></a></td><td>Circle area, circumference, diameter, arc length, and sector area</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-sphere-geometry"><code>/v1/math/sphere-geometry</code></a></td><td>Sphere diameter, surface area, and volume from radius</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-cylinder-geometry"><code>/v1/math/cylinder-geometry</code></a></td><td>Cylinder base area, surface area, and volume from radius and height</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-statistics-summary"><code>/v1/math/statistics-summary</code></a></td><td>Mean, median, mode, variance, standard deviation, and IQR for numbers</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-percentage-change"><code>/v1/math/percentage-change</code></a></td><td>Absolute and percentage change from baseline to current value</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-percent-error"><code>/v1/math/percent-error</code></a></td><td>Absolute, relative, and percent error against an accepted true value</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-gcd-lcm"><code>/v1/math/gcd-lcm</code></a></td><td>Greatest common divisor and least common multiple for integer sets</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-matrix-determinant"><code>/v1/math/matrix-determinant</code></a></td><td>Determinants for 2x2 and 3x3 matrices</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-proportion-solver"><code>/v1/math/proportion-solver</code></a></td><td>Solve x in equivalent ratios a/b = c/x</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-logarithm-eval"><code>/v1/math/logarithm-eval</code></a></td><td>Evaluate logarithms with custom bases using change of base</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-exponent-eval"><code>/v1/math/exponent-eval</code></a></td><td>Evaluate exponentiation and optional real root extraction</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-combinatorics"><code>/v1/math/combinatorics</code></a></td><td>Permutations and combinations for n and r</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-stats-summary"><code>/v1/stats/summary</code></a></td><td>Descriptive statistics for a numeric dataset</td><td>key</td><td>3 credits</td></tr></tbody></table></div>
+<blockquote>Request bodies below are the examples published in the API's OpenAPI contract. The contract declares body fields only as free-form JSON, so it does not say which fields are required or optional; treat each example as a known-good shape and read the result's fields. Replace <code>YOUR_KEY</code> with a beta key; never put a key in public code. Endpoints marked public work as shown with no key.</blockquote>
+<h3 id="post--v1-math-quadratic-solver"><code>POST /v1/math/quadratic-solver</code></h3>
+<p>Solve a quadratic equation with real or complex roots and vertex coordinates.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/math/quadratic-solver&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;a&quot;:1,&quot;b&quot;:-3,&quot;c&quot;:2}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-pythagorean-solve"><code>POST /v1/math/pythagorean-solve</code></h3>
+<p>Solve the missing side of a right triangle from any two sides.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/math/pythagorean-solve&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;a&quot;:3,&quot;b&quot;:4}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-triangle-heron"><code>POST /v1/math/triangle-heron</code></h3>
+<p>Triangle area, perimeter, and angles from three side lengths.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/math/triangle-heron&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;a&quot;:3,&quot;b&quot;:4,&quot;c&quot;:5}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-circle-geometry"><code>POST /v1/math/circle-geometry</code></h3>
+<p>Circle area, circumference, diameter, arc length, and sector area.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/math/circle-geometry&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;radius&quot;:10,&quot;angle_degrees&quot;:90}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-sphere-geometry"><code>POST /v1/math/sphere-geometry</code></h3>
+<p>Sphere diameter, surface area, and volume from radius.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/math/sphere-geometry&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;radius&quot;:3}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-cylinder-geometry"><code>POST /v1/math/cylinder-geometry</code></h3>
+<p>Cylinder base area, surface area, and volume from radius and height.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/math/cylinder-geometry&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;radius&quot;:3,&quot;height&quot;:10}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-statistics-summary"><code>POST /v1/math/statistics-summary</code></h3>
+<p>Mean, median, mode, variance, standard deviation, and IQR for numbers.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/math/statistics-summary&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;values&quot;:[1,2,2,4,9]}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-percentage-change"><code>POST /v1/math/percentage-change</code></h3>
+<p>Absolute and percentage change from baseline to current value.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/math/percentage-change&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;baseline&quot;:80,&quot;current&quot;:100}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-percent-error"><code>POST /v1/math/percent-error</code></h3>
+<p>Absolute, relative, and percent error against an accepted true value.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/math/percent-error&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;true_value&quot;:100,&quot;measured_value&quot;:96}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-gcd-lcm"><code>POST /v1/math/gcd-lcm</code></h3>
+<p>Greatest common divisor and least common multiple for integer sets.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/math/gcd-lcm&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;values&quot;:[12,18,30]}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-matrix-determinant"><code>POST /v1/math/matrix-determinant</code></h3>
+<p>Determinants for 2x2 and 3x3 matrices.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/math/matrix-determinant&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;matrix&quot;:[[1,2],[3,4]]}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-proportion-solver"><code>POST /v1/math/proportion-solver</code></h3>
+<p>Solve x in equivalent ratios a/b = c/x.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/math/proportion-solver&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;a&quot;:2,&quot;b&quot;:5,&quot;c&quot;:8}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-logarithm-eval"><code>POST /v1/math/logarithm-eval</code></h3>
+<p>Evaluate logarithms with custom bases using change of base.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/math/logarithm-eval&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;value&quot;:1000,&quot;base&quot;:10}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-exponent-eval"><code>POST /v1/math/exponent-eval</code></h3>
+<p>Evaluate exponentiation and optional real root extraction.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/math/exponent-eval&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;base&quot;:27,&quot;exponent&quot;:2,&quot;root&quot;:3}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-combinatorics"><code>POST /v1/math/combinatorics</code></h3>
+<p>Permutations and combinations for n and r.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/math/combinatorics&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;n&quot;:10,&quot;r&quot;:3}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-stats-summary"><code>POST /v1/stats/summary</code></h3>
+<p>Descriptive statistics for a numeric dataset.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">3 credits</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/stats/summary&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;values&quot;:[1,2,2,4,9]}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p>
+<p><a href="../api-guide.html">Read the full guide</a> for authentication, limits, credits and errors, or <a href="./">browse every area</a>.</p>
+</div></main>
+<footer><div class="wrap">Contract v0.1.0 &middot; built 2026-09-21 &middot; <a href="../../index.html">Portal home</a> &middot; <a href="https://www.calculationtime.com">calculationtime.com</a> &middot; <a href="https://github.com/ByeBilly/calculationtime-web">Source on GitHub</a></div></footer>
+</body>
+</html>

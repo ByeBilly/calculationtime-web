@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Health API endpoints - CalculationTime API reference</title>
+<meta name="description" content="BMI, BMR, TDEE, macro splits and pace, with the formula named in the result.">
+<link rel="canonical" href="https://byebilly.github.io/calculationtime-web/docs/reference/health.html">
+<meta property="og:title" content="Health API endpoints - CalculationTime API reference">
+<meta property="og:description" content="BMI, BMR, TDEE, macro splits and pace, with the formula named in the result.">
+<meta property="og:type" content="website">
+<style>
+  :root { --bg:#f7f1e4; --panel:#fff; --ink:#14110c; --muted:#5a5245; --line:#d9ccb0; --brand:#0b0d14; --gold:#c98b2c; --gold-soft:#e5b65f; --code-bg:#0d1018; --code-ink:#f3ead6; --radius:12px; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0b0d14; --panel:#12151f; --ink:#f4ecd9; --muted:#b9ae98; --line:#2b2f3d; --code-bg:#07080d; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; }
+  header { background:var(--brand); color:#f4ecd9; }
+  header .wrap { display:flex; flex-wrap:wrap; gap:12px 20px; align-items:center; justify-content:space-between; padding:14px 0; }
+  .wrap { width:min(880px, 100% - 32px); margin-inline:auto; }
+  header a { color:inherit; text-decoration:none; font-size:14px; margin-left:16px; }
+  header a.logo { margin:0; font:700 20px Georgia,"Times New Roman",serif; }
+  header a.logo span { color:var(--gold-soft); }
+  header a:hover { text-decoration:underline; }
+  main { padding:36px 0 64px; }
+  h1,h2,h3 { font-family:Georgia,"Times New Roman",serif; line-height:1.15; }
+  h1 { font-size:clamp(30px,5vw,44px); margin:0 0 12px; }
+  h2 { font-size:28px; margin:44px 0 10px; padding-top:20px; border-top:1px solid var(--line); }
+  h3 { font-size:20px; margin:28px 0 6px; }
+  h3 code { font-size:.85em; }
+  a { color:var(--gold); }
+  code { font-family:ui-monospace,SFMono-Regular,Consolas,monospace; font-size:.9em; background:rgba(201,139,44,.12); padding:1px 5px; border-radius:5px; }
+  pre { margin:12px 0; padding:16px 18px; overflow-x:auto; background:var(--code-bg); color:var(--code-ink); border-radius:var(--radius); font-size:13.5px; line-height:1.55; }
+  pre code { background:none; padding:0; color:inherit; }
+  .scroll { overflow-x:auto; margin:14px 0; }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--line); font-size:14.5px; }
+  th,td { padding:9px 12px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+  details.toc { margin:18px 0 8px; padding:12px 18px; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); }
+  details.toc summary { cursor:pointer; font-weight:800; }
+  .toc ul { margin:8px 0 0; padding-left:20px; }
+  blockquote { margin:14px 0; padding:10px 16px; border-left:4px solid var(--gold); background:rgba(201,139,44,.09); }
+  .meta { color:var(--muted); font-size:14px; margin:0 0 6px; }
+  .pill { display:inline-block; padding:1px 9px; border-radius:99px; font-size:12px; font-weight:700; border:1px solid var(--line); background:var(--panel); margin-right:6px; }
+  .crumbs { font-size:14px; color:var(--muted); margin:0 0 10px; }
+  .areas { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px; margin:18px 0; padding:0; list-style:none; }
+  .areas a { display:block; height:100%; padding:16px; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); text-decoration:none; color:inherit; }
+  .areas a:hover { border-color:var(--gold); }
+  .areas strong { display:block; font:700 18px Georgia,serif; }
+  .areas span { font-size:14px; color:var(--muted); }
+  li, p, td { overflow-wrap:anywhere; }
+  footer { background:var(--brand); color:#d8cdbd; padding:24px 0; font-size:14px; }
+  footer a { color:var(--gold-soft); }
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Health endpoints - CalculationTime API reference", "description": "BMI, BMR, TDEE, macro splits and pace, with the formula named in the result.", "dateModified": "2026-09-21", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "CalculationTime", "url": "https://www.calculationtime.com"}}</script>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="logo" href="../../index.html">Calculation<span>Time</span> API</a>
+  <nav aria-label="Primary"><a href="../../docs/api-guide.html">Guide</a><a href="../../docs/reference/">Endpoint reference</a><a href="https://api.calculationtime.com/openapi.json">OpenAPI</a><a href="https://www.calculationtime.com/developers/api/beta/">Request beta access</a><a href="https://www.calculationtime.com">Main site</a></nav>
+</div></header>
+<main><div class="wrap">
+<p class="crumbs"><a href="../../index.html">Portal</a> / <a href="./">Endpoint reference</a> / Health</p>
+<h1>Health endpoints</h1>
+<p>Health calculators use published formulas and state which one they used. They are aids for planning, not medical advice.</p>
+<p class="meta">5 operations &middot; contract v0.1.0 &middot; base URL <code>https://api.calculationtime.com</code></p>
+<div class="scroll"><table><thead><tr><th>Method</th><th>Path</th><th>What it does</th><th>Access</th><th>Cost</th></tr></thead><tbody><tr><td>POST</td><td><a href="#post--v1-health-bmi"><code>/v1/health/bmi</code></a></td><td>Body Mass Index and category classification</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-health-bmr"><code>/v1/health/bmr</code></a></td><td>Basal Metabolic Rate using Mifflin-St Jeor</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-health-tdee"><code>/v1/health/tdee</code></a></td><td>Total Daily Energy Expenditure from BMR and activity multiplier</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-health-macro-split"><code>/v1/health/macro-split</code></a></td><td>Protein, carbs, and fat grams from calories and macro percentages</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-health-pace-calculator"><code>/v1/health/pace-calculator</code></a></td><td>Running or walking pace and speed from distance and duration</td><td>key</td><td>1 credit</td></tr></tbody></table></div>
+<blockquote>Request bodies below are the examples published in the API's OpenAPI contract. The contract declares body fields only as free-form JSON, so it does not say which fields are required or optional; treat each example as a known-good shape and read the result's fields. Replace <code>YOUR_KEY</code> with a beta key; never put a key in public code. Endpoints marked public work as shown with no key.</blockquote>
+<h3 id="post--v1-health-bmi"><code>POST /v1/health/bmi</code></h3>
+<p>Body Mass Index and category classification.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/health/bmi&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;unit&quot;:&quot;metric&quot;,&quot;weight_kg&quot;:70,&quot;height_cm&quot;:175}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-health-bmr"><code>POST /v1/health/bmr</code></h3>
+<p>Basal Metabolic Rate using Mifflin-St Jeor.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/health/bmr&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;unit&quot;:&quot;metric&quot;,&quot;weight_kg&quot;:70,&quot;height_cm&quot;:175,&quot;age&quot;:35,&quot;sex&quot;:&quot;male&quot;}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-health-tdee"><code>POST /v1/health/tdee</code></h3>
+<p>Total Daily Energy Expenditure from BMR and activity multiplier.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/health/tdee&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;unit&quot;:&quot;metric&quot;,&quot;weight_kg&quot;:70,&quot;height_cm&quot;:175,&quot;age&quot;:35,&quot;sex&quot;:&quot;male&quot;,&quot;activity_level&quot;:&quot;moderate&quot;}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-health-macro-split"><code>POST /v1/health/macro-split</code></h3>
+<p>Protein, carbs, and fat grams from calories and macro percentages.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/health/macro-split&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;calories&quot;:2000,&quot;protein_percent&quot;:30,&quot;carbs_percent&quot;:40,&quot;fat_percent&quot;:30}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-health-pace-calculator"><code>POST /v1/health/pace-calculator</code></h3>
+<p>Running or walking pace and speed from distance and duration.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/health/pace-calculator&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;distance&quot;:5,&quot;unit&quot;:&quot;km&quot;,&quot;minutes&quot;:25}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p>
+<p><a href="../api-guide.html">Read the full guide</a> for authentication, limits, credits and errors, or <a href="./">browse every area</a>.</p>
+</div></main>
+<footer><div class="wrap">Contract v0.1.0 &middot; built 2026-09-21 &middot; <a href="../../index.html">Portal home</a> &middot; <a href="https://www.calculationtime.com">calculationtime.com</a> &middot; <a href="https://github.com/ByeBilly/calculationtime-web">Source on GitHub</a></div></footer>
+</body>
+</html>

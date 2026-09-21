@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reference data API endpoints - CalculationTime API reference</title>
+<meta name="description" content="Public JSON tables: countries, time zones, elements, constants, materials, HTTP status, MIME types, Unicode blocks, constellations, bright stars, meteor showers.">
+<link rel="canonical" href="https://byebilly.github.io/calculationtime-web/docs/reference/reference-data.html">
+<meta property="og:title" content="Reference data API endpoints - CalculationTime API reference">
+<meta property="og:description" content="Public JSON tables: countries, time zones, elements, constants, materials, HTTP status, MIME types, Unicode blocks, constellations, bright stars, meteor showers.">
+<meta property="og:type" content="website">
+<style>
+  :root { --bg:#f7f1e4; --panel:#fff; --ink:#14110c; --muted:#5a5245; --line:#d9ccb0; --brand:#0b0d14; --gold:#c98b2c; --gold-soft:#e5b65f; --code-bg:#0d1018; --code-ink:#f3ead6; --radius:12px; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0b0d14; --panel:#12151f; --ink:#f4ecd9; --muted:#b9ae98; --line:#2b2f3d; --code-bg:#07080d; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; }
+  header { background:var(--brand); color:#f4ecd9; }
+  header .wrap { display:flex; flex-wrap:wrap; gap:12px 20px; align-items:center; justify-content:space-between; padding:14px 0; }
+  .wrap { width:min(880px, 100% - 32px); margin-inline:auto; }
+  header a { color:inherit; text-decoration:none; font-size:14px; margin-left:16px; }
+  header a.logo { margin:0; font:700 20px Georgia,"Times New Roman",serif; }
+  header a.logo span { color:var(--gold-soft); }
+  header a:hover { text-decoration:underline; }
+  main { padding:36px 0 64px; }
+  h1,h2,h3 { font-family:Georgia,"Times New Roman",serif; line-height:1.15; }
+  h1 { font-size:clamp(30px,5vw,44px); margin:0 0 12px; }
+  h2 { font-size:28px; margin:44px 0 10px; padding-top:20px; border-top:1px solid var(--line); }
+  h3 { font-size:20px; margin:28px 0 6px; }
+  h3 code { font-size:.85em; }
+  a { color:var(--gold); }
+  code { font-family:ui-monospace,SFMono-Regular,Consolas,monospace; font-size:.9em; background:rgba(201,139,44,.12); padding:1px 5px; border-radius:5px; }
+  pre { margin:12px 0; padding:16px 18px; overflow-x:auto; background:var(--code-bg); color:var(--code-ink); border-radius:var(--radius); font-size:13.5px; line-height:1.55; }
+  pre code { background:none; padding:0; color:inherit; }
+  .scroll { overflow-x:auto; margin:14px 0; }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--line); font-size:14.5px; }
+  th,td { padding:9px 12px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+  details.toc { margin:18px 0 8px; padding:12px 18px; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); }
+  details.toc summary { cursor:pointer; font-weight:800; }
+  .toc ul { margin:8px 0 0; padding-left:20px; }
+  blockquote { margin:14px 0; padding:10px 16px; border-left:4px solid var(--gold); background:rgba(201,139,44,.09); }
+  .meta { color:var(--muted); font-size:14px; margin:0 0 6px; }
+  .pill { display:inline-block; padding:1px 9px; border-radius:99px; font-size:12px; font-weight:700; border:1px solid var(--line); background:var(--panel); margin-right:6px; }
+  .crumbs { font-size:14px; color:var(--muted); margin:0 0 10px; }
+  .areas { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px; margin:18px 0; padding:0; list-style:none; }
+  .areas a { display:block; height:100%; padding:16px; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); text-decoration:none; color:inherit; }
+  .areas a:hover { border-color:var(--gold); }
+  .areas strong { display:block; font:700 18px Georgia,serif; }
+  .areas span { font-size:14px; color:var(--muted); }
+  li, p, td { overflow-wrap:anywhere; }
+  footer { background:var(--brand); color:#d8cdbd; padding:24px 0; font-size:14px; }
+  footer a { color:var(--gold-soft); }
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Reference data endpoints - CalculationTime API reference", "description": "Public JSON tables: countries, time zones, elements, constants, materials, HTTP status, MIME types, Unicode blocks, constellations, bright stars, meteor showers.", "dateModified": "2026-09-21", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "CalculationTime", "url": "https://www.calculationtime.com"}}</script>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="logo" href="../../index.html">Calculation<span>Time</span> API</a>
+  <nav aria-label="Primary"><a href="../../docs/api-guide.html">Guide</a><a href="../../docs/reference/">Endpoint reference</a><a href="https://api.calculationtime.com/openapi.json">OpenAPI</a><a href="https://www.calculationtime.com/developers/api/beta/">Request beta access</a><a href="https://www.calculationtime.com">Main site</a></nav>
+</div></header>
+<main><div class="wrap">
+<p class="crumbs"><a href="../../index.html">Portal</a> / <a href="./">Endpoint reference</a> / Reference data</p>
+<h1>Reference data endpoints</h1>
+<p>Every reference table is a public GET that needs no key and sends open CORS headers, so a browser can read it directly. Each response carries dataset_version, source and count. Most tables accept q (text filter) and limit. The same tables also answer under /api/v1/data/... as a frontend alias.</p>
+<p class="meta">11 operations &middot; contract v0.1.0 &middot; base URL <code>https://api.calculationtime.com</code></p>
+<div class="scroll"><table><thead><tr><th>Method</th><th>Path</th><th>What it does</th><th>Access</th><th>Cost</th></tr></thead><tbody><tr><td>GET</td><td><a href="#get--v1-data-countries"><code>/v1/data/countries</code></a></td><td>Country reference table with capitals, ISO codes, dialing codes, and currencies</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--v1-data-timezones"><code>/v1/data/timezones</code></a></td><td>IANA timezone reference with current UTC offsets and DST status</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--v1-data-elements"><code>/v1/data/elements</code></a></td><td>Periodic table reference values</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--v1-data-constants"><code>/v1/data/constants</code></a></td><td>Physical and mathematical constants reference table</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--v1-data-materials-density"><code>/v1/data/materials/density</code></a></td><td>Common material density reference table</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--v1-data-http-status"><code>/v1/data/http-status</code></a></td><td>HTTP status code directory</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--v1-data-mime-types"><code>/v1/data/mime-types</code></a></td><td>MIME type and extension reference table</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--v1-data-unicode-blocks"><code>/v1/data/unicode-blocks</code></a></td><td>Unicode block range reference table</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--v1-data-constellations"><code>/v1/data/constellations</code></a></td><td>IAU constellation names, genitives, abbreviations, and quadrants</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--v1-data-stars-bright"><code>/v1/data/stars/bright</code></a></td><td>Bright star reference table</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--v1-data-meteor-showers"><code>/v1/data/meteor-showers</code></a></td><td>Major annual meteor shower reference table</td><td>public</td><td>-</td></tr></tbody></table></div>
+<blockquote>Request bodies below are the examples published in the API's OpenAPI contract. The contract declares body fields only as free-form JSON, so it does not say which fields are required or optional; treat each example as a known-good shape and read the result's fields. Replace <code>YOUR_KEY</code> with a beta key; never put a key in public code. Endpoints marked public work as shown with no key.</blockquote>
+<h3 id="get--v1-data-countries"><code>GET /v1/data/countries</code></h3>
+<p>Country reference table with capitals, ISO codes, dialing codes, and currencies.</p>
+<p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
+<pre><code>curl &#x27;https://api.calculationtime.com/v1/data/countries?q=aus&#x27;</code></pre>
+<h3 id="get--v1-data-timezones"><code>GET /v1/data/timezones</code></h3>
+<p>IANA timezone reference with current UTC offsets and DST status.</p>
+<p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
+<pre><code>curl &#x27;https://api.calculationtime.com/v1/data/timezones?q=Australia&amp;at=2026-09-21T00:00:00Z&#x27;</code></pre>
+<h3 id="get--v1-data-elements"><code>GET /v1/data/elements</code></h3>
+<p>Periodic table reference values.</p>
+<p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
+<pre><code>curl &#x27;https://api.calculationtime.com/v1/data/elements?q=oxygen&#x27;</code></pre>
+<h3 id="get--v1-data-constants"><code>GET /v1/data/constants</code></h3>
+<p>Physical and mathematical constants reference table.</p>
+<p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
+<pre><code>curl &#x27;https://api.calculationtime.com/v1/data/constants?q=planck&#x27;</code></pre>
+<h3 id="get--v1-data-materials-density"><code>GET /v1/data/materials/density</code></h3>
+<p>Common material density reference table.</p>
+<p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
+<pre><code>curl &#x27;https://api.calculationtime.com/v1/data/materials/density?q=aluminium&#x27;</code></pre>
+<h3 id="get--v1-data-http-status"><code>GET /v1/data/http-status</code></h3>
+<p>HTTP status code directory.</p>
+<p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
+<pre><code>curl &#x27;https://api.calculationtime.com/v1/data/http-status?q=429&#x27;</code></pre>
+<h3 id="get--v1-data-mime-types"><code>GET /v1/data/mime-types</code></h3>
+<p>MIME type and extension reference table.</p>
+<p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
+<pre><code>curl &#x27;https://api.calculationtime.com/v1/data/mime-types?extension=json&#x27;</code></pre>
+<h3 id="get--v1-data-unicode-blocks"><code>GET /v1/data/unicode-blocks</code></h3>
+<p>Unicode block range reference table.</p>
+<p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
+<pre><code>curl &#x27;https://api.calculationtime.com/v1/data/unicode-blocks?q=currency&#x27;</code></pre>
+<h3 id="get--v1-data-constellations"><code>GET /v1/data/constellations</code></h3>
+<p>IAU constellation names, genitives, abbreviations, and quadrants.</p>
+<p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
+<pre><code>curl &#x27;https://api.calculationtime.com/v1/data/constellations?q=crux&#x27;</code></pre>
+<h3 id="get--v1-data-stars-bright"><code>GET /v1/data/stars/bright</code></h3>
+<p>Bright star reference table.</p>
+<p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
+<pre><code>curl &#x27;https://api.calculationtime.com/v1/data/stars/bright?q=sirius&#x27;</code></pre>
+<h3 id="get--v1-data-meteor-showers"><code>GET /v1/data/meteor-showers</code></h3>
+<p>Major annual meteor shower reference table.</p>
+<p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
+<pre><code>curl &#x27;https://api.calculationtime.com/v1/data/meteor-showers?q=perseids&#x27;</code></pre>
+
+<p><a href="../api-guide.html">Read the full guide</a> for authentication, limits, credits and errors, or <a href="./">browse every area</a>.</p>
+</div></main>
+<footer><div class="wrap">Contract v0.1.0 &middot; built 2026-09-21 &middot; <a href="../../index.html">Portal home</a> &middot; <a href="https://www.calculationtime.com">calculationtime.com</a> &middot; <a href="https://github.com/ByeBilly/calculationtime-web">Source on GitHub</a></div></footer>
+</body>
+</html>

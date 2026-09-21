@@ -3,8 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CalculationTime API guide</title>
-<meta name="description" content="Developer guide for the CalculationTime API: authentication, limits, credits, reference data, examples and the full endpoint index.">
+<title>CalculationTime API guide: authentication, limits, credits and examples</title>
+<meta name="description" content="Developer guide for the CalculationTime API: authentication, rate limits, credits, errors, reference data, worked examples and the full endpoint index.">
+<link rel="canonical" href="https://byebilly.github.io/calculationtime-web/docs/api-guide.html">
+<meta property="og:title" content="CalculationTime API guide: authentication, limits, credits and examples">
+<meta property="og:description" content="Developer guide for the CalculationTime API: authentication, rate limits, credits, errors, reference data, worked examples and the full endpoint index.">
+<meta property="og:type" content="website">
 <style>
   :root { --bg:#f7f1e4; --panel:#fff; --ink:#14110c; --muted:#5a5245; --line:#d9ccb0; --brand:#0b0d14; --gold:#c98b2c; --gold-soft:#e5b65f; --code-bg:#0d1018; --code-ink:#f3ead6; --radius:12px; }
   @media (prefers-color-scheme: dark) { :root { --bg:#0b0d14; --panel:#12151f; --ink:#f4ecd9; --muted:#b9ae98; --line:#2b2f3d; --code-bg:#07080d; } }
@@ -19,12 +23,13 @@
   header a:hover { text-decoration:underline; }
   main { padding:36px 0 64px; }
   h1,h2,h3 { font-family:Georgia,"Times New Roman",serif; line-height:1.15; }
-  h1 { font-size:clamp(32px,5vw,46px); margin:0 0 12px; }
+  h1 { font-size:clamp(30px,5vw,44px); margin:0 0 12px; }
   h2 { font-size:28px; margin:44px 0 10px; padding-top:20px; border-top:1px solid var(--line); }
-  h3 { font-size:21px; margin:28px 0 8px; }
+  h3 { font-size:20px; margin:28px 0 6px; }
+  h3 code { font-size:.85em; }
   a { color:var(--gold); }
   code { font-family:ui-monospace,SFMono-Regular,Consolas,monospace; font-size:.9em; background:rgba(201,139,44,.12); padding:1px 5px; border-radius:5px; }
-  pre { margin:14px 0; padding:16px 18px; overflow-x:auto; background:var(--code-bg); color:var(--code-ink); border-radius:var(--radius); font-size:13.5px; line-height:1.55; }
+  pre { margin:12px 0; padding:16px 18px; overflow-x:auto; background:var(--code-bg); color:var(--code-ink); border-radius:var(--radius); font-size:13.5px; line-height:1.55; }
   pre code { background:none; padding:0; color:inherit; }
   .scroll { overflow-x:auto; margin:14px 0; }
   table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--line); font-size:14.5px; }
@@ -34,14 +39,24 @@
   details.toc summary { cursor:pointer; font-weight:800; }
   .toc ul { margin:8px 0 0; padding-left:20px; }
   blockquote { margin:14px 0; padding:10px 16px; border-left:4px solid var(--gold); background:rgba(201,139,44,.09); }
+  .meta { color:var(--muted); font-size:14px; margin:0 0 6px; }
+  .pill { display:inline-block; padding:1px 9px; border-radius:99px; font-size:12px; font-weight:700; border:1px solid var(--line); background:var(--panel); margin-right:6px; }
+  .crumbs { font-size:14px; color:var(--muted); margin:0 0 10px; }
+  .areas { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px; margin:18px 0; padding:0; list-style:none; }
+  .areas a { display:block; height:100%; padding:16px; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); text-decoration:none; color:inherit; }
+  .areas a:hover { border-color:var(--gold); }
+  .areas strong { display:block; font:700 18px Georgia,serif; }
+  .areas span { font-size:14px; color:var(--muted); }
+  li, p, td { overflow-wrap:anywhere; }
   footer { background:var(--brand); color:#d8cdbd; padding:24px 0; font-size:14px; }
   footer a { color:var(--gold-soft); }
 </style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "CalculationTime API guide", "dateModified": "2026-09-21", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "CalculationTime", "url": "https://www.calculationtime.com"}}</script>
 </head>
 <body>
 <header><div class="wrap">
   <a class="logo" href="../index.html">Calculation<span>Time</span> API</a>
-  <nav aria-label="Primary"><a href="../index.html">Portal home</a><a href="https://api.calculationtime.com/openapi.json">OpenAPI</a><a href="https://www.calculationtime.com/developers/api/beta/">Request beta access</a><a href="https://www.calculationtime.com">Main site</a></nav>
+  <nav aria-label="Primary"><a href="../docs/api-guide.html">Guide</a><a href="../docs/reference/">Endpoint reference</a><a href="https://api.calculationtime.com/openapi.json">OpenAPI</a><a href="https://www.calculationtime.com/developers/api/beta/">Request beta access</a><a href="https://www.calculationtime.com">Main site</a></nav>
 </div></header>
 <main><div class="wrap">
 <details class="toc"><summary>On this page</summary><div class="toc">
@@ -59,12 +74,11 @@
 </ul>
 </li>
 <li><a href="#10-endpoint-index">10. Endpoint index</a><ul>
-<li><a href="#public-service-and-utility">Public service and utility</a></li>
-<li><a href="#reference-data-public">Reference data (public)</a></li>
+<li><a href="#service-and-status">Service and status</a></li>
+<li><a href="#reference-data">Reference data</a></li>
 <li><a href="#time-and-dates">Time and dates</a></li>
-<li><a href="#holidays-and-business-days">Holidays and business days</a></li>
-<li><a href="#geospatial">Geospatial</a></li>
-<li><a href="#solar-and-astronomy">Solar and astronomy</a></li>
+<li><a href="#geo">Geo</a></li>
+<li><a href="#astronomy-and-crux-clock">Astronomy and Crux clock</a></li>
 <li><a href="#finance">Finance</a></li>
 <li><a href="#math-and-statistics">Math and statistics</a></li>
 <li><a href="#health">Health</a></li>
@@ -73,7 +87,6 @@
 </ul>
 </li>
 <li><a href="#11-examples">11. Examples</a><ul>
-<li><a href="#contract-checks-for-status-canary-and-ephemeris">Contract checks for status, canary and ephemeris</a></li>
 <li><a href="#local-time-for-a-coordinate-key-required">Local time for a coordinate (key required)</a></li>
 <li><a href="#crux-clock-midnight-positions-key-required-2-credits">Crux clock: midnight positions (key required, 2 credits)</a></li>
 <li><a href="#crux-clock-hourly-breakdown-key-required-5-credits">Crux clock: hourly breakdown (key required, 5 credits)</a></li>
@@ -88,7 +101,7 @@
 </details>
 <h1 id="calculationtime-api-guide">CalculationTime API guide</h1>
 <p>Reliable time, date, geospatial, astronomy, finance, health and math calculations, plus public reference-data tables, over a plain JSON API.</p>
-<p>This guide describes the API <strong>as it is today (contract v0.1.0, beta)</strong>. Everything here was checked against the live service and its OpenAPI contract on 2026-09-21. Where something is not documented or not yet available, the guide says so instead of guessing. The authoritative machine-readable contract is always <a href="https://api.calculationtime.com/openapi.json">https://api.calculationtime.com/openapi.json</a>, and the service itself serves Markdown documentation at <a href="https://api.calculationtime.com/">https://api.calculationtime.com/</a>.</p>
+<p>This guide describes the API <strong>as it is today (contract v0.1.0, beta)</strong>. The contract is published in the API's public repository and matched the live service on 2026-09-21. Details the contract does not carry (keyed rate limits, header forms) come from the API's own user guide, <a href="https://github.com/ByeBilly/calculationtime-api/blob/main/docs/api-user-guide.md">https://github.com/ByeBilly/calculationtime-api/blob/main/docs/api-user-guide.md</a>, and are marked as such; this portal has no key, so it has not run the protected endpoints itself. Where something is not documented or not yet available, the guide says so instead of guessing. The authoritative machine-readable contract is always <a href="https://api.calculationtime.com/openapi.json">https://api.calculationtime.com/openapi.json</a>, and the service itself serves Markdown documentation at <a href="https://api.calculationtime.com/">https://api.calculationtime.com/</a>.</p>
 <ul>
 <li>Main site: <a href="https://www.calculationtime.com">https://www.calculationtime.com</a></li>
 <li>Developer page and beta access: <a href="https://www.calculationtime.com/developers/api/">https://www.calculationtime.com/developers/api/</a></li>
@@ -124,14 +137,14 @@ const { dataset_version, count, data } = await res.json();
 </thead>
 <tbody>
 <tr>
-<td>API key</td>
-<td>Header <code>X-API-Key: YOUR_KEY</code></td>
-<td>The scheme used in all of CalculationTime's own examples. Keys look like <code>ct_live_...</code>.</td>
+<td>API key header</td>
+<td><code>X-API-Key: YOUR_KEY</code></td>
+<td>Declared as <code>ApiKeyAuth</code> in the contract. Used in every example on this site. Keys look like <code>ct_live_...</code>.</td>
 </tr>
 <tr>
 <td>Bearer token</td>
-<td>Header <code>Authorization: Bearer YOUR_KEY</code></td>
-<td>Declared as <code>BearerAuth</code> in the OpenAPI contract. Prefer <code>X-API-Key</code>, which the published examples use.</td>
+<td><code>Authorization: Bearer YOUR_KEY</code></td>
+<td>Declared as <code>BearerAuth</code>. The API's own guide accepts either form and uses Bearer in its examples. Send one, not both.</td>
 </tr>
 </tbody>
 </table></div>
@@ -158,7 +171,7 @@ const { dataset_version, count, data } = await res.json();
 </table></div>
 <p>The full list is in section 10.</p>
 <h2 id="5-rate-limits">5. Rate limits</h2>
-<p>Normal limited responses include rate-limit headers. Observed on the public tier on 2026-09-21:</p>
+<p>Every response includes rate-limit headers. Observed on the public tier on 2026-09-21:</p>
 <div class="scroll"><table>
 <thead>
 <tr>
@@ -185,41 +198,44 @@ const { dataset_version, count, data } = await res.json();
 </tr>
 </tbody>
 </table></div>
-<p>So the public tier behaves as roughly <strong>60 requests per minute</strong>. Keyed customers have plan-specific limits: call <code>GET /v1/account/limits</code> to see yours, including documented batch limits.</p>
-<p>When you exceed a limit the contract lists <code>429 Too Many Requests</code>. Back off until <code>x-ratelimit-reset</code>, and add jitter if several workers share a key. Do not retry in a tight loop.</p>
+<ul>
+<li><strong>Public routes:</strong> 60 requests per minute per client IP (observed).</li>
+<li><strong>Keyed routes:</strong> the API's own guide states a default of 120 requests per minute per customer, with per-customer overrides. We could not confirm this with a key. <code>GET /v1/account/limits</code> (free) shows your actual plan and batch limits.</li>
+<li><strong>When you hit the limit</strong> the API returns <code>429</code> with a <code>Retry-After</code> header (seconds, per the API guide). Wait that long, add jitter if several workers share a key, and do not retry in a tight loop.</li>
+</ul>
 <h2 id="6-credits">6. Credits</h2>
-<p>Protected calculation endpoints are credit-metered. The live OpenAPI contract exposes known per-route costs as <code>x-credit-cost</code>. Common astronomy costs:</p>
+<p>Protected endpoints are credit-metered, and the contract publishes the cost of each one as <code>x-credit-cost</code>. Across the documented protected calculation endpoints:</p>
 <div class="scroll"><table>
 <thead>
 <tr>
-<th>Endpoint</th>
-<th>Credits per call</th>
+<th>Cost</th>
+<th>Endpoints</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>POST /v1/astronomy/crux-midnight</code></td>
-<td>2 (regardless of how many days are requested)</td>
+<td>1 credit</td>
+<td>71 (most lightweight maths, date, geo, finance and health calls)</td>
 </tr>
 <tr>
-<td><code>POST /v1/astronomy/crux-hourly</code></td>
-<td>5 (all 24 hours of the date)</td>
+<td>2 credits</td>
+<td>6 (including <code>crux-midnight</code> and <code>crux-current</code>)</td>
 </tr>
 <tr>
-<td><code>POST /v1/astronomy/crux-current</code></td>
-<td>2</td>
+<td>3 credits</td>
+<td>4</td>
 </tr>
 <tr>
-<td><code>GET /v1/astronomy/ephemeris</code></td>
-<td>1</td>
+<td>5 credits</td>
+<td>2 (including <code>crux-hourly</code>, which returns all 24 hours)</td>
 </tr>
 <tr>
-<td>Other phase-one astronomy POST routes</td>
-<td>1 each</td>
+<td>free</td>
+<td>the account endpoints (<code>/v1/account/credits</code>, <code>/usage</code>, <code>/limits</code>)</td>
 </tr>
 </tbody>
 </table></div>
-<p>Check the live OpenAPI contract for exact per-endpoint costs before building billing displays. Check your balance with <code>GET /v1/account/credits</code> and your usage with <code>GET /v1/account/usage</code>. The contract also lists <code>402</code> as a possible response, consistent with a credit or payment condition.</p>
+<p>The exact cost of every endpoint is shown on its reference entry, for example on <a href="reference/finance.html">Finance</a> and <a href="reference/astronomy.html">Astronomy</a>. Check your balance with <code>GET /v1/account/credits</code> and your usage with <code>GET /v1/account/usage</code>. When credits run out the API answers <code>402</code>. Credit prices in money terms are not published yet.</p>
 <h2 id="7-responses-errors-and-status-codes">7. Responses, errors and status codes</h2>
 <p><strong>Reference data</strong> responses share one envelope:</p>
 <pre><code class="language-json">{ &quot;dataset_version&quot;: &quot;2026-09-21&quot;, &quot;source&quot;: &quot;curated_bright_star_reference&quot;, &quot;count&quot;: 20, &quot;data&quot;: [ ... ] }
@@ -228,7 +244,8 @@ const { dataset_version, count, data } = await res.json();
 <p><strong>Errors</strong> use one envelope:</p>
 <pre><code class="language-json">{ &quot;error&quot;: { &quot;code&quot;: &quot;not_found&quot;, &quot;message&quot;: &quot;Endpoint not found&quot; } }
 </code></pre>
-<p>Status codes documented in the contract for protected endpoints: <code>200</code>, <code>400</code> (bad request), <code>401</code> (missing/invalid key), <code>402</code>, <code>403</code> (forbidden), <code>429</code> (rate limited). Unknown routes return <code>404</code>. Handle unknown codes generically.</p>
+<p>Status codes documented in the contract for protected endpoints: <code>200</code>, <code>400</code> (bad request), <code>401</code> (missing or invalid key), <code>402</code> (credits exhausted), <code>403</code> (suspended account or expired trial), <code>429</code> (rate limited). Unknown routes return <code>404</code>. The API guide also lists <code>500</code> and <code>503</code> (an optional store or provider is unavailable). A malformed JSON body returns <code>400</code> with code <code>invalid_json</code>. Handle unknown codes generically.</p>
+<p>Route check (2026-09-21): every one of the 89 documented protected routes answered <code>401</code> with the standard error envelope when called without a key, so each route exists and is protected as documented. Nothing was called with a key.</p>
 <h2 id="8-cors-and-caching">8. CORS and caching</h2>
 <p>The API allows any origin (<code>access-control-allow-origin: *</code>) for <code>GET</code>, <code>POST</code> and <code>OPTIONS</code>, and allows the request headers <code>Authorization</code>, <code>Content-Type</code>, <code>X-API-Key</code> and <code>X-Admin-Key</code>. Open CORS lets browsers read <strong>public</strong> endpoints directly; it is not a reason to expose a private key in browser code (see section 3).</p>
 <p>Caching headers as observed: reference data is sent with <code>cache-control: private, max-age=2592000</code> (30 days, with stale-while-revalidate), timezones with <code>max-age=86400</code> (24 hours), and status/health with <code>no-store</code>. Reference data changes rarely, so cache it locally and key your cache on <code>dataset_version</code>.</p>
@@ -349,7 +366,7 @@ const { dataset_version, count, data } = await res.json();
 </tr>
 </tbody>
 </table></div>
-<p>Every dataset is also served under <code>/api/v1/data/...</code> with identical behaviour (for example <code>/api/v1/data/http-status?q=429</code>). Both the <code>/v1/data/...</code> routes and the <code>/api/v1/data/...</code> compatibility aliases are present in the live OpenAPI contract.</p>
+<p>Every dataset is also served under <code>/api/v1/data/...</code> with identical behaviour (for example <code>/api/v1/data/http-status?q=429</code>). <code>/v1/data/...</code> is the canonical form used in the OpenAPI contract.</p>
 <p><strong>Read <code>observes_dst_now</code> carefully.</strong> In the timezone dataset this flag is <code>true</code> for any zone that uses daylight saving at all - it stayed <code>true</code> for <code>Europe/London</code> in January (offset <code>UTC+00:00</code>) and for <code>Australia/Sydney</code> in July (offset <code>UTC+10:00</code>) - so it does <strong>not</strong> tell you whether DST is in force at the requested time. To find out, compare <code>offset_minutes</code> at different <code>at</code> values, or use the standard offset for the zone.</p>
 <p>Filtering example:</p>
 <pre><code class="language-bash">curl 'https://api.calculationtime.com/v1/data/stars/bright?q=crux'
@@ -358,8 +375,8 @@ const { dataset_version, count, data } = await res.json();
 </code></pre>
 <p>Several tables are curated subsets rather than complete catalogues. Each response names its <code>source</code>; treat the data as a reference aid and check a primary source (IANA, unicode.org, NIST, IAU) for anything critical.</p>
 <h2 id="10-endpoint-index">10. Endpoint index</h2>
-<p>Generated from the live OpenAPI contract (v0.1.0). "public" means no key; "key" means an API key is required. This customer-facing index omits administrative routes, private-sharing routes, and duplicate <code>/api/v1/data/...</code> compatibility aliases; the live contract currently exposes 122 unique paths.</p>
-<h3 id="public-service-and-utility">Public service and utility</h3>
+<p>Generated from the OpenAPI contract (v0.1.0) by <code>build-portal.py</code>. "public" means no key; "key" means an API key is required. Each area has its own reference page with a copy-paste request per endpoint. Administrative and private-sharing routes are omitted, and the <code>/api/v1/data/...</code> aliases are covered in section 9.</p>
+<h3 id="service-and-status"><a href="reference/service.html">Service and status</a></h3>
 <div class="scroll"><table>
 <thead>
 <tr>
@@ -367,804 +384,874 @@ const { dataset_version, count, data } = await res.json();
 <th>Path</th>
 <th>What it does</th>
 <th>Access</th>
+<th>Cost</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>GET</td>
-<td><code>/</code></td>
+<td><a href="reference/service.html#get"><code>/</code></a></td>
 <td>Markdown API documentation</td>
 <td>public</td>
+<td>-</td>
 </tr>
 <tr>
 <td>GET</td>
-<td><code>/health</code></td>
+<td><a href="reference/service.html#get--health"><code>/health</code></a></td>
 <td>Low-level service health</td>
 <td>public</td>
+<td>-</td>
 </tr>
 <tr>
 <td>GET</td>
-<td><code>/openapi.json</code></td>
+<td><a href="reference/service.html#get--openapi.json"><code>/openapi.json</code></a></td>
 <td>OpenAPI contract for live routes</td>
 <td>public</td>
+<td>-</td>
 </tr>
 <tr>
 <td>GET</td>
-<td><code>/v1/status</code></td>
+<td><a href="reference/service.html#get--v1-status"><code>/v1/status</code></a></td>
 <td>Public measured service status and endpoint inventory</td>
 <td>public</td>
+<td>-</td>
 </tr>
 <tr>
 <td>GET</td>
-<td><code>/v1/time/utc</code></td>
+<td><a href="reference/service.html#get--v1-time-utc"><code>/v1/time/utc</code></a></td>
 <td>Current UTC timestamp and clock-model metadata</td>
 <td>public</td>
+<td>-</td>
 </tr>
 <tr>
 <td>GET</td>
-<td><code>/api/v1/utility/tagline</code></td>
+<td><a href="reference/service.html#get--api-v1-utility-tagline"><code>/api/v1/utility/tagline</code></a></td>
 <td>Deterministic daily CalculationTime tagline</td>
 <td>public</td>
-</tr>
-</tbody>
-</table></div>
-<h3 id="reference-data-public">Reference data (public)</h3>
-<div class="scroll"><table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Path</th>
-<th>What it does</th>
-<th>Access</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>GET</td>
-<td><code>/v1/data/countries</code></td>
-<td>Country reference table with capitals, ISO codes, dialing codes, and currencies</td>
-<td>public</td>
+<td>-</td>
 </tr>
 <tr>
 <td>GET</td>
-<td><code>/v1/data/timezones</code></td>
-<td>IANA timezone reference with current UTC offsets and DST status</td>
-<td>public</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/v1/data/elements</code></td>
-<td>Periodic table reference values</td>
-<td>public</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/v1/data/constants</code></td>
-<td>Physical and mathematical constants reference table</td>
-<td>public</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/v1/data/materials/density</code></td>
-<td>Common material density reference table</td>
-<td>public</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/v1/data/http-status</code></td>
-<td>HTTP status code directory</td>
-<td>public</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/v1/data/mime-types</code></td>
-<td>MIME type and extension reference table</td>
-<td>public</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/v1/data/unicode-blocks</code></td>
-<td>Unicode block range reference table</td>
-<td>public</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/v1/data/constellations</code></td>
-<td>IAU constellation names, genitives, abbreviations, and quadrants</td>
-<td>public</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/v1/data/stars/bright</code></td>
-<td>Bright star reference table</td>
-<td>public</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/v1/data/meteor-showers</code></td>
-<td>Major annual meteor shower reference table</td>
-<td>public</td>
-</tr>
-</tbody>
-</table></div>
-<h3 id="time-and-dates">Time and dates</h3>
-<div class="scroll"><table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Path</th>
-<th>What it does</th>
-<th>Access</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>GET</td>
-<td><code>/v1/time</code></td>
-<td>Get local time for one coordinate</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/time/batch</code></td>
-<td>Get local time for up to 100 coordinates</td>
-<td>key</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/v1/date/difference</code></td>
-<td>Calendar day difference</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/date/difference/batch</code></td>
-<td>Batch calendar day differences</td>
-<td>key</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/v1/date/add</code></td>
-<td>Add calendar units to a date</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/date/business-days</code></td>
-<td>Business-day count with supplied holidays</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/date/business-days/jurisdiction</code></td>
-<td>Business-day count for a supported jurisdiction</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/date/business-days-add</code></td>
-<td>Add or subtract configurable business days</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/date/iso-week</code></td>
-<td>ISO week number, week-year, and weekday</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/date/age-breakdown</code></td>
-<td>Exact age duration breakdown from birth date to timestamp</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/date/countdown-precise</code></td>
-<td>Precise calendar delta between timestamps</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/date/epoch-converter</code></td>
-<td>Unix epoch seconds or milliseconds to ISO/RFC strings</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/date/quarter-calculator</code></td>
-<td>Calendar and fiscal quarter with progress percentage</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/date/leap-year-check</code></td>
-<td>Gregorian and Julian leap-year proof check</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/date/days-in-month</code></td>
-<td>Days in a Gregorian month</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/date/timezone-offset</code></td>
-<td>Fixed UTC offset conversion without DST lookup</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/date/calendar-range</code></td>
-<td>Generate a deterministic date range with weekday and ISO week facts</td>
-<td>key</td>
-</tr>
-</tbody>
-</table></div>
-<h3 id="holidays-and-business-days">Holidays and business days</h3>
-<div class="scroll"><table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Path</th>
-<th>What it does</th>
-<th>Access</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>GET</td>
-<td><code>/v1/holidays</code></td>
-<td>Holidays for a jurisdiction and year</td>
-<td>key</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/v1/holidays/next</code></td>
-<td>Next holiday for a jurisdiction</td>
-<td>key</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/v1/holidays/is-business-day</code></td>
-<td>Business-day check for one date</td>
-<td>key</td>
-</tr>
-</tbody>
-</table></div>
-<h3 id="geospatial">Geospatial</h3>
-<div class="scroll"><table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Path</th>
-<th>What it does</th>
-<th>Access</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>GET</td>
-<td><code>/v1/geo/distance</code></td>
-<td>Distance between two coordinates</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/geo/distance/batch</code></td>
-<td>Batch distance calculations</td>
-<td>key</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/v1/geo/midpoint</code></td>
-<td>Midpoint between two coordinates</td>
-<td>key</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/v1/geo/bounding-box</code></td>
-<td>Bounding box around a coordinate</td>
-<td>key</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/v1/geo/elevation</code></td>
-<td>Elevation for one coordinate</td>
-<td>key</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/v1/geo/nearby</code></td>
-<td>Nearby stored geo points</td>
-<td>key</td>
-</tr>
-</tbody>
-</table></div>
-<h3 id="solar-and-astronomy">Solar and astronomy</h3>
-<div class="scroll"><table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Path</th>
-<th>What it does</th>
-<th>Access</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>GET</td>
-<td><code>/v1/solar/position</code></td>
-<td>Solar position for date and coordinate</td>
-<td>key</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/v1/astronomy/ephemeris</code></td>
-<td>Astronomy ephemeris for a date</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/astronomy/crux-midnight</code></td>
-<td>Crux clock hand midnight sidereal positions from Parkes Observatory calibration</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/astronomy/crux-hourly</code></td>
-<td>Crux clock hand hourly sidereal breakdown for one local date</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/astronomy/crux-current</code></td>
-<td>Current Crux clock hand position and Parkes alignment delta</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/astronomy/solar-noon</code></td>
-<td>Solar transit/noon timestamp for a coordinate and date</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/astronomy/equinox-solstice</code></td>
-<td>Equinox and solstice timestamps for a year</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/astronomy/moon-phase</code></td>
-<td>Moon illumination, age, and phase name for a timestamp</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/astronomy/julian-date</code></td>
-<td>Gregorian timestamp to Julian Day and Modified Julian Date</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/astronomy/sidereal-time</code></td>
-<td>Greenwich and local sidereal time for a timestamp and longitude</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/astronomy/twilight-calculator</code></td>
-<td>Civil, nautical, and astronomical twilight crossings</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/astronomy/sun-position</code></td>
-<td>Sun right ascension, declination, azimuth, and elevation</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/astronomy/moon-position</code></td>
-<td>Moon right ascension, declination, azimuth, and elevation</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/astronomy/day-length</code></td>
-<td>Daylight duration between sunrise and sunset</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/astronomy/polar-night-check</code></td>
-<td>Check midnight sun or polar night state for a latitude/date</td>
-<td>key</td>
-</tr>
-</tbody>
-</table></div>
-<h3 id="finance">Finance</h3>
-<div class="scroll"><table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Path</th>
-<th>What it does</th>
-<th>Access</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>POST</td>
-<td><code>/v1/finance/margin-markup</code></td>
-<td>Gross margin, markup, selling price, and cost variance</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/finance/loan-amortization</code></td>
-<td>Fixed-rate loan amortization schedule</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/finance/tax-extraction</code></td>
-<td>Tax add-on and inclusive reverse extraction</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/finance/freelancer-rate</code></td>
-<td>Freelancer hourly and daily rate target</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/finance/simple-interest</code></td>
-<td>Simple interest from principal, rate, and time</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/finance/compound-interest</code></td>
-<td>Future value with compound interest frequency options</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/finance/loan-amortization-summary</code></td>
-<td>Loan payment, total interest, and total cost summary</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/finance/rule-of-72</code></td>
-<td>Estimated investment doubling time using the rule of 72</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/finance/roi</code></td>
-<td>Return on investment percentage from cost and net gain</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/finance/discount-calculator</code></td>
-<td>Final price and savings from original price and discount rate</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/finance/markup-margin</code></td>
-<td>Convert between gross margin and markup percentages</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/finance/break-even</code></td>
-<td>Break-even units from fixed costs, variable cost, and price</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/finance/salestax</code></td>
-<td>Add or extract sales tax/GST from an amount and tax rate</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/finance/cagr</code></td>
-<td>Compound annual growth rate from beginning value, ending value, and years</td>
-<td>key</td>
-</tr>
-</tbody>
-</table></div>
-<h3 id="math-and-statistics">Math and statistics</h3>
-<div class="scroll"><table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Path</th>
-<th>What it does</th>
-<th>Access</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>POST</td>
-<td><code>/v1/math/quadratic-solver</code></td>
-<td>Solve a quadratic equation with real or complex roots and vertex coordinates</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/math/pythagorean-solve</code></td>
-<td>Solve the missing side of a right triangle from any two sides</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/math/triangle-heron</code></td>
-<td>Triangle area, perimeter, and angles from three side lengths</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/math/circle-geometry</code></td>
-<td>Circle area, circumference, diameter, arc length, and sector area</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/math/sphere-geometry</code></td>
-<td>Sphere diameter, surface area, and volume from radius</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/math/cylinder-geometry</code></td>
-<td>Cylinder base area, surface area, and volume from radius and height</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/math/statistics-summary</code></td>
-<td>Mean, median, mode, variance, standard deviation, and IQR for numbers</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/math/percentage-change</code></td>
-<td>Absolute and percentage change from baseline to current value</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/math/percent-error</code></td>
-<td>Absolute, relative, and percent error against an accepted true value</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/math/gcd-lcm</code></td>
-<td>Greatest common divisor and least common multiple for integer sets</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/math/matrix-determinant</code></td>
-<td>Determinants for 2x2 and 3x3 matrices</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/math/proportion-solver</code></td>
-<td>Solve x in equivalent ratios a/b = c/x</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/math/logarithm-eval</code></td>
-<td>Evaluate logarithms with custom bases using change of base</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/math/exponent-eval</code></td>
-<td>Evaluate exponentiation and optional real root extraction</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/math/combinatorics</code></td>
-<td>Permutations and combinations for n and r</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/stats/summary</code></td>
-<td>Descriptive statistics for a numeric dataset</td>
-<td>key</td>
-</tr>
-</tbody>
-</table></div>
-<h3 id="health">Health</h3>
-<div class="scroll"><table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Path</th>
-<th>What it does</th>
-<th>Access</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>POST</td>
-<td><code>/v1/health/bmi</code></td>
-<td>Body Mass Index and category classification</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/health/bmr</code></td>
-<td>Basal Metabolic Rate using Mifflin-St Jeor</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/health/tdee</code></td>
-<td>Total Daily Energy Expenditure from BMR and activity multiplier</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/health/macro-split</code></td>
-<td>Protein, carbs, and fat grams from calories and macro percentages</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/health/pace-calculator</code></td>
-<td>Running or walking pace and speed from distance and duration</td>
-<td>key</td>
-</tr>
-</tbody>
-</table></div>
-<h3 id="payroll-and-trades">Payroll and trades</h3>
-<div class="scroll"><table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Path</th>
-<th>What it does</th>
-<th>Access</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>POST</td>
-<td><code>/v1/payroll/decimal-hours</code></td>
-<td>Clock time to decimal hours and overtime conversion</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/tradie/job-margin</code></td>
-<td>Tradie job margin from labour, materials, subcontractors, overhead, and quote</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/tradie/vat-return-summary</code></td>
-<td>Tradie VAT return summary from sales and purchases</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/tradie/cis-deduction</code></td>
-<td>UK CIS-style deduction model for labour and materials</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/tradie/mileage-claim</code></td>
-<td>Mileage claim and unreimbursed/reimbursed excess calculation</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/tradie/tool-depreciation</code></td>
-<td>Straight-line tool and equipment depreciation schedule</td>
-<td>key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/tradie/invoice-aging</code></td>
-<td>Receivables aging buckets for unpaid invoices</td>
-<td>key</td>
-</tr>
-</tbody>
-</table></div>
-<h3 id="account">Account</h3>
-<div class="scroll"><table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Path</th>
-<th>What it does</th>
-<th>Access</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>GET</td>
-<td><code>/v1/canary</code></td>
+<td><a href="reference/service.html#get--v1-canary"><code>/v1/canary</code></a></td>
 <td>Protected monitoring canary for API-key path checks</td>
 <td>key</td>
+<td>free</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="reference-data"><a href="reference/reference-data.html">Reference data</a></h3>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>What it does</th>
+<th>Access</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><a href="reference/reference-data.html#get--v1-data-countries"><code>/v1/data/countries</code></a></td>
+<td>Country reference table with capitals, ISO codes, dialing codes, and currencies</td>
+<td>public</td>
+<td>-</td>
 </tr>
 <tr>
 <td>GET</td>
-<td><code>/v1/account/profile</code></td>
+<td><a href="reference/reference-data.html#get--v1-data-timezones"><code>/v1/data/timezones</code></a></td>
+<td>IANA timezone reference with current UTC offsets and DST status</td>
+<td>public</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="reference/reference-data.html#get--v1-data-elements"><code>/v1/data/elements</code></a></td>
+<td>Periodic table reference values</td>
+<td>public</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="reference/reference-data.html#get--v1-data-constants"><code>/v1/data/constants</code></a></td>
+<td>Physical and mathematical constants reference table</td>
+<td>public</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="reference/reference-data.html#get--v1-data-materials-density"><code>/v1/data/materials/density</code></a></td>
+<td>Common material density reference table</td>
+<td>public</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="reference/reference-data.html#get--v1-data-http-status"><code>/v1/data/http-status</code></a></td>
+<td>HTTP status code directory</td>
+<td>public</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="reference/reference-data.html#get--v1-data-mime-types"><code>/v1/data/mime-types</code></a></td>
+<td>MIME type and extension reference table</td>
+<td>public</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="reference/reference-data.html#get--v1-data-unicode-blocks"><code>/v1/data/unicode-blocks</code></a></td>
+<td>Unicode block range reference table</td>
+<td>public</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="reference/reference-data.html#get--v1-data-constellations"><code>/v1/data/constellations</code></a></td>
+<td>IAU constellation names, genitives, abbreviations, and quadrants</td>
+<td>public</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="reference/reference-data.html#get--v1-data-stars-bright"><code>/v1/data/stars/bright</code></a></td>
+<td>Bright star reference table</td>
+<td>public</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="reference/reference-data.html#get--v1-data-meteor-showers"><code>/v1/data/meteor-showers</code></a></td>
+<td>Major annual meteor shower reference table</td>
+<td>public</td>
+<td>-</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="time-and-dates"><a href="reference/time-and-dates.html">Time and dates</a></h3>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>What it does</th>
+<th>Access</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><a href="reference/time-and-dates.html#get--v1-time"><code>/v1/time</code></a></td>
+<td>Get local time for one coordinate</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/time-and-dates.html#post--v1-time-batch"><code>/v1/time/batch</code></a></td>
+<td>Get local time for up to 100 coordinates</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="reference/time-and-dates.html#get--v1-date-difference"><code>/v1/date/difference</code></a></td>
+<td>Calendar day difference</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/time-and-dates.html#post--v1-date-difference-batch"><code>/v1/date/difference/batch</code></a></td>
+<td>Batch calendar day differences</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="reference/time-and-dates.html#get--v1-date-add"><code>/v1/date/add</code></a></td>
+<td>Add calendar units to a date</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/time-and-dates.html#post--v1-date-business-days"><code>/v1/date/business-days</code></a></td>
+<td>Business-day count with supplied holidays</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/time-and-dates.html#post--v1-date-business-days-jurisdiction"><code>/v1/date/business-days/jurisdiction</code></a></td>
+<td>Business-day count for a supported jurisdiction</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/time-and-dates.html#post--v1-date-business-days-add"><code>/v1/date/business-days-add</code></a></td>
+<td>Add or subtract configurable business days</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/time-and-dates.html#post--v1-date-iso-week"><code>/v1/date/iso-week</code></a></td>
+<td>ISO week number, week-year, and weekday</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/time-and-dates.html#post--v1-date-age-breakdown"><code>/v1/date/age-breakdown</code></a></td>
+<td>Exact age duration breakdown from birth date to timestamp</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/time-and-dates.html#post--v1-date-countdown-precise"><code>/v1/date/countdown-precise</code></a></td>
+<td>Precise calendar delta between timestamps</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/time-and-dates.html#post--v1-date-epoch-converter"><code>/v1/date/epoch-converter</code></a></td>
+<td>Unix epoch seconds or milliseconds to ISO/RFC strings</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/time-and-dates.html#post--v1-date-quarter-calculator"><code>/v1/date/quarter-calculator</code></a></td>
+<td>Calendar and fiscal quarter with progress percentage</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/time-and-dates.html#post--v1-date-leap-year-check"><code>/v1/date/leap-year-check</code></a></td>
+<td>Gregorian and Julian leap-year proof check</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/time-and-dates.html#post--v1-date-days-in-month"><code>/v1/date/days-in-month</code></a></td>
+<td>Days in a Gregorian month</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/time-and-dates.html#post--v1-date-timezone-offset"><code>/v1/date/timezone-offset</code></a></td>
+<td>Fixed UTC offset conversion without DST lookup</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/time-and-dates.html#post--v1-date-calendar-range"><code>/v1/date/calendar-range</code></a></td>
+<td>Generate a deterministic date range with weekday and ISO week facts</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="reference/time-and-dates.html#get--v1-holidays"><code>/v1/holidays</code></a></td>
+<td>Holidays for a jurisdiction and year</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="reference/time-and-dates.html#get--v1-holidays-next"><code>/v1/holidays/next</code></a></td>
+<td>Next holiday for a jurisdiction</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="reference/time-and-dates.html#get--v1-holidays-is-business-day"><code>/v1/holidays/is-business-day</code></a></td>
+<td>Business-day check for one date</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="geo"><a href="reference/geo.html">Geo</a></h3>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>What it does</th>
+<th>Access</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><a href="reference/geo.html#get--v1-geo-distance"><code>/v1/geo/distance</code></a></td>
+<td>Distance between two coordinates</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/geo.html#post--v1-geo-distance-batch"><code>/v1/geo/distance/batch</code></a></td>
+<td>Batch distance calculations</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="reference/geo.html#get--v1-geo-midpoint"><code>/v1/geo/midpoint</code></a></td>
+<td>Midpoint between two coordinates</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="reference/geo.html#get--v1-geo-bounding-box"><code>/v1/geo/bounding-box</code></a></td>
+<td>Bounding box around a coordinate</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="reference/geo.html#get--v1-geo-elevation"><code>/v1/geo/elevation</code></a></td>
+<td>Elevation for one coordinate</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="reference/geo.html#get--v1-geo-nearby"><code>/v1/geo/nearby</code></a></td>
+<td>Nearby stored geo points</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="astronomy-and-crux-clock"><a href="reference/astronomy.html">Astronomy and Crux clock</a></h3>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>What it does</th>
+<th>Access</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><a href="reference/astronomy.html#get--v1-solar-position"><code>/v1/solar/position</code></a></td>
+<td>Solar position for date and coordinate</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="reference/astronomy.html#get--v1-astronomy-ephemeris"><code>/v1/astronomy/ephemeris</code></a></td>
+<td>Astronomy ephemeris for a date</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/astronomy.html#post--v1-astronomy-crux-midnight"><code>/v1/astronomy/crux-midnight</code></a></td>
+<td>Crux clock hand midnight sidereal positions from Parkes Observatory calibration</td>
+<td>key</td>
+<td>2 credits</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/astronomy.html#post--v1-astronomy-crux-hourly"><code>/v1/astronomy/crux-hourly</code></a></td>
+<td>Crux clock hand hourly sidereal breakdown for one local date</td>
+<td>key</td>
+<td>5 credits</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/astronomy.html#post--v1-astronomy-crux-current"><code>/v1/astronomy/crux-current</code></a></td>
+<td>Current Crux clock hand position and Parkes alignment delta</td>
+<td>key</td>
+<td>2 credits</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/astronomy.html#post--v1-astronomy-solar-noon"><code>/v1/astronomy/solar-noon</code></a></td>
+<td>Solar transit/noon timestamp for a coordinate and date</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/astronomy.html#post--v1-astronomy-equinox-solstice"><code>/v1/astronomy/equinox-solstice</code></a></td>
+<td>Equinox and solstice timestamps for a year</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/astronomy.html#post--v1-astronomy-moon-phase"><code>/v1/astronomy/moon-phase</code></a></td>
+<td>Moon illumination, age, and phase name for a timestamp</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/astronomy.html#post--v1-astronomy-julian-date"><code>/v1/astronomy/julian-date</code></a></td>
+<td>Gregorian timestamp to Julian Day and Modified Julian Date</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/astronomy.html#post--v1-astronomy-sidereal-time"><code>/v1/astronomy/sidereal-time</code></a></td>
+<td>Greenwich and local sidereal time for a timestamp and longitude</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/astronomy.html#post--v1-astronomy-twilight-calculator"><code>/v1/astronomy/twilight-calculator</code></a></td>
+<td>Civil, nautical, and astronomical twilight crossings</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/astronomy.html#post--v1-astronomy-sun-position"><code>/v1/astronomy/sun-position</code></a></td>
+<td>Sun right ascension, declination, azimuth, and elevation</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/astronomy.html#post--v1-astronomy-moon-position"><code>/v1/astronomy/moon-position</code></a></td>
+<td>Moon right ascension, declination, azimuth, and elevation</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/astronomy.html#post--v1-astronomy-day-length"><code>/v1/astronomy/day-length</code></a></td>
+<td>Daylight duration between sunrise and sunset</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/astronomy.html#post--v1-astronomy-polar-night-check"><code>/v1/astronomy/polar-night-check</code></a></td>
+<td>Check midnight sun or polar night state for a latitude/date</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="finance"><a href="reference/finance.html">Finance</a></h3>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>What it does</th>
+<th>Access</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><a href="reference/finance.html#post--v1-finance-margin-markup"><code>/v1/finance/margin-markup</code></a></td>
+<td>Gross margin, markup, selling price, and cost variance</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/finance.html#post--v1-finance-loan-amortization"><code>/v1/finance/loan-amortization</code></a></td>
+<td>Fixed-rate loan amortization schedule</td>
+<td>key</td>
+<td>5 credits</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/finance.html#post--v1-finance-tax-extraction"><code>/v1/finance/tax-extraction</code></a></td>
+<td>Tax add-on and inclusive reverse extraction</td>
+<td>key</td>
+<td>2 credits</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/finance.html#post--v1-finance-freelancer-rate"><code>/v1/finance/freelancer-rate</code></a></td>
+<td>Freelancer hourly and daily rate target</td>
+<td>key</td>
+<td>2 credits</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/finance.html#post--v1-finance-simple-interest"><code>/v1/finance/simple-interest</code></a></td>
+<td>Simple interest from principal, rate, and time</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/finance.html#post--v1-finance-compound-interest"><code>/v1/finance/compound-interest</code></a></td>
+<td>Future value with compound interest frequency options</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/finance.html#post--v1-finance-loan-amortization-summary"><code>/v1/finance/loan-amortization-summary</code></a></td>
+<td>Loan payment, total interest, and total cost summary</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/finance.html#post--v1-finance-rule-of-72"><code>/v1/finance/rule-of-72</code></a></td>
+<td>Estimated investment doubling time using the rule of 72</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/finance.html#post--v1-finance-roi"><code>/v1/finance/roi</code></a></td>
+<td>Return on investment percentage from cost and net gain</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/finance.html#post--v1-finance-discount-calculator"><code>/v1/finance/discount-calculator</code></a></td>
+<td>Final price and savings from original price and discount rate</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/finance.html#post--v1-finance-markup-margin"><code>/v1/finance/markup-margin</code></a></td>
+<td>Convert between gross margin and markup percentages</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/finance.html#post--v1-finance-break-even"><code>/v1/finance/break-even</code></a></td>
+<td>Break-even units from fixed costs, variable cost, and price</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/finance.html#post--v1-finance-salestax"><code>/v1/finance/salestax</code></a></td>
+<td>Add or extract sales tax/GST from an amount and tax rate</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/finance.html#post--v1-finance-cagr"><code>/v1/finance/cagr</code></a></td>
+<td>Compound annual growth rate from beginning value, ending value, and years</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="math-and-statistics"><a href="reference/math-and-statistics.html">Math and statistics</a></h3>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>What it does</th>
+<th>Access</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--v1-math-quadratic-solver"><code>/v1/math/quadratic-solver</code></a></td>
+<td>Solve a quadratic equation with real or complex roots and vertex coordinates</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--v1-math-pythagorean-solve"><code>/v1/math/pythagorean-solve</code></a></td>
+<td>Solve the missing side of a right triangle from any two sides</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--v1-math-triangle-heron"><code>/v1/math/triangle-heron</code></a></td>
+<td>Triangle area, perimeter, and angles from three side lengths</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--v1-math-circle-geometry"><code>/v1/math/circle-geometry</code></a></td>
+<td>Circle area, circumference, diameter, arc length, and sector area</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--v1-math-sphere-geometry"><code>/v1/math/sphere-geometry</code></a></td>
+<td>Sphere diameter, surface area, and volume from radius</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--v1-math-cylinder-geometry"><code>/v1/math/cylinder-geometry</code></a></td>
+<td>Cylinder base area, surface area, and volume from radius and height</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--v1-math-statistics-summary"><code>/v1/math/statistics-summary</code></a></td>
+<td>Mean, median, mode, variance, standard deviation, and IQR for numbers</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--v1-math-percentage-change"><code>/v1/math/percentage-change</code></a></td>
+<td>Absolute and percentage change from baseline to current value</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--v1-math-percent-error"><code>/v1/math/percent-error</code></a></td>
+<td>Absolute, relative, and percent error against an accepted true value</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--v1-math-gcd-lcm"><code>/v1/math/gcd-lcm</code></a></td>
+<td>Greatest common divisor and least common multiple for integer sets</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--v1-math-matrix-determinant"><code>/v1/math/matrix-determinant</code></a></td>
+<td>Determinants for 2x2 and 3x3 matrices</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--v1-math-proportion-solver"><code>/v1/math/proportion-solver</code></a></td>
+<td>Solve x in equivalent ratios a/b = c/x</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--v1-math-logarithm-eval"><code>/v1/math/logarithm-eval</code></a></td>
+<td>Evaluate logarithms with custom bases using change of base</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--v1-math-exponent-eval"><code>/v1/math/exponent-eval</code></a></td>
+<td>Evaluate exponentiation and optional real root extraction</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--v1-math-combinatorics"><code>/v1/math/combinatorics</code></a></td>
+<td>Permutations and combinations for n and r</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--v1-stats-summary"><code>/v1/stats/summary</code></a></td>
+<td>Descriptive statistics for a numeric dataset</td>
+<td>key</td>
+<td>3 credits</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="health"><a href="reference/health.html">Health</a></h3>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>What it does</th>
+<th>Access</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><a href="reference/health.html#post--v1-health-bmi"><code>/v1/health/bmi</code></a></td>
+<td>Body Mass Index and category classification</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/health.html#post--v1-health-bmr"><code>/v1/health/bmr</code></a></td>
+<td>Basal Metabolic Rate using Mifflin-St Jeor</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/health.html#post--v1-health-tdee"><code>/v1/health/tdee</code></a></td>
+<td>Total Daily Energy Expenditure from BMR and activity multiplier</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/health.html#post--v1-health-macro-split"><code>/v1/health/macro-split</code></a></td>
+<td>Protein, carbs, and fat grams from calories and macro percentages</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/health.html#post--v1-health-pace-calculator"><code>/v1/health/pace-calculator</code></a></td>
+<td>Running or walking pace and speed from distance and duration</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="payroll-and-trades"><a href="reference/payroll-and-trades.html">Payroll and trades</a></h3>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>What it does</th>
+<th>Access</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><a href="reference/payroll-and-trades.html#post--v1-payroll-decimal-hours"><code>/v1/payroll/decimal-hours</code></a></td>
+<td>Clock time to decimal hours and overtime conversion</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/payroll-and-trades.html#post--v1-tradie-job-margin"><code>/v1/tradie/job-margin</code></a></td>
+<td>Tradie job margin from labour, materials, subcontractors, overhead, and quote</td>
+<td>key</td>
+<td>2 credits</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/payroll-and-trades.html#post--v1-tradie-vat-return-summary"><code>/v1/tradie/vat-return-summary</code></a></td>
+<td>Tradie VAT return summary from sales and purchases</td>
+<td>key</td>
+<td>3 credits</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/payroll-and-trades.html#post--v1-tradie-cis-deduction"><code>/v1/tradie/cis-deduction</code></a></td>
+<td>UK CIS-style deduction model for labour and materials</td>
+<td>key</td>
+<td>2 credits</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/payroll-and-trades.html#post--v1-tradie-mileage-claim"><code>/v1/tradie/mileage-claim</code></a></td>
+<td>Mileage claim and unreimbursed/reimbursed excess calculation</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/payroll-and-trades.html#post--v1-tradie-tool-depreciation"><code>/v1/tradie/tool-depreciation</code></a></td>
+<td>Straight-line tool and equipment depreciation schedule</td>
+<td>key</td>
+<td>3 credits</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/payroll-and-trades.html#post--v1-tradie-invoice-aging"><code>/v1/tradie/invoice-aging</code></a></td>
+<td>Receivables aging buckets for unpaid invoices</td>
+<td>key</td>
+<td>3 credits</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="account"><a href="reference/account.html">Account</a></h3>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>What it does</th>
+<th>Access</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><a href="reference/account.html#get--v1-account-profile"><code>/v1/account/profile</code></a></td>
 <td>Authenticated customer profile</td>
 <td>key</td>
+<td>free</td>
 </tr>
 <tr>
 <td>GET</td>
-<td><code>/v1/account/usage</code></td>
+<td><a href="reference/account.html#get--v1-account-usage"><code>/v1/account/usage</code></a></td>
 <td>Authenticated customer usage summary</td>
 <td>key</td>
+<td>free</td>
 </tr>
 <tr>
 <td>GET</td>
-<td><code>/v1/account/limits</code></td>
+<td><a href="reference/account.html#get--v1-account-limits"><code>/v1/account/limits</code></a></td>
 <td>Authenticated customer plan and batch limits</td>
 <td>key</td>
+<td>free</td>
 </tr>
 <tr>
 <td>GET</td>
-<td><code>/v1/account/credits</code></td>
+<td><a href="reference/account.html#get--v1-account-credits"><code>/v1/account/credits</code></a></td>
 <td>Authenticated customer credit balance</td>
 <td>key</td>
+<td>free</td>
 </tr>
 </tbody>
 </table></div>
 <h2 id="11-examples">11. Examples</h2>
-<h3 id="contract-checks-for-status-canary-and-ephemeris">Contract checks for status, canary and ephemeris</h3>
-<p>These three routes were checked against the live Munich API and OpenAPI contract on 2026-09-21:</p>
-<div class="scroll"><table>
-<thead>
-<tr>
-<th>Route</th>
-<th>Live method/access</th>
-<th>Contract details</th>
-<th>Unauthenticated live behaviour</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>/v1/status</code></td>
-<td><code>GET</code>, public</td>
-<td>No security requirement; returns service, version, uptime, cache mode and endpoint-family inventory</td>
-<td><code>200 OK</code></td>
-</tr>
-<tr>
-<td><code>/v1/canary</code></td>
-<td><code>GET</code>, key required</td>
-<td>Accepts <code>X-API-Key</code> or <code>Authorization: Bearer</code>; protected monitoring route</td>
-<td><code>401</code> with <code>{&quot;error&quot;:{&quot;code&quot;:&quot;unauthorized&quot;,&quot;message&quot;:&quot;A valid API key is required&quot;}}</code></td>
-</tr>
-<tr>
-<td><code>/v1/astronomy/ephemeris</code></td>
-<td><code>GET</code>, key required</td>
-<td>Optional <code>date</code> query parameter; <code>x-credit-cost: 1</code>; accepts <code>X-API-Key</code> or <code>Authorization: Bearer</code></td>
-<td><code>401</code> with the same unauthorized error envelope</td>
-</tr>
-</tbody>
-</table></div>
 <h3 id="local-time-for-a-coordinate-key-required">Local time for a coordinate (key required)</h3>
 <p><code>GET /v1/time</code> takes the optional query parameters <code>lat</code>, <code>lon</code> and <code>at</code> (a timestamp).</p>
 <pre><code class="language-bash">curl 'https://api.calculationtime.com/v1/time?lat=-32.99&amp;lon=148.26' \
@@ -1203,11 +1290,12 @@ const { dataset_version, count, data } = await res.json();
 <h2 id="12-what-is-not-documented-yet">12. What is not documented yet</h2>
 <p>Being direct about the gaps so you can plan around them:</p>
 <ul>
-<li><strong>Request bodies.</strong> In the OpenAPI contract, the POST request bodies for the finance, math, statistics, date, payroll, health and most astronomy endpoints are declared only as free-form JSON objects (<code>additionalProperties: true</code>), and response schemas are not published. Field names are therefore not specified here for those endpoints. Ask for the field list when you request a beta key; the Crux endpoints above are fully documented.</li>
-<li><strong>Per-endpoint credit costs</strong> beyond the three Crux endpoints.</li>
-<li><strong>Keyed rate limits and batch limits</strong> are returned per customer by <code>GET /v1/account/limits</code> rather than published.</li>
+<li><strong>Request schemas.</strong> The contract publishes a known-good example body for each of the 74 POST operations (see the reference pages), but declares the body only as free-form JSON (<code>additionalProperties: true</code>): it does not list required versus optional fields, types or limits. Response schemas are not published either. Copy an example, change the values, and inspect the response.</li>
+<li><strong>Query parameter values.</strong> A few GET endpoints (holidays, <code>geo/nearby</code>) list parameter names without sample values; the reference shows the names in capitals as placeholders. Which jurisdictions the holiday endpoints accept is not documented.</li>
+<li><strong>Keyed rate limits.</strong> Stated in the API guide (default 120 per minute) but not returned by the contract; <code>GET /v1/account/limits</code> is authoritative.</li>
 <li><strong>Uptime.</strong> No public SLA is claimed. <code>GET /v1/status</code> reports this deliberately.</li>
-<li><strong>Pricing and self-service.</strong> Not live; beta access is by request.</li>
+<li><strong>Pricing and self-service.</strong> Not live; beta access is by request. Credit costs are published, money prices are not.</li>
+<li><strong>Data caveats.</strong> <code>observes_dst_now</code> in the timezone table means the zone uses daylight saving at all, not that it is in effect now; compare <code>offset_minutes</code> at the <code>at</code> timestamp you care about. Several reference tables are curated subsets (for example, 23 Unicode blocks and 20 bright stars).</li>
 </ul>
 <h2 id="13-good-practice">13. Good practice</h2>
 <ol>
@@ -1224,6 +1312,6 @@ const { dataset_version, count, data } = await res.json();
 <li>Main site and the calculators these endpoints power: <a href="https://www.calculationtime.com">https://www.calculationtime.com</a></li>
 </ul>
 </div></main>
-<footer><div class="wrap">Source: <a href="api-guide.md">api-guide.md</a> &middot; <a href="../index.html">Portal home</a> &middot; <a href="https://www.calculationtime.com">calculationtime.com</a></div></footer>
+<footer><div class="wrap">Contract v0.1.0 &middot; built 2026-09-21 &middot; <a href="../index.html">Portal home</a> &middot; <a href="https://www.calculationtime.com">calculationtime.com</a> &middot; <a href="https://github.com/ByeBilly/calculationtime-web">Source on GitHub</a></div></footer>
 </body>
 </html>

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Payroll and trades API endpoints - CalculationTime API reference</title>
+<meta name="description" content="Decimal hours, job margin, mileage claims, tool depreciation, invoice aging and VAT summaries.">
+<link rel="canonical" href="https://byebilly.github.io/calculationtime-web/docs/reference/payroll-and-trades.html">
+<meta property="og:title" content="Payroll and trades API endpoints - CalculationTime API reference">
+<meta property="og:description" content="Decimal hours, job margin, mileage claims, tool depreciation, invoice aging and VAT summaries.">
+<meta property="og:type" content="website">
+<style>
+  :root { --bg:#f7f1e4; --panel:#fff; --ink:#14110c; --muted:#5a5245; --line:#d9ccb0; --brand:#0b0d14; --gold:#c98b2c; --gold-soft:#e5b65f; --code-bg:#0d1018; --code-ink:#f3ead6; --radius:12px; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0b0d14; --panel:#12151f; --ink:#f4ecd9; --muted:#b9ae98; --line:#2b2f3d; --code-bg:#07080d; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; }
+  header { background:var(--brand); color:#f4ecd9; }
+  header .wrap { display:flex; flex-wrap:wrap; gap:12px 20px; align-items:center; justify-content:space-between; padding:14px 0; }
+  .wrap { width:min(880px, 100% - 32px); margin-inline:auto; }
+  header a { color:inherit; text-decoration:none; font-size:14px; margin-left:16px; }
+  header a.logo { margin:0; font:700 20px Georgia,"Times New Roman",serif; }
+  header a.logo span { color:var(--gold-soft); }
+  header a:hover { text-decoration:underline; }
+  main { padding:36px 0 64px; }
+  h1,h2,h3 { font-family:Georgia,"Times New Roman",serif; line-height:1.15; }
+  h1 { font-size:clamp(30px,5vw,44px); margin:0 0 12px; }
+  h2 { font-size:28px; margin:44px 0 10px; padding-top:20px; border-top:1px solid var(--line); }
+  h3 { font-size:20px; margin:28px 0 6px; }
+  h3 code { font-size:.85em; }
+  a { color:var(--gold); }
+  code { font-family:ui-monospace,SFMono-Regular,Consolas,monospace; font-size:.9em; background:rgba(201,139,44,.12); padding:1px 5px; border-radius:5px; }
+  pre { margin:12px 0; padding:16px 18px; overflow-x:auto; background:var(--code-bg); color:var(--code-ink); border-radius:var(--radius); font-size:13.5px; line-height:1.55; }
+  pre code { background:none; padding:0; color:inherit; }
+  .scroll { overflow-x:auto; margin:14px 0; }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--line); font-size:14.5px; }
+  th,td { padding:9px 12px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+  details.toc { margin:18px 0 8px; padding:12px 18px; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); }
+  details.toc summary { cursor:pointer; font-weight:800; }
+  .toc ul { margin:8px 0 0; padding-left:20px; }
+  blockquote { margin:14px 0; padding:10px 16px; border-left:4px solid var(--gold); background:rgba(201,139,44,.09); }
+  .meta { color:var(--muted); font-size:14px; margin:0 0 6px; }
+  .pill { display:inline-block; padding:1px 9px; border-radius:99px; font-size:12px; font-weight:700; border:1px solid var(--line); background:var(--panel); margin-right:6px; }
+  .crumbs { font-size:14px; color:var(--muted); margin:0 0 10px; }
+  .areas { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px; margin:18px 0; padding:0; list-style:none; }
+  .areas a { display:block; height:100%; padding:16px; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); text-decoration:none; color:inherit; }
+  .areas a:hover { border-color:var(--gold); }
+  .areas strong { display:block; font:700 18px Georgia,serif; }
+  .areas span { font-size:14px; color:var(--muted); }
+  li, p, td { overflow-wrap:anywhere; }
+  footer { background:var(--brand); color:#d8cdbd; padding:24px 0; font-size:14px; }
+  footer a { color:var(--gold-soft); }
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Payroll and trades endpoints - CalculationTime API reference", "description": "Decimal hours, job margin, mileage claims, tool depreciation, invoice aging and VAT summaries.", "dateModified": "2026-09-21", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "CalculationTime", "url": "https://www.calculationtime.com"}}</script>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="logo" href="../../index.html">Calculation<span>Time</span> API</a>
+  <nav aria-label="Primary"><a href="../../docs/api-guide.html">Guide</a><a href="../../docs/reference/">Endpoint reference</a><a href="https://api.calculationtime.com/openapi.json">OpenAPI</a><a href="https://www.calculationtime.com/developers/api/beta/">Request beta access</a><a href="https://www.calculationtime.com">Main site</a></nav>
+</div></header>
+<main><div class="wrap">
+<p class="crumbs"><a href="../../index.html">Portal</a> / <a href="./">Endpoint reference</a> / Payroll and trades</p>
+<h1>Payroll and trades endpoints</h1>
+<p>Small-business helpers for hours, margins, mileage, depreciation and invoices. Tax rules differ by jurisdiction; check the assumptions in each response before you rely on a figure.</p>
+<p class="meta">7 operations &middot; contract v0.1.0 &middot; base URL <code>https://api.calculationtime.com</code></p>
+<div class="scroll"><table><thead><tr><th>Method</th><th>Path</th><th>What it does</th><th>Access</th><th>Cost</th></tr></thead><tbody><tr><td>POST</td><td><a href="#post--v1-payroll-decimal-hours"><code>/v1/payroll/decimal-hours</code></a></td><td>Clock time to decimal hours and overtime conversion</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-tradie-job-margin"><code>/v1/tradie/job-margin</code></a></td><td>Tradie job margin from labour, materials, subcontractors, overhead, and quote</td><td>key</td><td>2 credits</td></tr><tr><td>POST</td><td><a href="#post--v1-tradie-vat-return-summary"><code>/v1/tradie/vat-return-summary</code></a></td><td>Tradie VAT return summary from sales and purchases</td><td>key</td><td>3 credits</td></tr><tr><td>POST</td><td><a href="#post--v1-tradie-cis-deduction"><code>/v1/tradie/cis-deduction</code></a></td><td>UK CIS-style deduction model for labour and materials</td><td>key</td><td>2 credits</td></tr><tr><td>POST</td><td><a href="#post--v1-tradie-mileage-claim"><code>/v1/tradie/mileage-claim</code></a></td><td>Mileage claim and unreimbursed/reimbursed excess calculation</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-tradie-tool-depreciation"><code>/v1/tradie/tool-depreciation</code></a></td><td>Straight-line tool and equipment depreciation schedule</td><td>key</td><td>3 credits</td></tr><tr><td>POST</td><td><a href="#post--v1-tradie-invoice-aging"><code>/v1/tradie/invoice-aging</code></a></td><td>Receivables aging buckets for unpaid invoices</td><td>key</td><td>3 credits</td></tr></tbody></table></div>
+<blockquote>Request bodies below are the examples published in the API's OpenAPI contract. The contract declares body fields only as free-form JSON, so it does not say which fields are required or optional; treat each example as a known-good shape and read the result's fields. Replace <code>YOUR_KEY</code> with a beta key; never put a key in public code. Endpoints marked public work as shown with no key.</blockquote>
+<h3 id="post--v1-payroll-decimal-hours"><code>POST /v1/payroll/decimal-hours</code></h3>
+<p>Clock time to decimal hours and overtime conversion.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/payroll/decimal-hours&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;hours&quot;:1,&quot;minutes&quot;:30,&quot;overtime_multiplier&quot;:1.5}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-tradie-job-margin"><code>POST /v1/tradie/job-margin</code></h3>
+<p>Tradie job margin from labour, materials, subcontractors, overhead, and quote.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">2 credits</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/tradie/job-margin&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;labour_hours&quot;:16,&quot;labour_rate&quot;:45,&quot;materials_cost&quot;:380,&quot;subcontractor_cost&quot;:250,&quot;overhead_percent&quot;:12,&quot;quoted_price&quot;:2200}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-tradie-vat-return-summary"><code>POST /v1/tradie/vat-return-summary</code></h3>
+<p>Tradie VAT return summary from sales and purchases.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">3 credits</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/tradie/vat-return-summary&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;sales&quot;:[{&quot;amount&quot;:1200,&quot;tax_rate_percent&quot;:20,&quot;mode&quot;:&quot;inclusive&quot;}],&quot;purchases&quot;:[{&quot;amount&quot;:300,&quot;tax_rate_percent&quot;:20,&quot;mode&quot;:&quot;exclusive&quot;}]}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-tradie-cis-deduction"><code>POST /v1/tradie/cis-deduction</code></h3>
+<p>UK CIS-style deduction model for labour and materials.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">2 credits</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/tradie/cis-deduction&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;gross_labour&quot;:1000,&quot;materials&quot;:200,&quot;deduction_rate_percent&quot;:20}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-tradie-mileage-claim"><code>POST /v1/tradie/mileage-claim</code></h3>
+<p>Mileage claim and unreimbursed/reimbursed excess calculation.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/tradie/mileage-claim&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;miles&quot;:120,&quot;rate_per_mile&quot;:0.45,&quot;reimbursed_amount&quot;:20}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-tradie-tool-depreciation"><code>POST /v1/tradie/tool-depreciation</code></h3>
+<p>Straight-line tool and equipment depreciation schedule.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">3 credits</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/tradie/tool-depreciation&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;purchase_price&quot;:1200,&quot;salvage_value&quot;:200,&quot;useful_life_years&quot;:5}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-tradie-invoice-aging"><code>POST /v1/tradie/invoice-aging</code></h3>
+<p>Receivables aging buckets for unpaid invoices.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">3 credits</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/tradie/invoice-aging&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;as_of&quot;:&quot;2026-09-19&quot;,&quot;invoices&quot;:[{&quot;invoice_id&quot;:&quot;INV-1&quot;,&quot;due_date&quot;:&quot;2026-08-01&quot;,&quot;amount&quot;:400}]}&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p>
+<p><a href="../api-guide.html">Read the full guide</a> for authentication, limits, credits and errors, or <a href="./">browse every area</a>.</p>
+</div></main>
+<footer><div class="wrap">Contract v0.1.0 &middot; built 2026-09-21 &middot; <a href="../../index.html">Portal home</a> &middot; <a href="https://www.calculationtime.com">calculationtime.com</a> &middot; <a href="https://github.com/ByeBilly/calculationtime-web">Source on GitHub</a></div></footer>
+</body>
+</html>

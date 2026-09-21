@@ -1,0 +1,22 @@
+{
+ "/v1/data/countries": "/v1/data/countries?q=aus",
+ "/v1/data/timezones": "/v1/data/timezones?q=Australia&at=2026-09-21T00:00:00Z",
+ "/v1/data/elements": "/v1/data/elements?q=oxygen",
+ "/v1/data/constants": "/v1/data/constants?q=planck",
+ "/v1/data/materials/density": "/v1/data/materials/density?q=aluminium",
+ "/v1/data/http-status": "/v1/data/http-status?q=429",
+ "/v1/data/mime-types": "/v1/data/mime-types?extension=json",
+ "/v1/data/unicode-blocks": "/v1/data/unicode-blocks?q=currency",
+ "/v1/data/constellations": "/v1/data/constellations?q=crux",
+ "/v1/data/stars/bright": "/v1/data/stars/bright?q=sirius",
+ "/v1/data/meteor-showers": "/v1/data/meteor-showers?q=perseids",
+ "/v1/time": "/v1/time?lat=48.137154&lon=11.576124&at=2026-07-29T12:00:00Z",
+ "/v1/astronomy/ephemeris": "/v1/astronomy/ephemeris?date=2029-10-21",
+ "/v1/geo/distance": "/v1/geo/distance?from_lat=48.137154&from_lon=11.576124&to_lat=52.52&to_lon=13.405",
+ "/v1/geo/midpoint": "/v1/geo/midpoint?from_lat=48.137154&from_lon=11.576124&to_lat=52.52&to_lon=13.405",
+ "/v1/geo/bounding-box": "/v1/geo/bounding-box?lat=48.137154&lon=11.576124&radius_km=50",
+ "/v1/geo/elevation": "/v1/geo/elevation?lat=48.137154&lon=11.576124",
+ "/v1/solar/position": "/v1/solar/position?lat=48.137154&lon=11.576124&at=2026-07-26T12:00:00Z",
+ "/v1/date/difference": "/v1/date/difference?start=2026-07-12&end=2026-08-01",
+ "/v1/date/add": "/v1/date/add?start=2026-07-12&months=1&days=5"
+}

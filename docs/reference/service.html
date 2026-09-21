@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Service and status API endpoints - CalculationTime API reference</title>
+<meta name="description" content="Public probes: health, status, the OpenAPI contract and a UTC clock.">
+<link rel="canonical" href="https://byebilly.github.io/calculationtime-web/docs/reference/service.html">
+<meta property="og:title" content="Service and status API endpoints - CalculationTime API reference">
+<meta property="og:description" content="Public probes: health, status, the OpenAPI contract and a UTC clock.">
+<meta property="og:type" content="website">
+<style>
+  :root { --bg:#f7f1e4; --panel:#fff; --ink:#14110c; --muted:#5a5245; --line:#d9ccb0; --brand:#0b0d14; --gold:#c98b2c; --gold-soft:#e5b65f; --code-bg:#0d1018; --code-ink:#f3ead6; --radius:12px; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0b0d14; --panel:#12151f; --ink:#f4ecd9; --muted:#b9ae98; --line:#2b2f3d; --code-bg:#07080d; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; }
+  header { background:var(--brand); color:#f4ecd9; }
+  header .wrap { display:flex; flex-wrap:wrap; gap:12px 20px; align-items:center; justify-content:space-between; padding:14px 0; }
+  .wrap { width:min(880px, 100% - 32px); margin-inline:auto; }
+  header a { color:inherit; text-decoration:none; font-size:14px; margin-left:16px; }
+  header a.logo { margin:0; font:700 20px Georgia,"Times New Roman",serif; }
+  header a.logo span { color:var(--gold-soft); }
+  header a:hover { text-decoration:underline; }
+  main { padding:36px 0 64px; }
+  h1,h2,h3 { font-family:Georgia,"Times New Roman",serif; line-height:1.15; }
+  h1 { font-size:clamp(30px,5vw,44px); margin:0 0 12px; }
+  h2 { font-size:28px; margin:44px 0 10px; padding-top:20px; border-top:1px solid var(--line); }
+  h3 { font-size:20px; margin:28px 0 6px; }
+  h3 code { font-size:.85em; }
+  a { color:var(--gold); }
+  code { font-family:ui-monospace,SFMono-Regular,Consolas,monospace; font-size:.9em; background:rgba(201,139,44,.12); padding:1px 5px; border-radius:5px; }
+  pre { margin:12px 0; padding:16px 18px; overflow-x:auto; background:var(--code-bg); color:var(--code-ink); border-radius:var(--radius); font-size:13.5px; line-height:1.55; }
+  pre code { background:none; padding:0; color:inherit; }
+  .scroll { overflow-x:auto; margin:14px 0; }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--line); font-size:14.5px; }
+  th,td { padding:9px 12px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+  details.toc { margin:18px 0 8px; padding:12px 18px; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); }
+  details.toc summary { cursor:pointer; font-weight:800; }
+  .toc ul { margin:8px 0 0; padding-left:20px; }
+  blockquote { margin:14px 0; padding:10px 16px; border-left:4px solid var(--gold); background:rgba(201,139,44,.09); }
+  .meta { color:var(--muted); font-size:14px; margin:0 0 6px; }
+  .pill { display:inline-block; padding:1px 9px; border-radius:99px; font-size:12px; font-weight:700; border:1px solid var(--line); background:var(--panel); margin-right:6px; }
+  .crumbs { font-size:14px; color:var(--muted); margin:0 0 10px; }
+  .areas { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px; margin:18px 0; padding:0; list-style:none; }
+  .areas a { display:block; height:100%; padding:16px; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); text-decoration:none; color:inherit; }
+  .areas a:hover { border-color:var(--gold); }
+  .areas strong { display:block; font:700 18px Georgia,serif; }
+  .areas span { font-size:14px; color:var(--muted); }
+  li, p, td { overflow-wrap:anywhere; }
+  footer { background:var(--brand); color:#d8cdbd; padding:24px 0; font-size:14px; }
+  footer a { color:var(--gold-soft); }
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Service and status endpoints - CalculationTime API reference", "description": "Public probes: health, status, the OpenAPI contract and a UTC clock.", "dateModified": "2026-09-21", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "CalculationTime", "url": "https://www.calculationtime.com"}}</script>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="logo" href="../../index.html">Calculation<span>Time</span> API</a>
+  <nav aria-label="Primary"><a href="../../docs/api-guide.html">Guide</a><a href="../../docs/reference/">Endpoint reference</a><a href="https://api.calculationtime.com/openapi.json">OpenAPI</a><a href="https://www.calculationtime.com/developers/api/beta/">Request beta access</a><a href="https://www.calculationtime.com">Main site</a></nav>
+</div></header>
+<main><div class="wrap">
+<p class="crumbs"><a href="../../index.html">Portal</a> / <a href="./">Endpoint reference</a> / Service and status</p>
+<h1>Service and status endpoints</h1>
+<p>The service endpoints need no key. They tell you whether the API is up, what it exposes and what time the server believes it is. Use them for health checks and for discovering the contract.</p>
+<p class="meta">7 operations &middot; contract v0.1.0 &middot; base URL <code>https://api.calculationtime.com</code></p>
+<div class="scroll"><table><thead><tr><th>Method</th><th>Path</th><th>What it does</th><th>Access</th><th>Cost</th></tr></thead><tbody><tr><td>GET</td><td><a href="#get"><code>/</code></a></td><td>Markdown API documentation</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--health"><code>/health</code></a></td><td>Low-level service health</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--openapi.json"><code>/openapi.json</code></a></td><td>OpenAPI contract for live routes</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--v1-status"><code>/v1/status</code></a></td><td>Public measured service status and endpoint inventory</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--v1-time-utc"><code>/v1/time/utc</code></a></td><td>Current UTC timestamp and clock-model metadata</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--api-v1-utility-tagline"><code>/api/v1/utility/tagline</code></a></td><td>Deterministic daily CalculationTime tagline</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--v1-canary"><code>/v1/canary</code></a></td><td>Protected monitoring canary for API-key path checks</td><td>key</td><td>free</td></tr></tbody></table></div>
+<blockquote>Request bodies below are the examples published in the API's OpenAPI contract. The contract declares body fields only as free-form JSON, so it does not say which fields are required or optional; treat each example as a known-good shape and read the result's fields. Replace <code>YOUR_KEY</code> with a beta key; never put a key in public code. Endpoints marked public work as shown with no key.</blockquote>
+<h3 id="get"><code>GET /</code></h3>
+<p>Markdown API documentation.</p>
+<p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
+<pre><code>curl &#x27;https://api.calculationtime.com/&#x27;</code></pre>
+<h3 id="get--health"><code>GET /health</code></h3>
+<p>Low-level service health.</p>
+<p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
+<pre><code>curl &#x27;https://api.calculationtime.com/health&#x27;</code></pre>
+<h3 id="get--openapi.json"><code>GET /openapi.json</code></h3>
+<p>OpenAPI contract for live routes.</p>
+<p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
+<pre><code>curl &#x27;https://api.calculationtime.com/openapi.json&#x27;</code></pre>
+<h3 id="get--v1-status"><code>GET /v1/status</code></h3>
+<p>Public measured service status and endpoint inventory.</p>
+<p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
+<pre><code>curl &#x27;https://api.calculationtime.com/v1/status&#x27;</code></pre>
+<h3 id="get--v1-time-utc"><code>GET /v1/time/utc</code></h3>
+<p>Current UTC timestamp and clock-model metadata.</p>
+<p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
+<pre><code>curl &#x27;https://api.calculationtime.com/v1/time/utc&#x27;</code></pre>
+<h3 id="get--api-v1-utility-tagline"><code>GET /api/v1/utility/tagline</code></h3>
+<p>Deterministic daily CalculationTime tagline.</p>
+<p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
+<pre><code>curl &#x27;https://api.calculationtime.com/api/v1/utility/tagline&#x27;</code></pre>
+<h3 id="get--v1-canary"><code>GET /v1/canary</code></h3>
+<p>Protected monitoring canary for API-key path checks.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">free</span></p>
+<pre><code>curl &#x27;https://api.calculationtime.com/v1/canary&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27;</code></pre>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p>
+<p><a href="../api-guide.html">Read the full guide</a> for authentication, limits, credits and errors, or <a href="./">browse every area</a>.</p>
+</div></main>
+<footer><div class="wrap">Contract v0.1.0 &middot; built 2026-09-21 &middot; <a href="../../index.html">Portal home</a> &middot; <a href="https://www.calculationtime.com">calculationtime.com</a> &middot; <a href="https://github.com/ByeBilly/calculationtime-web">Source on GitHub</a></div></footer>
+</body>
+</html>
