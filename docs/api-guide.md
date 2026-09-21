@@ -72,7 +72,7 @@ The full list is in section 10.
 
 ## 5. Rate limits
 
-Every response includes rate-limit headers. Observed on the public tier on 2026-09-21:
+Normal limited responses include rate-limit headers. Observed on the public tier on 2026-09-21:
 
 | Header | Meaning | Observed |
 |---|---|---|
@@ -151,7 +151,7 @@ All endpoints are `GET`, need no key and return the envelope from section 7. Que
 | `extension` | `/v1/data/mime-types` | Match one file extension | `?extension=json` returns `application/json` |
 | `at` | `/v1/data/timezones` | ISO timestamp at which offsets are computed (default: now) | Sydney: `UTC+11:00` at 2026-01-15, `UTC+10:00` at 2026-07-15 |
 
-Every dataset is also served under `/api/v1/data/...` with identical behaviour (for example `/api/v1/data/http-status?q=429`). `/v1/data/...` is the canonical form used in the OpenAPI contract.
+Every dataset is also served under `/api/v1/data/...` with identical behaviour (for example `/api/v1/data/http-status?q=429`). Both the `/v1/data/...` routes and the `/api/v1/data/...` compatibility aliases are present in the live OpenAPI contract, which lists 122 unique paths in all.
 
 **Read `observes_dst_now` carefully.** In the timezone dataset this flag is `true` for any zone that uses daylight saving at all - it stayed `true` for `Europe/London` in January (offset `UTC+00:00`) and for `Australia/Sydney` in July (offset `UTC+10:00`) - so it does **not** tell you whether DST is in force at the requested time. To find out, compare `offset_minutes` at different `at` values, or use the standard offset for the zone.
 
@@ -327,6 +327,16 @@ Generated from the OpenAPI contract (v0.1.0) by `build-portal.py`. "public" mean
 | GET | [`/v1/account/credits`](reference/account.html#get--v1-account-credits) | Authenticated customer credit balance | key | free |
 
 ## 11. Examples
+
+### Contract checks for status, canary and ephemeris
+
+These three routes were checked against the live Munich API and OpenAPI contract on 2026-09-21 (checks contributed by Jack):
+
+| Route | Live method/access | Contract details | Unauthenticated live behaviour |
+|---|---|---|---|
+| `/v1/status` | `GET`, public | No security requirement; returns service, version, uptime, cache mode and endpoint-family inventory | `200 OK` |
+| `/v1/canary` | `GET`, key required | Accepts `X-API-Key` or `Authorization: Bearer`; protected monitoring route | `401` with `{"error":{"code":"unauthorized","message":"A valid API key is required"}}` |
+| `/v1/astronomy/ephemeris` | `GET`, key required | Optional `date` query parameter; `x-credit-cost: 1`; accepts `X-API-Key` or `Authorization: Bearer` | `401` with the same unauthorized error envelope |
 
 ### Local time for a coordinate (key required)
 
