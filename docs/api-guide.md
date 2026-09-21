@@ -72,7 +72,7 @@ The full list is in section 10.
 
 ## 5. Rate limits
 
-Every response includes rate-limit headers. Observed on the public tier on 2026-09-21:
+Normal limited responses include rate-limit headers. Observed on the public tier on 2026-09-21:
 
 | Header | Meaning | Observed |
 |---|---|---|
@@ -80,21 +80,23 @@ Every response includes rate-limit headers. Observed on the public tier on 2026-
 | `x-ratelimit-remaining` | Requests left in the window | counts down from 59 |
 | `x-ratelimit-reset` | When the window resets, as **Unix epoch seconds** | about 60 seconds after the first request of a window |
 
-So the public tier behaves as roughly **60 requests per minute**. Keyed customers have plan-specific limits: call `GET /v1/account/limits` (free) to see yours, including documented batch limits.
+So the public tier behaves as roughly **60 requests per minute**. Keyed customers have plan-specific limits: call `GET /v1/account/limits` to see yours, including documented batch limits.
 
 When you exceed a limit the contract lists `429 Too Many Requests`. Back off until `x-ratelimit-reset`, and add jitter if several workers share a key. Do not retry in a tight loop.
 
 ## 6. Credits
 
-Protected calculation endpoints are credit-metered. Currently documented costs (from the developer page):
+Protected calculation endpoints are credit-metered. The live OpenAPI contract exposes known per-route costs as `x-credit-cost`. Common astronomy costs:
 
 | Endpoint | Credits per call |
 |---|---|
 | `POST /v1/astronomy/crux-midnight` | 2 (regardless of how many days are requested) |
 | `POST /v1/astronomy/crux-hourly` | 5 (all 24 hours of the date) |
 | `POST /v1/astronomy/crux-current` | 2 |
+| `GET /v1/astronomy/ephemeris` | 1 |
+| Other phase-one astronomy POST routes | 1 each |
 
-Costs for other endpoints are not published in the contract. Check your balance with `GET /v1/account/credits` and your usage with `GET /v1/account/usage`; both are free to call. The contract also lists `402` as a possible response, consistent with a credit or payment condition.
+Check the live OpenAPI contract for exact per-endpoint costs before building billing displays. Check your balance with `GET /v1/account/credits` and your usage with `GET /v1/account/usage`. The contract also lists `402` as a possible response, consistent with a credit or payment condition.
 
 ## 7. Responses, errors and status codes
 
@@ -147,7 +149,7 @@ All endpoints are `GET`, need no key and return the envelope from section 7. Que
 | `extension` | `/v1/data/mime-types` | Match one file extension | `?extension=json` returns `application/json` |
 | `at` | `/v1/data/timezones` | ISO timestamp at which offsets are computed (default: now) | Sydney: `UTC+11:00` at 2026-01-15, `UTC+10:00` at 2026-07-15 |
 
-Every dataset is also served under `/api/v1/data/...` with identical behaviour (for example `/api/v1/data/http-status?q=429`). `/v1/data/...` is the canonical form used in the OpenAPI contract.
+Every dataset is also served under `/api/v1/data/...` with identical behaviour (for example `/api/v1/data/http-status?q=429`). Both the `/v1/data/...` routes and the `/api/v1/data/...` compatibility aliases are present in the live OpenAPI contract.
 
 **Read `observes_dst_now` carefully.** In the timezone dataset this flag is `true` for any zone that uses daylight saving at all - it stayed `true` for `Europe/London` in January (offset `UTC+00:00`) and for `Australia/Sydney` in July (offset `UTC+10:00`) - so it does **not** tell you whether DST is in force at the requested time. To find out, compare `offset_minutes` at different `at` values, or use the standard offset for the zone.
 
@@ -165,7 +167,7 @@ Several tables are curated subsets rather than complete catalogues. Each respons
 
 ## 10. Endpoint index
 
-Generated from the live OpenAPI contract (v0.1.0). "public" means no key; "key" means an API key is required. Administrative and private-sharing routes are omitted from this guide.
+Generated from the live OpenAPI contract (v0.1.0). "public" means no key; "key" means an API key is required. This customer-facing index omits administrative routes, private-sharing routes, and duplicate `/api/v1/data/...` compatibility aliases; the live contract currently exposes 122 unique paths.
 
 ### Public service and utility
 
@@ -328,6 +330,16 @@ Generated from the live OpenAPI contract (v0.1.0). "public" means no key; "key" 
 | GET | `/v1/account/credits` | Authenticated customer credit balance | key |
 
 ## 11. Examples
+
+### Contract checks for status, canary and ephemeris
+
+These three routes were checked against the live Munich API and OpenAPI contract on 2026-09-21:
+
+| Route | Live method/access | Contract details | Unauthenticated live behaviour |
+|---|---|---|---|
+| `/v1/status` | `GET`, public | No security requirement; returns service, version, uptime, cache mode and endpoint-family inventory | `200 OK` |
+| `/v1/canary` | `GET`, key required | Accepts `X-API-Key` or `Authorization: Bearer`; protected monitoring route | `401` with `{"error":{"code":"unauthorized","message":"A valid API key is required"}}` |
+| `/v1/astronomy/ephemeris` | `GET`, key required | Optional `date` query parameter; `x-credit-cost: 1`; accepts `X-API-Key` or `Authorization: Bearer` | `401` with the same unauthorized error envelope |
 
 ### Local time for a coordinate (key required)
 
