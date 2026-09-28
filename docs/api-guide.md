@@ -442,14 +442,14 @@ Generated from the OpenAPI contract (v0.1.0) by `build-portal.py`. "public" mean
 
 ## 11. Examples
 
-### Contract checks for status, canary and ephemeris
+### Contract checks for status, OpenAPI and ephemeris
 
 These three routes were checked against the live Munich API and OpenAPI contract on 2026-09-21 (checks contributed by Jack):
 
 | Route | Live method/access | Contract details | Unauthenticated live behaviour |
 |---|---|---|---|
 | `/v1/status` | `GET`, public | No security requirement; returns service, version, uptime, cache mode and endpoint-family inventory | `200 OK` |
-| `/v1/canary` | `GET`, key required | Accepts `X-API-Key` or `Authorization: Bearer`; protected monitoring route | `401` with `{"error":{"code":"unauthorized","message":"A valid API key is required"}}` |
+| `/openapi.json` | `GET`, public | No security requirement; returns the public developer contract | `200 OK` |
 | `/v1/astronomy/ephemeris` | `GET`, key required | Optional `date` query parameter; `x-credit-cost: 1`; accepts `X-API-Key` or `Authorization: Bearer` | `401` with the same unauthorized error envelope |
 
 ### Local time for a coordinate (key required)

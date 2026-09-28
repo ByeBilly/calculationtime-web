@@ -92,7 +92,7 @@
 </ul>
 </li>
 <li><a href="#11-examples">11. Examples</a><ul>
-<li><a href="#contract-checks-for-status-canary-and-ephemeris">Contract checks for status, canary and ephemeris</a></li>
+<li><a href="#contract-checks-for-status-openapi-and-ephemeris">Contract checks for status, OpenAPI and ephemeris</a></li>
 <li><a href="#local-time-for-a-coordinate-key-required">Local time for a coordinate (key required)</a></li>
 <li><a href="#crux-clock-midnight-positions-key-required-2-credits">Crux clock: midnight positions (key required, 2 credits)</a></li>
 <li><a href="#crux-clock-hourly-breakdown-key-required-5-credits">Crux clock: hourly breakdown (key required, 5 credits)</a></li>
@@ -1951,7 +1951,7 @@ const { dataset_version, count, data } = await res.json();
 </tbody>
 </table></div>
 <h2 id="11-examples">11. Examples</h2>
-<h3 id="contract-checks-for-status-canary-and-ephemeris">Contract checks for status, canary and ephemeris</h3>
+<h3 id="contract-checks-for-status-openapi-and-ephemeris">Contract checks for status, OpenAPI and ephemeris</h3>
 <p>These three routes were checked against the live Munich API and OpenAPI contract on 2026-09-21 (checks contributed by Jack):</p>
 <div class="scroll"><table>
 <thead>
@@ -1970,10 +1970,10 @@ const { dataset_version, count, data } = await res.json();
 <td><code>200 OK</code></td>
 </tr>
 <tr>
-<td><code>/v1/canary</code></td>
-<td><code>GET</code>, key required</td>
-<td>Accepts <code>X-API-Key</code> or <code>Authorization: Bearer</code>; protected monitoring route</td>
-<td><code>401</code> with <code>{"error":{"code":"unauthorized","message":"A valid API key is required"}}</code></td>
+<td><code>/openapi.json</code></td>
+<td><code>GET</code>, public</td>
+<td>No security requirement; returns the public developer contract</td>
+<td><code>200 OK</code></td>
 </tr>
 <tr>
 <td><code>/v1/astronomy/ephemeris</code></td>
