@@ -62,8 +62,8 @@
 <p class="crumbs"><a href="../../index.html">Portal</a> / <a href="./">Endpoint reference</a> / Service and status</p>
 <h1>Service and status endpoints</h1>
 <p>The service endpoints need no key. They tell you whether the API is up, what it exposes and what time the server believes it is. Use them for health checks and for discovering the contract.</p>
-<p class="meta">7 operations &middot; contract v0.1.0 &middot; base URL <code>https://api.calculationtime.com</code></p>
-<div class="scroll"><table><thead><tr><th>Method</th><th>Path</th><th>What it does</th><th>Access</th><th>Cost</th></tr></thead><tbody><tr><td>GET</td><td><a href="#get"><code>/</code></a></td><td>Markdown API documentation</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--health"><code>/health</code></a></td><td>Low-level service health</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--openapi.json"><code>/openapi.json</code></a></td><td>OpenAPI contract for live routes</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--v1-status"><code>/v1/status</code></a></td><td>Public measured service status and endpoint inventory</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--v1-time-utc"><code>/v1/time/utc</code></a></td><td>Current UTC timestamp and clock-model metadata</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--api-v1-utility-tagline"><code>/api/v1/utility/tagline</code></a></td><td>Deterministic daily CalculationTime tagline</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--v1-canary"><code>/v1/canary</code></a></td><td>Protected monitoring canary for API-key path checks</td><td>key</td><td>free</td></tr></tbody></table></div>
+<p class="meta">6 operations &middot; contract v0.1.0 &middot; base URL <code>https://api.calculationtime.com</code></p>
+<div class="scroll"><table><thead><tr><th>Method</th><th>Path</th><th>What it does</th><th>Access</th><th>Cost</th></tr></thead><tbody><tr><td>GET</td><td><a href="#get"><code>/</code></a></td><td>Markdown API documentation</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--health"><code>/health</code></a></td><td>Low-level service health</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--openapi.json"><code>/openapi.json</code></a></td><td>OpenAPI contract for live routes</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--v1-status"><code>/v1/status</code></a></td><td>Public measured service status and endpoint inventory</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--v1-time-utc"><code>/v1/time/utc</code></a></td><td>Current UTC timestamp and clock-model metadata</td><td>public</td><td>-</td></tr><tr><td>GET</td><td><a href="#get--api-v1-utility-tagline"><code>/api/v1/utility/tagline</code></a></td><td>Deterministic daily CalculationTime tagline</td><td>public</td><td>-</td></tr></tbody></table></div>
 <blockquote>Request bodies below are the examples published in the API's OpenAPI contract. The contract declares body fields only as free-form JSON, so it does not say which fields are required or optional; treat each example as a known-good shape and read the result's fields. Replace <code>YOUR_KEY</code> with a beta key; never put a key in public code. Endpoints marked public work as shown with no key.</blockquote>
 <h3 id="get"><code>GET /</code></h3>
 <p>Markdown API documentation.</p>
@@ -95,13 +95,7 @@
 <p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
 <pre><code>curl &#x27;https://api.calculationtime.com/api/v1/utility/tagline&#x27;</code></pre>
 
-<h3 id="get--v1-canary"><code>GET /v1/canary</code></h3>
-<p>Protected monitoring canary for API-key path checks.</p>
-<p class="meta"><span class="pill">API key required</span><span class="pill">free</span></p>
-<pre><code>curl &#x27;https://api.calculationtime.com/v1/canary&#x27; \
-  -H &#x27;X-API-Key: YOUR_KEY&#x27;</code></pre>
 
-<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p>
 <p><a href="../api-guide.html">Read the full guide</a> for authentication, limits, credits and errors, or <a href="./">browse every area</a>.</p>
 </div></main>
 <footer><div class="wrap">Contract v0.1.0 &middot; built 2026-09-29 &middot; <a href="../../index.html">Portal home</a> &middot; <a href="https://www.calculationtime.com">calculationtime.com</a> &middot; <a href="https://github.com/ByeBilly/calculationtime-web">Source on GitHub</a></div></footer>

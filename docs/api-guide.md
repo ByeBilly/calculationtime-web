@@ -181,7 +181,6 @@ Generated from the OpenAPI contract (v0.1.0) by `build-portal.py`. "public" mean
 | GET | [`/v1/status`](reference/service.html#get--v1-status) | Public measured service status and endpoint inventory | public | - |
 | GET | [`/v1/time/utc`](reference/service.html#get--v1-time-utc) | Current UTC timestamp and clock-model metadata | public | - |
 | GET | [`/api/v1/utility/tagline`](reference/service.html#get--api-v1-utility-tagline) | Deterministic daily CalculationTime tagline | public | - |
-| GET | [`/v1/canary`](reference/service.html#get--v1-canary) | Protected monitoring canary for API-key path checks | key | free |
 
 ### [Learning and onboarding](reference/learning.html)
 
