@@ -51,7 +51,7 @@
   footer { background:var(--brand); color:#d8cdbd; padding:24px 0; font-size:14px; }
   footer a { color:var(--gold-soft); }
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Time and dates endpoints - CalculationTime API reference", "description": "Local time for a coordinate, date differences, date arithmetic, business days, ISO weeks, ages, epoch conversion and more.", "dateModified": "2026-09-21", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "CalculationTime", "url": "https://www.calculationtime.com"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Time and dates endpoints - CalculationTime API reference", "description": "Local time for a coordinate, date differences, date arithmetic, business days, ISO weeks, ages, epoch conversion and more.", "dateModified": "2026-09-29", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "CalculationTime", "url": "https://www.calculationtime.com"}}</script>
 </head>
 <body>
 <header><div class="wrap">
@@ -62,14 +62,15 @@
 <p class="crumbs"><a href="../../index.html">Portal</a> / <a href="./">Endpoint reference</a> / Time and dates</p>
 <h1>Time and dates endpoints</h1>
 <p>Date and time calculations over plain JSON. Local time takes a latitude and longitude; date routines take ISO dates and return explicit, inspectable results rather than a bare number.</p>
-<p class="meta">20 operations &middot; contract v0.1.0 &middot; base URL <code>https://api.calculationtime.com</code></p>
-<div class="scroll"><table><thead><tr><th>Method</th><th>Path</th><th>What it does</th><th>Access</th><th>Cost</th></tr></thead><tbody><tr><td>GET</td><td><a href="#get--v1-time"><code>/v1/time</code></a></td><td>Get local time for one coordinate</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-time-batch"><code>/v1/time/batch</code></a></td><td>Get local time for up to 100 coordinates</td><td>key</td><td>1 credit</td></tr><tr><td>GET</td><td><a href="#get--v1-date-difference"><code>/v1/date/difference</code></a></td><td>Calendar day difference</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-date-difference-batch"><code>/v1/date/difference/batch</code></a></td><td>Batch calendar day differences</td><td>key</td><td>1 credit</td></tr><tr><td>GET</td><td><a href="#get--v1-date-add"><code>/v1/date/add</code></a></td><td>Add calendar units to a date</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-date-business-days"><code>/v1/date/business-days</code></a></td><td>Business-day count with supplied holidays</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-date-business-days-jurisdiction"><code>/v1/date/business-days/jurisdiction</code></a></td><td>Business-day count for a supported jurisdiction</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-date-business-days-add"><code>/v1/date/business-days-add</code></a></td><td>Add or subtract configurable business days</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-date-iso-week"><code>/v1/date/iso-week</code></a></td><td>ISO week number, week-year, and weekday</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-date-age-breakdown"><code>/v1/date/age-breakdown</code></a></td><td>Exact age duration breakdown from birth date to timestamp</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-date-countdown-precise"><code>/v1/date/countdown-precise</code></a></td><td>Precise calendar delta between timestamps</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-date-epoch-converter"><code>/v1/date/epoch-converter</code></a></td><td>Unix epoch seconds or milliseconds to ISO/RFC strings</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-date-quarter-calculator"><code>/v1/date/quarter-calculator</code></a></td><td>Calendar and fiscal quarter with progress percentage</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-date-leap-year-check"><code>/v1/date/leap-year-check</code></a></td><td>Gregorian and Julian leap-year proof check</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-date-days-in-month"><code>/v1/date/days-in-month</code></a></td><td>Days in a Gregorian month</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-date-timezone-offset"><code>/v1/date/timezone-offset</code></a></td><td>Fixed UTC offset conversion without DST lookup</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-date-calendar-range"><code>/v1/date/calendar-range</code></a></td><td>Generate a deterministic date range with weekday and ISO week facts</td><td>key</td><td>1 credit</td></tr><tr><td>GET</td><td><a href="#get--v1-holidays"><code>/v1/holidays</code></a></td><td>Holidays for a jurisdiction and year</td><td>key</td><td>1 credit</td></tr><tr><td>GET</td><td><a href="#get--v1-holidays-next"><code>/v1/holidays/next</code></a></td><td>Next holiday for a jurisdiction</td><td>key</td><td>1 credit</td></tr><tr><td>GET</td><td><a href="#get--v1-holidays-is-business-day"><code>/v1/holidays/is-business-day</code></a></td><td>Business-day check for one date</td><td>key</td><td>1 credit</td></tr></tbody></table></div>
+<p class="meta">30 operations &middot; contract v0.1.0 &middot; base URL <code>https://api.calculationtime.com</code></p>
+<div class="scroll"><table><thead><tr><th>Method</th><th>Path</th><th>What it does</th><th>Access</th><th>Cost</th></tr></thead><tbody><tr><td>GET</td><td><a href="#get--v1-time"><code>/v1/time</code></a></td><td>Get local time for one coordinate</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-time-batch"><code>/v1/time/batch</code></a></td><td>Get local time for up to 100 coordinates</td><td>key</td><td>1 credit</td></tr><tr><td>GET</td><td><a href="#get--v1-date-difference"><code>/v1/date/difference</code></a></td><td>Calendar day difference</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-date-difference-batch"><code>/v1/date/difference/batch</code></a></td><td>Batch calendar day differences</td><td>key</td><td>1 credit</td></tr><tr><td>GET</td><td><a href="#get--v1-date-add"><code>/v1/date/add</code></a></td><td>Add calendar units to a date</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-date-business-days"><code>/v1/date/business-days</code></a></td><td>Business-day count with supplied holidays</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-date-business-days-jurisdiction"><code>/v1/date/business-days/jurisdiction</code></a></td><td>Business-day count for a supported jurisdiction</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-date-business-days-add"><code>/v1/date/business-days-add</code></a></td><td>Add or subtract configurable business days</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-date-iso-week"><code>/v1/date/iso-week</code></a></td><td>ISO week number, week-year, and weekday</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-date-age-breakdown"><code>/v1/date/age-breakdown</code></a></td><td>Exact age duration breakdown from birth date to timestamp</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-date-countdown-precise"><code>/v1/date/countdown-precise</code></a></td><td>Precise calendar delta between timestamps</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-date-epoch-converter"><code>/v1/date/epoch-converter</code></a></td><td>Unix epoch seconds or milliseconds to ISO/RFC strings</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-date-quarter-calculator"><code>/v1/date/quarter-calculator</code></a></td><td>Calendar and fiscal quarter with progress percentage</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-date-leap-year-check"><code>/v1/date/leap-year-check</code></a></td><td>Gregorian and Julian leap-year proof check</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-date-days-in-month"><code>/v1/date/days-in-month</code></a></td><td>Days in a Gregorian month</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-date-timezone-offset"><code>/v1/date/timezone-offset</code></a></td><td>Fixed UTC offset conversion without DST lookup</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-date-calendar-range"><code>/v1/date/calendar-range</code></a></td><td>Generate a deterministic date range with weekday and ISO week facts</td><td>key</td><td>1 credit</td></tr><tr><td>GET</td><td><a href="#get--v1-holidays"><code>/v1/holidays</code></a></td><td>Holidays for a jurisdiction and year</td><td>key</td><td>1 credit</td></tr><tr><td>GET</td><td><a href="#get--v1-holidays-next"><code>/v1/holidays/next</code></a></td><td>Next holiday for a jurisdiction</td><td>key</td><td>1 credit</td></tr><tr><td>GET</td><td><a href="#get--v1-holidays-is-business-day"><code>/v1/holidays/is-business-day</code></a></td><td>Business-day check for one date</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-schedule-cron-parser"><code>/api/v1/schedule/cron-parser</code></a></td><td>List upcoming UTC run timestamps for a 5-field cron expression</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-schedule-workday-shift"><code>/api/v1/schedule/workday-shift</code></a></td><td>Shift a date by configurable working days</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-schedule-date-range-split"><code>/api/v1/schedule/date-range-split</code></a></td><td>Split a date range into week, month, or quarter chunks</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-schedule-interval-overlap"><code>/api/v1/schedule/interval-overlap</code></a></td><td>Calculate overlap between two timestamp intervals</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-schedule-project-timeline"><code>/api/v1/schedule/project-timeline</code></a></td><td>Forward-pass project timeline and critical finish calculation</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-schedule-shift-calculator"><code>/api/v1/schedule/shift-calculator</code></a></td><td>Calculate shift hours, overtime, and night differential hours</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-schedule-countdown-workdays"><code>/api/v1/schedule/countdown-workdays</code></a></td><td>Count business days remaining until a deadline</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-schedule-recurring-monthly"><code>/api/v1/schedule/recurring-monthly</code></a></td><td>Generate nth-weekday monthly recurrence dates</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-schedule-age-in-days"><code>/api/v1/schedule/age-in-days</code></a></td><td>Calculate an exact age milestone date in days</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-schedule-time-blocks"><code>/api/v1/schedule/time-blocks</code></a></td><td>Divide a 24-hour day into equal booking blocks</td><td>key</td><td>1 credit</td></tr></tbody></table></div>
 <blockquote>Request bodies below are the examples published in the API's OpenAPI contract. The contract declares body fields only as free-form JSON, so it does not say which fields are required or optional; treat each example as a known-good shape and read the result's fields. Replace <code>YOUR_KEY</code> with a beta key; never put a key in public code. Endpoints marked public work as shown with no key.</blockquote>
 <h3 id="get--v1-time"><code>GET /v1/time</code></h3>
 <p>Get local time for one coordinate.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
 <p><strong>Parameters:</strong> <code>lat</code> (query), <code>lon</code> (query), <code>at</code> (query)</p><pre><code>curl &#x27;https://api.calculationtime.com/v1/time?lat=48.137154&amp;lon=11.576124&amp;at=2026-07-29T12:00:00Z&#x27; \
   -H &#x27;X-API-Key: YOUR_KEY&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-time-batch"><code>POST /v1/time/batch</code></h3>
 <p>Get local time for up to 100 coordinates.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -77,11 +78,13 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;points&quot;:[{&quot;lat&quot;:48.137154,&quot;lon&quot;:11.576124}],&quot;at&quot;:&quot;2026-07-29T12:00:00Z&quot;}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="get--v1-date-difference"><code>GET /v1/date/difference</code></h3>
 <p>Calendar day difference.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
 <p><strong>Parameters:</strong> <code>start</code> (query), <code>end</code> (query)</p><pre><code>curl &#x27;https://api.calculationtime.com/v1/date/difference?start=2026-07-12&amp;end=2026-08-01&#x27; \
   -H &#x27;X-API-Key: YOUR_KEY&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-date-difference-batch"><code>POST /v1/date/difference/batch</code></h3>
 <p>Batch calendar day differences.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -89,11 +92,13 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;ranges&quot;:[{&quot;start&quot;:&quot;2026-07-12&quot;,&quot;end&quot;:&quot;2026-08-01&quot;}]}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="get--v1-date-add"><code>GET /v1/date/add</code></h3>
 <p>Add calendar units to a date.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
 <p><strong>Parameters:</strong> <code>date</code> (query), <code>days</code> (query), <code>months</code> (query), <code>years</code> (query)</p><pre><code>curl &#x27;https://api.calculationtime.com/v1/date/add?start=2026-07-12&amp;months=1&amp;days=5&#x27; \
   -H &#x27;X-API-Key: YOUR_KEY&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-date-business-days"><code>POST /v1/date/business-days</code></h3>
 <p>Business-day count with supplied holidays.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -101,6 +106,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;start&quot;:&quot;2026-07-13&quot;,&quot;end&quot;:&quot;2026-07-17&quot;,&quot;holidays&quot;:[&quot;2026-07-15&quot;]}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-date-business-days-jurisdiction"><code>POST /v1/date/business-days/jurisdiction</code></h3>
 <p>Business-day count for a supported jurisdiction.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -108,6 +114,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;start&quot;:&quot;2026-07-13&quot;,&quot;end&quot;:&quot;2026-07-17&quot;,&quot;jurisdiction&quot;:&quot;US&quot;}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-date-business-days-add"><code>POST /v1/date/business-days-add</code></h3>
 <p>Add or subtract configurable business days.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -115,6 +122,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;start&quot;:&quot;2026-07-13&quot;,&quot;business_days&quot;:10,&quot;weekend_days&quot;:[6,7],&quot;holidays&quot;:[&quot;2026-07-20&quot;]}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-date-iso-week"><code>POST /v1/date/iso-week</code></h3>
 <p>ISO week number, week-year, and weekday.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -122,6 +130,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;date&quot;:&quot;2026-01-01&quot;}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-date-age-breakdown"><code>POST /v1/date/age-breakdown</code></h3>
 <p>Exact age duration breakdown from birth date to timestamp.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -129,6 +138,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;birth_date&quot;:&quot;1990-05-15&quot;,&quot;as_of&quot;:&quot;2026-09-21T00:00:00Z&quot;}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-date-countdown-precise"><code>POST /v1/date/countdown-precise</code></h3>
 <p>Precise calendar delta between timestamps.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -136,6 +146,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;start&quot;:&quot;2026-09-21T00:00:00Z&quot;,&quot;end&quot;:&quot;2027-01-01T12:30:15Z&quot;}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-date-epoch-converter"><code>POST /v1/date/epoch-converter</code></h3>
 <p>Unix epoch seconds or milliseconds to ISO/RFC strings.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -143,6 +154,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;epoch&quot;:1789941600,&quot;unit&quot;:&quot;seconds&quot;}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-date-quarter-calculator"><code>POST /v1/date/quarter-calculator</code></h3>
 <p>Calendar and fiscal quarter with progress percentage.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -150,6 +162,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;date&quot;:&quot;2026-09-21&quot;,&quot;fiscal_start_month&quot;:4}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-date-leap-year-check"><code>POST /v1/date/leap-year-check</code></h3>
 <p>Gregorian and Julian leap-year proof check.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -157,6 +170,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;year&quot;:2028}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-date-days-in-month"><code>POST /v1/date/days-in-month</code></h3>
 <p>Days in a Gregorian month.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -164,6 +178,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;year&quot;:2028,&quot;month&quot;:2}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-date-timezone-offset"><code>POST /v1/date/timezone-offset</code></h3>
 <p>Fixed UTC offset conversion without DST lookup.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -171,6 +186,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;timestamp&quot;:&quot;2026-09-21T00:00:00Z&quot;,&quot;offset&quot;:&quot;+10:00&quot;}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-date-calendar-range"><code>POST /v1/date/calendar-range</code></h3>
 <p>Generate a deterministic date range with weekday and ISO week facts.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -178,24 +194,108 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;start&quot;:&quot;2026-09-21&quot;,&quot;days&quot;:14,&quot;weekend_days&quot;:[6,7]}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="get--v1-holidays"><code>GET /v1/holidays</code></h3>
 <p>Holidays for a jurisdiction and year.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
 <p><strong>Parameters:</strong> <code>jurisdiction</code> (query), <code>year</code> (query)</p><pre><code>curl &#x27;https://api.calculationtime.com/v1/holidays?jurisdiction=JURISDICTION&amp;year=YEAR&#x27; \
   -H &#x27;X-API-Key: YOUR_KEY&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="get--v1-holidays-next"><code>GET /v1/holidays/next</code></h3>
 <p>Next holiday for a jurisdiction.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
 <p><strong>Parameters:</strong> <code>jurisdiction</code> (query), <code>from</code> (query)</p><pre><code>curl &#x27;https://api.calculationtime.com/v1/holidays/next?jurisdiction=JURISDICTION&amp;from=FROM&#x27; \
   -H &#x27;X-API-Key: YOUR_KEY&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="get--v1-holidays-is-business-day"><code>GET /v1/holidays/is-business-day</code></h3>
 <p>Business-day check for one date.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
 <p><strong>Parameters:</strong> <code>jurisdiction</code> (query), <code>date</code> (query)</p><pre><code>curl &#x27;https://api.calculationtime.com/v1/holidays/is-business-day?jurisdiction=JURISDICTION&amp;date=DATE&#x27; \
   -H &#x27;X-API-Key: YOUR_KEY&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-schedule-cron-parser"><code>POST /api/v1/schedule/cron-parser</code></h3>
+<p>List upcoming UTC run timestamps for a 5-field cron expression.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/schedule/cron-parser&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;expression&quot;:&quot;*/15 9-17 * * 1-5&quot;,&quot;from&quot;:&quot;2026-09-21T08:00:00Z&quot;,&quot;count&quot;:5}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-schedule-workday-shift"><code>POST /api/v1/schedule/workday-shift</code></h3>
+<p>Shift a date by configurable working days.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/schedule/workday-shift&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;date&quot;:&quot;2026-09-21&quot;,&quot;days&quot;:10,&quot;weekend_days&quot;:[6,7]}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-schedule-date-range-split"><code>POST /api/v1/schedule/date-range-split</code></h3>
+<p>Split a date range into week, month, or quarter chunks.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/schedule/date-range-split&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;start&quot;:&quot;2026-01-01&quot;,&quot;end&quot;:&quot;2026-03-31&quot;,&quot;unit&quot;:&quot;month&quot;}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-schedule-interval-overlap"><code>POST /api/v1/schedule/interval-overlap</code></h3>
+<p>Calculate overlap between two timestamp intervals.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/schedule/interval-overlap&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;a_start&quot;:&quot;2026-09-21T09:00:00Z&quot;,&quot;a_end&quot;:&quot;2026-09-21T12:00:00Z&quot;,&quot;b_start&quot;:&quot;2026-09-21T11:00:00Z&quot;,&quot;b_end&quot;:&quot;2026-09-21T13:00:00Z&quot;}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-schedule-project-timeline"><code>POST /api/v1/schedule/project-timeline</code></h3>
+<p>Forward-pass project timeline and critical finish calculation.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/schedule/project-timeline&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;start&quot;:&quot;2026-09-21&quot;,&quot;tasks&quot;:[{&quot;id&quot;:&quot;design&quot;,&quot;duration_days&quot;:3},{&quot;id&quot;:&quot;build&quot;,&quot;duration_days&quot;:5,&quot;dependencies&quot;:[&quot;design&quot;]}]}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-schedule-shift-calculator"><code>POST /api/v1/schedule/shift-calculator</code></h3>
+<p>Calculate shift hours, overtime, and night differential hours.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/schedule/shift-calculator&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;start&quot;:&quot;2026-09-21T20:00:00Z&quot;,&quot;end&quot;:&quot;2026-09-22T06:00:00Z&quot;,&quot;overtime_after_hours&quot;:8}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-schedule-countdown-workdays"><code>POST /api/v1/schedule/countdown-workdays</code></h3>
+<p>Count business days remaining until a deadline.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/schedule/countdown-workdays&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;start&quot;:&quot;2026-09-21&quot;,&quot;target&quot;:&quot;2026-10-02&quot;,&quot;weekend_days&quot;:[6,7]}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-schedule-recurring-monthly"><code>POST /api/v1/schedule/recurring-monthly</code></h3>
+<p>Generate nth-weekday monthly recurrence dates.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/schedule/recurring-monthly&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;year&quot;:2026,&quot;start_month&quot;:1,&quot;months&quot;:3,&quot;ordinal&quot;:3,&quot;weekday&quot;:&quot;tuesday&quot;}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-schedule-age-in-days"><code>POST /api/v1/schedule/age-in-days</code></h3>
+<p>Calculate an exact age milestone date in days.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/schedule/age-in-days&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;birth_date&quot;:&quot;1990-05-15&quot;,&quot;days&quot;:10000}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-schedule-time-blocks"><code>POST /api/v1/schedule/time-blocks</code></h3>
+<p>Divide a 24-hour day into equal booking blocks.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/schedule/time-blocks&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;minutes&quot;:30}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p>
 <p><a href="../api-guide.html">Read the full guide</a> for authentication, limits, credits and errors, or <a href="./">browse every area</a>.</p>
 </div></main>
-<footer><div class="wrap">Contract v0.1.0 &middot; built 2026-09-21 &middot; <a href="../../index.html">Portal home</a> &middot; <a href="https://www.calculationtime.com">calculationtime.com</a> &middot; <a href="https://github.com/ByeBilly/calculationtime-web">Source on GitHub</a></div></footer>
+<footer><div class="wrap">Contract v0.1.0 &middot; built 2026-09-29 &middot; <a href="../../index.html">Portal home</a> &middot; <a href="https://www.calculationtime.com">calculationtime.com</a> &middot; <a href="https://github.com/ByeBilly/calculationtime-web">Source on GitHub</a></div></footer>
 </body>
 </html>

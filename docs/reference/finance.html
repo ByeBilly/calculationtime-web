@@ -51,7 +51,7 @@
   footer { background:var(--brand); color:#d8cdbd; padding:24px 0; font-size:14px; }
   footer a { color:var(--gold-soft); }
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Finance endpoints - CalculationTime API reference", "description": "Loan amortization, simple and compound interest, ROI, CAGR, margin, markup, break-even, discounts and sales tax.", "dateModified": "2026-09-21", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "CalculationTime", "url": "https://www.calculationtime.com"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Finance endpoints - CalculationTime API reference", "description": "Loan amortization, simple and compound interest, ROI, CAGR, margin, markup, break-even, discounts and sales tax.", "dateModified": "2026-09-29", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "CalculationTime", "url": "https://www.calculationtime.com"}}</script>
 </head>
 <body>
 <header><div class="wrap">
@@ -62,16 +62,97 @@
 <p class="crumbs"><a href="../../index.html">Portal</a> / <a href="./">Endpoint reference</a> / Finance</p>
 <h1>Finance endpoints</h1>
 <p>Finance calculators that return the working, not just the answer. Amounts are decimal numbers you supply; check each example body for the field names.</p>
-<p class="meta">14 operations &middot; contract v0.1.0 &middot; base URL <code>https://api.calculationtime.com</code></p>
-<div class="scroll"><table><thead><tr><th>Method</th><th>Path</th><th>What it does</th><th>Access</th><th>Cost</th></tr></thead><tbody><tr><td>POST</td><td><a href="#post--v1-finance-margin-markup"><code>/v1/finance/margin-markup</code></a></td><td>Gross margin, markup, selling price, and cost variance</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-loan-amortization"><code>/v1/finance/loan-amortization</code></a></td><td>Fixed-rate loan amortization schedule</td><td>key</td><td>5 credits</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-tax-extraction"><code>/v1/finance/tax-extraction</code></a></td><td>Tax add-on and inclusive reverse extraction</td><td>key</td><td>2 credits</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-freelancer-rate"><code>/v1/finance/freelancer-rate</code></a></td><td>Freelancer hourly and daily rate target</td><td>key</td><td>2 credits</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-simple-interest"><code>/v1/finance/simple-interest</code></a></td><td>Simple interest from principal, rate, and time</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-compound-interest"><code>/v1/finance/compound-interest</code></a></td><td>Future value with compound interest frequency options</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-loan-amortization-summary"><code>/v1/finance/loan-amortization-summary</code></a></td><td>Loan payment, total interest, and total cost summary</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-rule-of-72"><code>/v1/finance/rule-of-72</code></a></td><td>Estimated investment doubling time using the rule of 72</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-roi"><code>/v1/finance/roi</code></a></td><td>Return on investment percentage from cost and net gain</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-discount-calculator"><code>/v1/finance/discount-calculator</code></a></td><td>Final price and savings from original price and discount rate</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-markup-margin"><code>/v1/finance/markup-margin</code></a></td><td>Convert between gross margin and markup percentages</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-break-even"><code>/v1/finance/break-even</code></a></td><td>Break-even units from fixed costs, variable cost, and price</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-salestax"><code>/v1/finance/salestax</code></a></td><td>Add or extract sales tax/GST from an amount and tax rate</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-cagr"><code>/v1/finance/cagr</code></a></td><td>Compound annual growth rate from beginning value, ending value, and years</td><td>key</td><td>1 credit</td></tr></tbody></table></div>
+<p class="meta">24 operations &middot; contract v0.1.0 &middot; base URL <code>https://api.calculationtime.com</code></p>
+<div class="scroll"><table><thead><tr><th>Method</th><th>Path</th><th>What it does</th><th>Access</th><th>Cost</th></tr></thead><tbody><tr><td>POST</td><td><a href="#post--api-v1-finance-npv"><code>/api/v1/finance/npv</code></a></td><td>Calculate net present value for uneven cash flows</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-finance-irr-approximation"><code>/api/v1/finance/irr-approximation</code></a></td><td>Approximate internal rate of return from cash flows</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-finance-bond-yield"><code>/api/v1/finance/bond-yield</code></a></td><td>Calculate current yield and approximate yield to maturity</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-finance-depreciation-straight-line"><code>/api/v1/finance/depreciation-straight-line</code></a></td><td>Generate a straight-line depreciation schedule</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-finance-depreciation-declining"><code>/api/v1/finance/depreciation-declining</code></a></td><td>Generate a declining-balance depreciation schedule</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-finance-loan-payoff-extra"><code>/api/v1/finance/loan-payoff-extra</code></a></td><td>Calculate loan payoff impact from extra monthly principal</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-finance-effective-annual-rate"><code>/api/v1/finance/effective-annual-rate</code></a></td><td>Convert nominal APR to effective annual rate</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-finance-markup-margin-split"><code>/api/v1/finance/markup-margin-split</code></a></td><td>Convert between markup, margin, cost, and selling price</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-finance-break-even-multi"><code>/api/v1/finance/break-even-multi</code></a></td><td>Calculate weighted break-even across multiple products</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-finance-tip-split"><code>/api/v1/finance/tip-split</code></a></td><td>Calculate tip, total, and per-person split</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-margin-markup"><code>/v1/finance/margin-markup</code></a></td><td>Gross margin, markup, selling price, and cost variance</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-loan-amortization"><code>/v1/finance/loan-amortization</code></a></td><td>Fixed-rate loan amortization schedule</td><td>key</td><td>5 credits</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-tax-extraction"><code>/v1/finance/tax-extraction</code></a></td><td>Tax add-on and inclusive reverse extraction</td><td>key</td><td>2 credits</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-freelancer-rate"><code>/v1/finance/freelancer-rate</code></a></td><td>Freelancer hourly and daily rate target</td><td>key</td><td>2 credits</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-simple-interest"><code>/v1/finance/simple-interest</code></a></td><td>Simple interest from principal, rate, and time</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-compound-interest"><code>/v1/finance/compound-interest</code></a></td><td>Future value with compound interest frequency options</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-loan-amortization-summary"><code>/v1/finance/loan-amortization-summary</code></a></td><td>Loan payment, total interest, and total cost summary</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-rule-of-72"><code>/v1/finance/rule-of-72</code></a></td><td>Estimated investment doubling time using the rule of 72</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-roi"><code>/v1/finance/roi</code></a></td><td>Return on investment percentage from cost and net gain</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-discount-calculator"><code>/v1/finance/discount-calculator</code></a></td><td>Final price and savings from original price and discount rate</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-markup-margin"><code>/v1/finance/markup-margin</code></a></td><td>Convert between gross margin and markup percentages</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-break-even"><code>/v1/finance/break-even</code></a></td><td>Break-even units from fixed costs, variable cost, and price</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-salestax"><code>/v1/finance/salestax</code></a></td><td>Add or extract sales tax/GST from an amount and tax rate</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-finance-cagr"><code>/v1/finance/cagr</code></a></td><td>Compound annual growth rate from beginning value, ending value, and years</td><td>key</td><td>1 credit</td></tr></tbody></table></div>
 <blockquote>Request bodies below are the examples published in the API's OpenAPI contract. The contract declares body fields only as free-form JSON, so it does not say which fields are required or optional; treat each example as a known-good shape and read the result's fields. Replace <code>YOUR_KEY</code> with a beta key; never put a key in public code. Endpoints marked public work as shown with no key.</blockquote>
-<h3 id="post--v1-finance-margin-markup"><code>POST /v1/finance/margin-markup</code></h3>
+<h3 id="post--api-v1-finance-npv"><code>POST /api/v1/finance/npv</code></h3>
+<p>Calculate net present value for uneven cash flows.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/finance/npv&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;discount_rate_percent&quot;:8,&quot;cashflows&quot;:[-1000,400,400,400]}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-finance-irr-approximation"><code>POST /api/v1/finance/irr-approximation</code></h3>
+<p>Approximate internal rate of return from cash flows.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/finance/irr-approximation&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;cashflows&quot;:[-1000,400,400,400]}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-finance-bond-yield"><code>POST /api/v1/finance/bond-yield</code></h3>
+<p>Calculate current yield and approximate yield to maturity.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/finance/bond-yield&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;face_value&quot;:1000,&quot;price&quot;:950,&quot;coupon_rate_percent&quot;:5,&quot;years_to_maturity&quot;:10}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-finance-depreciation-straight-line"><code>POST /api/v1/finance/depreciation-straight-line</code></h3>
+<p>Generate a straight-line depreciation schedule.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/finance/depreciation-straight-line&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;cost&quot;:10000,&quot;salvage_value&quot;:1000,&quot;life_years&quot;:5}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-finance-depreciation-declining"><code>POST /api/v1/finance/depreciation-declining</code></h3>
+<p>Generate a declining-balance depreciation schedule.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/finance/depreciation-declining&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;cost&quot;:10000,&quot;salvage_value&quot;:1000,&quot;life_years&quot;:5}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-finance-loan-payoff-extra"><code>POST /api/v1/finance/loan-payoff-extra</code></h3>
+<p>Calculate loan payoff impact from extra monthly principal.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/finance/loan-payoff-extra&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;principal&quot;:200000,&quot;annual_rate_percent&quot;:5,&quot;monthly_payment&quot;:1200,&quot;extra_payment&quot;:100}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-finance-effective-annual-rate"><code>POST /api/v1/finance/effective-annual-rate</code></h3>
+<p>Convert nominal APR to effective annual rate.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/finance/effective-annual-rate&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;nominal_rate_percent&quot;:6,&quot;compounds_per_year&quot;:12}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-finance-markup-margin-split"><code>POST /api/v1/finance/markup-margin-split</code></h3>
+<p>Convert between markup, margin, cost, and selling price.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/finance/markup-margin-split&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;cost&quot;:60,&quot;price&quot;:100}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-finance-break-even-multi"><code>POST /api/v1/finance/break-even-multi</code></h3>
+<p>Calculate weighted break-even across multiple products.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/finance/break-even-multi&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;fixed_costs&quot;:10000,&quot;products&quot;:[{&quot;name&quot;:&quot;A&quot;,&quot;price&quot;:50,&quot;variable_cost&quot;:20,&quot;mix&quot;:2},{&quot;name&quot;:&quot;B&quot;,&quot;price&quot;:80,&quot;variable_cost&quot;:40,&quot;mix&quot;:1}]}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-finance-tip-split"><code>POST /api/v1/finance/tip-split</code></h3>
+<p>Calculate tip, total, and per-person split.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/finance/tip-split&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;subtotal&quot;:120,&quot;tip_percent&quot;:20,&quot;people&quot;:4}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-finance-margin-markup"><code>POST /v1/finance/margin-markup</code></h3>
 <p>Gross margin, markup, selling price, and cost variance.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
 <pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/finance/margin-markup&#x27; \
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;cost&quot;:80,&quot;selling_price&quot;:125,&quot;actual_cost&quot;:92}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-finance-loan-amortization"><code>POST /v1/finance/loan-amortization</code></h3>
 <p>Fixed-rate loan amortization schedule.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">5 credits</span></p>
@@ -79,6 +160,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;principal&quot;:250000,&quot;annual_interest_rate_percent&quot;:6.25,&quot;term_months&quot;:360}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-finance-tax-extraction"><code>POST /v1/finance/tax-extraction</code></h3>
 <p>Tax add-on and inclusive reverse extraction.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">2 credits</span></p>
@@ -86,6 +168,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;amounts&quot;:[{&quot;label&quot;:&quot;VAT inclusive&quot;,&quot;amount&quot;:120,&quot;tax_rate_percent&quot;:20,&quot;mode&quot;:&quot;inclusive&quot;}]}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-finance-freelancer-rate"><code>POST /v1/finance/freelancer-rate</code></h3>
 <p>Freelancer hourly and daily rate target.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">2 credits</span></p>
@@ -93,6 +176,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;target_annual_income&quot;:80000,&quot;annual_expenses&quot;:20000,&quot;tax_overhead_percent&quot;:25,&quot;billable_weeks&quot;:40,&quot;billable_hours_per_week&quot;:25}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-finance-simple-interest"><code>POST /v1/finance/simple-interest</code></h3>
 <p>Simple interest from principal, rate, and time.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -100,6 +184,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;principal&quot;:1000,&quot;annual_rate_percent&quot;:5,&quot;years&quot;:3}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-finance-compound-interest"><code>POST /v1/finance/compound-interest</code></h3>
 <p>Future value with compound interest frequency options.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -107,6 +192,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;principal&quot;:1000,&quot;annual_rate_percent&quot;:5,&quot;years&quot;:10,&quot;compounds_per_year&quot;:12}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-finance-loan-amortization-summary"><code>POST /v1/finance/loan-amortization-summary</code></h3>
 <p>Loan payment, total interest, and total cost summary.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -114,6 +200,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;principal&quot;:250000,&quot;annual_interest_rate_percent&quot;:6.25,&quot;term_months&quot;:360}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-finance-rule-of-72"><code>POST /v1/finance/rule-of-72</code></h3>
 <p>Estimated investment doubling time using the rule of 72.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -121,6 +208,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;annual_rate_percent&quot;:6}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-finance-roi"><code>POST /v1/finance/roi</code></h3>
 <p>Return on investment percentage from cost and net gain.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -128,6 +216,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;cost&quot;:1000,&quot;net_gain&quot;:250}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-finance-discount-calculator"><code>POST /v1/finance/discount-calculator</code></h3>
 <p>Final price and savings from original price and discount rate.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -135,6 +224,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;original_price&quot;:120,&quot;discount_percent&quot;:15}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-finance-markup-margin"><code>POST /v1/finance/markup-margin</code></h3>
 <p>Convert between gross margin and markup percentages.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -142,6 +232,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;margin_percent&quot;:40}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-finance-break-even"><code>POST /v1/finance/break-even</code></h3>
 <p>Break-even units from fixed costs, variable cost, and price.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -149,6 +240,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;fixed_costs&quot;:10000,&quot;price_per_unit&quot;:50,&quot;variable_cost_per_unit&quot;:30}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-finance-salestax"><code>POST /v1/finance/salestax</code></h3>
 <p>Add or extract sales tax/GST from an amount and tax rate.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -156,6 +248,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;amount&quot;:120,&quot;tax_rate_percent&quot;:20,&quot;mode&quot;:&quot;inclusive&quot;}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-finance-cagr"><code>POST /v1/finance/cagr</code></h3>
 <p>Compound annual growth rate from beginning value, ending value, and years.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -163,9 +256,10 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;beginning_value&quot;:1000,&quot;ending_value&quot;:1500,&quot;years&quot;:5}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p>
 <p><a href="../api-guide.html">Read the full guide</a> for authentication, limits, credits and errors, or <a href="./">browse every area</a>.</p>
 </div></main>
-<footer><div class="wrap">Contract v0.1.0 &middot; built 2026-09-21 &middot; <a href="../../index.html">Portal home</a> &middot; <a href="https://www.calculationtime.com">calculationtime.com</a> &middot; <a href="https://github.com/ByeBilly/calculationtime-web">Source on GitHub</a></div></footer>
+<footer><div class="wrap">Contract v0.1.0 &middot; built 2026-09-29 &middot; <a href="../../index.html">Portal home</a> &middot; <a href="https://www.calculationtime.com">calculationtime.com</a> &middot; <a href="https://github.com/ByeBilly/calculationtime-web">Source on GitHub</a></div></footer>
 </body>
 </html>

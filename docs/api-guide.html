@@ -51,7 +51,7 @@
   footer { background:var(--brand); color:#d8cdbd; padding:24px 0; font-size:14px; }
   footer a { color:var(--gold-soft); }
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "CalculationTime API guide", "dateModified": "2026-09-21", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "CalculationTime", "url": "https://www.calculationtime.com"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "CalculationTime API guide", "dateModified": "2026-09-29", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "CalculationTime", "url": "https://www.calculationtime.com"}}</script>
 </head>
 <body>
 <header><div class="wrap">
@@ -75,12 +75,17 @@
 </li>
 <li><a href="#10-endpoint-index">10. Endpoint index</a><ul>
 <li><a href="#service-and-status">Service and status</a></li>
+<li><a href="#learning-and-onboarding">Learning and onboarding</a></li>
 <li><a href="#reference-data">Reference data</a></li>
 <li><a href="#time-and-dates">Time and dates</a></li>
 <li><a href="#geo">Geo</a></li>
 <li><a href="#astronomy-and-crux-clock">Astronomy and Crux clock</a></li>
+<li><a href="#color-and-typography">Color and typography</a></li>
+<li><a href="#network-and-web-utilities">Network and web utilities</a></li>
 <li><a href="#finance">Finance</a></li>
 <li><a href="#math-and-statistics">Math and statistics</a></li>
+<li><a href="#unit-conversion">Unit conversion</a></li>
+<li><a href="#hashing-and-encoding">Hashing and encoding</a></li>
 <li><a href="#health">Health</a></li>
 <li><a href="#payroll-and-trades">Payroll and trades</a></li>
 <li><a href="#account">Account</a></li>
@@ -440,6 +445,69 @@ const { dataset_version, count, data } = await res.json();
 </tr>
 </tbody>
 </table></div>
+<h3 id="learning-and-onboarding"><a href="reference/learning.html">Learning and onboarding</a></h3>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>What it does</th>
+<th>Access</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><a href="reference/learning.html#get--beginner"><code>/beginner</code></a></td>
+<td>Beginner-friendly first API call guide</td>
+<td>public</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="reference/learning.html#get--learn"><code>/learn</code></a></td>
+<td>Kid-level clickable API learning ladder</td>
+<td>public</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="reference/learning.html#get--v1-learn-date-add-7"><code>/v1/learn/date-add-7</code></a></td>
+<td>Learning demo: add 7 days to today</td>
+<td>public</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="reference/learning.html#get--v1-learn-date-add-30"><code>/v1/learn/date-add-30</code></a></td>
+<td>Learning demo: add 30 days to today</td>
+<td>public</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="reference/learning.html#get--v1-learn-date-add-90"><code>/v1/learn/date-add-90</code></a></td>
+<td>Learning demo: add 90 days to today</td>
+<td>public</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="reference/learning.html#get--v1-learn-next-saturday-business-day"><code>/v1/learn/next-saturday-business-day</code></a></td>
+<td>Learning demo: check whether next Saturday is a business day</td>
+<td>public</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="reference/learning.html#get--v1-learn-random-id"><code>/v1/learn/random-id</code></a></td>
+<td>Learning demo: generate a random UUID</td>
+<td>public</td>
+<td>-</td>
+</tr>
+</tbody>
+</table></div>
 <h3 id="reference-data"><a href="reference/reference-data.html">Reference data</a></h3>
 <div class="scroll"><table>
 <thead>
@@ -683,6 +751,76 @@ const { dataset_version, count, data } = await res.json();
 <td>key</td>
 <td>1 credit</td>
 </tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/time-and-dates.html#post--api-v1-schedule-cron-parser"><code>/api/v1/schedule/cron-parser</code></a></td>
+<td>List upcoming UTC run timestamps for a 5-field cron expression</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/time-and-dates.html#post--api-v1-schedule-workday-shift"><code>/api/v1/schedule/workday-shift</code></a></td>
+<td>Shift a date by configurable working days</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/time-and-dates.html#post--api-v1-schedule-date-range-split"><code>/api/v1/schedule/date-range-split</code></a></td>
+<td>Split a date range into week, month, or quarter chunks</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/time-and-dates.html#post--api-v1-schedule-interval-overlap"><code>/api/v1/schedule/interval-overlap</code></a></td>
+<td>Calculate overlap between two timestamp intervals</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/time-and-dates.html#post--api-v1-schedule-project-timeline"><code>/api/v1/schedule/project-timeline</code></a></td>
+<td>Forward-pass project timeline and critical finish calculation</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/time-and-dates.html#post--api-v1-schedule-shift-calculator"><code>/api/v1/schedule/shift-calculator</code></a></td>
+<td>Calculate shift hours, overtime, and night differential hours</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/time-and-dates.html#post--api-v1-schedule-countdown-workdays"><code>/api/v1/schedule/countdown-workdays</code></a></td>
+<td>Count business days remaining until a deadline</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/time-and-dates.html#post--api-v1-schedule-recurring-monthly"><code>/api/v1/schedule/recurring-monthly</code></a></td>
+<td>Generate nth-weekday monthly recurrence dates</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/time-and-dates.html#post--api-v1-schedule-age-in-days"><code>/api/v1/schedule/age-in-days</code></a></td>
+<td>Calculate an exact age milestone date in days</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/time-and-dates.html#post--api-v1-schedule-time-blocks"><code>/api/v1/schedule/time-blocks</code></a></td>
+<td>Divide a 24-hour day into equal booking blocks</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
 </tbody>
 </table></div>
 <h3 id="geo"><a href="reference/geo.html">Geo</a></h3>
@@ -770,7 +908,7 @@ const { dataset_version, count, data } = await res.json();
 <tr>
 <td>POST</td>
 <td><a href="reference/astronomy.html#post--v1-astronomy-crux-midnight"><code>/v1/astronomy/crux-midnight</code></a></td>
-<td>Crux clock hand midnight sidereal positions from Parkes Observatory calibration</td>
+<td>Crux clock hand midnight sidereal positions from the Cumnock zero meridian calibration</td>
 <td>key</td>
 <td>2 credits</td>
 </tr>
@@ -784,7 +922,7 @@ const { dataset_version, count, data } = await res.json();
 <tr>
 <td>POST</td>
 <td><a href="reference/astronomy.html#post--v1-astronomy-crux-current"><code>/v1/astronomy/crux-current</code></a></td>
-<td>Current Crux clock hand position and Parkes alignment delta</td>
+<td>Current Crux clock hand position and zero alignment delta</td>
 <td>key</td>
 <td>2 credits</td>
 </tr>
@@ -858,6 +996,237 @@ const { dataset_version, count, data } = await res.json();
 <td>key</td>
 <td>1 credit</td>
 </tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/astronomy.html#post--api-v1-astronomy-solar-declination"><code>/api/v1/astronomy/solar-declination</code></a></td>
+<td>Approximate solar declination angle for a date</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/astronomy.html#post--api-v1-astronomy-equation-of-time"><code>/api/v1/astronomy/equation-of-time</code></a></td>
+<td>Approximate equation of time for a date</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/astronomy.html#post--api-v1-astronomy-moon-illumination"><code>/api/v1/astronomy/moon-illumination</code></a></td>
+<td>Moon illumination fraction and phase angle</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/astronomy.html#post--api-v1-astronomy-sidereal-conversion"><code>/api/v1/astronomy/sidereal-conversion</code></a></td>
+<td>Convert solar hours to sidereal interval</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/astronomy.html#post--api-v1-astronomy-golden-hour"><code>/api/v1/astronomy/golden-hour</code></a></td>
+<td>Morning and evening golden-hour windows</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/astronomy.html#post--api-v1-astronomy-blue-hour"><code>/api/v1/astronomy/blue-hour</code></a></td>
+<td>Morning and evening blue-hour windows</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/astronomy.html#post--api-v1-astronomy-season-progress"><code>/api/v1/astronomy/season-progress</code></a></td>
+<td>Astronomical season progress at a timestamp</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/astronomy.html#post--api-v1-astronomy-zodiac-sign"><code>/api/v1/astronomy/zodiac-sign</code></a></td>
+<td>Tropical zodiac sign by calendar date</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/astronomy.html#post--api-v1-astronomy-daylight-delta"><code>/api/v1/astronomy/daylight-delta</code></a></td>
+<td>Day-length gain or loss versus previous day</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="color-and-typography"><a href="reference/color-and-typography.html">Color and typography</a></h3>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>What it does</th>
+<th>Access</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><a href="reference/color-and-typography.html#post--api-v1-color-hex-to-rgb"><code>/api/v1/color/hex-to-rgb</code></a></td>
+<td>Convert HEX colour to RGB array</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/color-and-typography.html#post--api-v1-color-rgb-to-hex"><code>/api/v1/color/rgb-to-hex</code></a></td>
+<td>Convert RGB values to HEX colour</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/color-and-typography.html#post--api-v1-color-rgb-to-hsl"><code>/api/v1/color/rgb-to-hsl</code></a></td>
+<td>Convert RGB colour to HSL</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/color-and-typography.html#post--api-v1-color-hsl-to-rgb"><code>/api/v1/color/hsl-to-rgb</code></a></td>
+<td>Convert HSL colour to RGB and HEX</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/color-and-typography.html#post--api-v1-color-contrast-ratio"><code>/api/v1/color/contrast-ratio</code></a></td>
+<td>Calculate WCAG contrast ratio between two colours</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/color-and-typography.html#post--api-v1-color-luminance"><code>/api/v1/color/luminance</code></a></td>
+<td>Calculate WCAG relative luminance for a colour</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/color-and-typography.html#post--api-v1-color-tint-shade"><code>/api/v1/color/tint-shade</code></a></td>
+<td>Generate tint and shade palette steps from a base colour</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/color-and-typography.html#post--api-v1-color-cmyk-conversion"><code>/api/v1/color/cmyk-conversion</code></a></td>
+<td>Approximate CMYK values from RGB input</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/color-and-typography.html#post--api-v1-typography-px-to-rem"><code>/api/v1/typography/px-to-rem</code></a></td>
+<td>Convert pixel values to rem units</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/color-and-typography.html#post--api-v1-typography-line-height"><code>/api/v1/typography/line-height</code></a></td>
+<td>Calculate proportional line height and type scale steps</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="network-and-web-utilities"><a href="reference/network.html">Network and web utilities</a></h3>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>What it does</th>
+<th>Access</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><a href="reference/network.html#post--api-v1-network-ip-parse"><code>/api/v1/network/ip-parse</code></a></td>
+<td>Parse IPv4 or IPv6 address metadata</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/network.html#post--api-v1-network-cidr-range"><code>/api/v1/network/cidr-range</code></a></td>
+<td>Calculate IPv4 CIDR network, broadcast, and usable hosts</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/network.html#post--api-v1-network-user-agent-parse"><code>/api/v1/network/user-agent-parse</code></a></td>
+<td>Extract browser, OS, and device class from a user-agent string</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/network.html#post--api-v1-network-query-string-parse"><code>/api/v1/network/query-string-parse</code></a></td>
+<td>Encode or decode URL query strings</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/network.html#post--api-v1-network-slug-sanitize"><code>/api/v1/network/slug-sanitize</code></a></td>
+<td>Normalize arbitrary text into a URL-safe slug</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/network.html#post--api-v1-network-port-lookup"><code>/api/v1/network/port-lookup</code></a></td>
+<td>Look up standard TCP/UDP port service names</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/network.html#post--api-v1-network-http-status-lookup"><code>/api/v1/network/http-status-lookup</code></a></td>
+<td>Look up HTTP status phrase and status class</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/network.html#post--api-v1-network-mime-lookup"><code>/api/v1/network/mime-lookup</code></a></td>
+<td>Resolve file extension to MIME type</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/network.html#post--api-v1-network-uuid-v5"><code>/api/v1/network/uuid-v5</code></a></td>
+<td>Generate deterministic name-based UUID v5</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/network.html#post--api-v1-network-mac-format"><code>/api/v1/network/mac-format</code></a></td>
+<td>Normalize and validate MAC address formatting</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
 </tbody>
 </table></div>
 <h3 id="finance"><a href="reference/finance.html">Finance</a></h3>
@@ -872,6 +1241,76 @@ const { dataset_version, count, data } = await res.json();
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>POST</td>
+<td><a href="reference/finance.html#post--api-v1-finance-npv"><code>/api/v1/finance/npv</code></a></td>
+<td>Calculate net present value for uneven cash flows</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/finance.html#post--api-v1-finance-irr-approximation"><code>/api/v1/finance/irr-approximation</code></a></td>
+<td>Approximate internal rate of return from cash flows</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/finance.html#post--api-v1-finance-bond-yield"><code>/api/v1/finance/bond-yield</code></a></td>
+<td>Calculate current yield and approximate yield to maturity</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/finance.html#post--api-v1-finance-depreciation-straight-line"><code>/api/v1/finance/depreciation-straight-line</code></a></td>
+<td>Generate a straight-line depreciation schedule</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/finance.html#post--api-v1-finance-depreciation-declining"><code>/api/v1/finance/depreciation-declining</code></a></td>
+<td>Generate a declining-balance depreciation schedule</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/finance.html#post--api-v1-finance-loan-payoff-extra"><code>/api/v1/finance/loan-payoff-extra</code></a></td>
+<td>Calculate loan payoff impact from extra monthly principal</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/finance.html#post--api-v1-finance-effective-annual-rate"><code>/api/v1/finance/effective-annual-rate</code></a></td>
+<td>Convert nominal APR to effective annual rate</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/finance.html#post--api-v1-finance-markup-margin-split"><code>/api/v1/finance/markup-margin-split</code></a></td>
+<td>Convert between markup, margin, cost, and selling price</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/finance.html#post--api-v1-finance-break-even-multi"><code>/api/v1/finance/break-even-multi</code></a></td>
+<td>Calculate weighted break-even across multiple products</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/finance.html#post--api-v1-finance-tip-split"><code>/api/v1/finance/tip-split</code></a></td>
+<td>Calculate tip, total, and per-person split</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
 <tr>
 <td>POST</td>
 <td><a href="reference/finance.html#post--v1-finance-margin-markup"><code>/v1/finance/margin-markup</code></a></td>
@@ -986,6 +1425,76 @@ const { dataset_version, count, data } = await res.json();
 <tbody>
 <tr>
 <td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--api-v1-math-matrix-multiply"><code>/api/v1/math/matrix-multiply</code></a></td>
+<td>Multiply two 2x2 or 3x3-compatible matrices</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--api-v1-math-vector-magnitude"><code>/api/v1/math/vector-magnitude</code></a></td>
+<td>Calculate vector magnitude and unit vector</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--api-v1-math-vector-dot-product"><code>/api/v1/math/vector-dot-product</code></a></td>
+<td>Calculate vector dot product and angle</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--api-v1-math-quadratic-vertex"><code>/api/v1/math/quadratic-vertex</code></a></td>
+<td>Calculate parabola vertex, axis, and roots</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--api-v1-math-factorial-gamma"><code>/api/v1/math/factorial-gamma</code></a></td>
+<td>Calculate factorials and gamma approximations</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--api-v1-math-fibonacci"><code>/api/v1/math/fibonacci</code></a></td>
+<td>Calculate Fibonacci number and sequence</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--api-v1-math-base-n-convert"><code>/api/v1/math/base-n-convert</code></a></td>
+<td>Convert integers between base 2 and base 36</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--api-v1-math-percentile-calc"><code>/api/v1/math/percentile-calc</code></a></td>
+<td>Calculate statistical percentile from raw values</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--api-v1-math-wind-chill"><code>/api/v1/math/wind-chill</code></a></td>
+<td>Calculate wind chill apparent temperature</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--api-v1-math-heat-index"><code>/api/v1/math/heat-index</code></a></td>
+<td>Calculate heat index apparent temperature</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
 <td><a href="reference/math-and-statistics.html#post--v1-math-quadratic-solver"><code>/v1/math/quadratic-solver</code></a></td>
 <td>Solve a quadratic equation with real or complex roots and vertex coordinates</td>
 <td>key</td>
@@ -1091,10 +1600,206 @@ const { dataset_version, count, data } = await res.json();
 </tr>
 <tr>
 <td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--api-v1-math-ohm-law"><code>/api/v1/math/ohm-law</code></a></td>
+<td>Ohm law solver for voltage, current, resistance, and power</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--api-v1-math-projectile-range"><code>/api/v1/math/projectile-range</code></a></td>
+<td>Ideal projectile range, flight time, and max height</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--api-v1-math-kinetic-energy"><code>/api/v1/math/kinetic-energy</code></a></td>
+<td>Kinetic energy from mass and velocity</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--api-v1-math-potential-energy"><code>/api/v1/math/potential-energy</code></a></td>
+<td>Gravitational potential energy</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--api-v1-math-circle-sector"><code>/api/v1/math/circle-sector</code></a></td>
+<td>Circle sector area, arc, and chord length</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--api-v1-math-sphere-surface"><code>/api/v1/math/sphere-surface</code></a></td>
+<td>Sphere surface area and volume alias</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--api-v1-math-cone-geometry"><code>/api/v1/math/cone-geometry</code></a></td>
+<td>Cone slant height, surface area, and volume</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--api-v1-math-torus-geometry"><code>/api/v1/math/torus-geometry</code></a></td>
+<td>Torus surface area and volume</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--api-v1-math-arithmetic-progression"><code>/api/v1/math/arithmetic-progression</code></a></td>
+<td>Arithmetic progression nth term and partial sum</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/math-and-statistics.html#post--api-v1-math-geometric-progression"><code>/api/v1/math/geometric-progression</code></a></td>
+<td>Geometric progression nth term and partial sum</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
 <td><a href="reference/math-and-statistics.html#post--v1-stats-summary"><code>/v1/stats/summary</code></a></td>
 <td>Descriptive statistics for a numeric dataset</td>
 <td>key</td>
 <td>3 credits</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="unit-conversion"><a href="reference/convert.html">Unit conversion</a></h3>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>What it does</th>
+<th>Access</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><a href="reference/convert.html#post--api-v1-convert-length"><code>/api/v1/convert/length</code></a></td>
+<td>Zero-cost length unit conversion</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/convert.html#post--api-v1-convert-weight"><code>/api/v1/convert/weight</code></a></td>
+<td>Zero-cost weight and mass unit conversion</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/convert.html#post--api-v1-convert-temperature"><code>/api/v1/convert/temperature</code></a></td>
+<td>Temperature scale conversion</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/convert.html#post--api-v1-convert-area"><code>/api/v1/convert/area</code></a></td>
+<td>Area unit conversion</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/convert.html#post--api-v1-convert-volume"><code>/api/v1/convert/volume</code></a></td>
+<td>Volume unit conversion</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/convert.html#post--api-v1-convert-speed"><code>/api/v1/convert/speed</code></a></td>
+<td>Speed unit conversion</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/convert.html#post--api-v1-convert-pressure"><code>/api/v1/convert/pressure</code></a></td>
+<td>Pressure unit conversion</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/convert.html#post--api-v1-convert-energy"><code>/api/v1/convert/energy</code></a></td>
+<td>Energy unit conversion</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/convert.html#post--api-v1-convert-power"><code>/api/v1/convert/power</code></a></td>
+<td>Power unit conversion</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/convert.html#post--api-v1-convert-data-storage"><code>/api/v1/convert/data-storage</code></a></td>
+<td>Data storage unit conversion</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="hashing-and-encoding"><a href="reference/crypto.html">Hashing and encoding</a></h3>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>What it does</th>
+<th>Access</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><a href="reference/crypto.html#post--api-v1-crypto-hash-sha256"><code>/api/v1/crypto/hash-sha256</code></a></td>
+<td>Compute SHA-256 hash for a small payload</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/crypto.html#post--api-v1-crypto-hash-sha512"><code>/api/v1/crypto/hash-sha512</code></a></td>
+<td>Compute SHA-512 hash for a small payload</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/crypto.html#post--api-v1-crypto-base64-encode"><code>/api/v1/crypto/base64-encode</code></a></td>
+<td>Encode text to Base64</td>
+<td>key</td>
+<td>1 credit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="reference/crypto.html#post--api-v1-crypto-base64-decode"><code>/api/v1/crypto/base64-decode</code></a></td>
+<td>Decode Base64 text</td>
+<td>key</td>
+<td>1 credit</td>
 </tr>
 </tbody>
 </table></div>
@@ -1295,31 +2000,41 @@ const { dataset_version, count, data } = await res.json();
   -X POST \
   -H 'X-API-Key: YOUR_KEY' \
   -H 'Content-Type: application/json' \
-  -d '{&quot;start_date&quot;:&quot;2026-03-31&quot;,&quot;days&quot;:3,&quot;timezone&quot;:&quot;+10:00&quot;}'
+  -d '{&quot;start_date&quot;:&quot;2026-04-01&quot;,&quot;days&quot;:3,&quot;timezone&quot;:&quot;+10:00&quot;}'
 </code></pre>
-<p>Abridged response, as published on the CalculationTime developer page:</p>
+<p>Abridged response from the Cumnock calibration:</p>
 <pre><code class="language-json">{
-  &quot;input&quot;: { &quot;start_date&quot;: &quot;2026-03-31&quot;, &quot;days&quot;: 3, &quot;timezone&quot;: &quot;+10:00&quot; },
+  &quot;input&quot;: { &quot;start_date&quot;: &quot;2026-04-01&quot;, &quot;days&quot;: 3, &quot;timezone&quot;: &quot;+10:00&quot; },
+  &quot;calibration&quot;: {
+    &quot;crux_hand_ra_hours&quot;: 12.506514,
+    &quot;gmst_formula&quot;: &quot;IAU1982 linear&quot;,
+    &quot;version&quot;: &quot;2026-09-28&quot;,
+    &quot;reference_anchor&quot;: {
+      &quot;name&quot;: &quot;Cumnock, NSW midnight-zero meridian&quot;,
+      &quot;latitude_degrees&quot;: -32.99839,
+      &quot;longitude_degrees&quot;: 148.639301038
+    }
+  },
   &quot;count&quot;: 3,
   &quot;positions&quot;: [
-    { &quot;date&quot;: &quot;2026-03-31&quot;, &quot;day_index&quot;: 0, &quot;crux_hand_degrees&quot;: 0 },
-    { &quot;date&quot;: &quot;2026-04-01&quot;, &quot;day_index&quot;: 1, &quot;crux_hand_degrees&quot;: 0.985647366 },
-    { &quot;date&quot;: &quot;2026-04-02&quot;, &quot;day_index&quot;: 2, &quot;crux_hand_degrees&quot;: 1.971294733 }
+    { &quot;date&quot;: &quot;2026-04-01&quot;, &quot;day_index&quot;: 0, &quot;crux_hand_degrees&quot;: 0 },
+    { &quot;date&quot;: &quot;2026-04-02&quot;, &quot;day_index&quot;: 1, &quot;crux_hand_degrees&quot;: 0.985647367 },
+    { &quot;date&quot;: &quot;2026-04-03&quot;, &quot;day_index&quot;: 2, &quot;crux_hand_degrees&quot;: 1.971294733 }
   ],
-  &quot;method&quot;: &quot;parkes_crux_hand_sidereal_clock_zeroed_2026_03_31_local_midnight&quot;
+  &quot;method&quot;: &quot;crux_hand_sidereal_clock_zeroed_2026_04_01_aest_midnight&quot;
 }
 </code></pre>
 <h3 id="crux-clock-hourly-breakdown-key-required-5-credits">Crux clock: hourly breakdown (key required, 5 credits)</h3>
 <pre><code class="language-bash">curl 'https://api.calculationtime.com/v1/astronomy/crux-hourly' \
   -X POST -H 'X-API-Key: YOUR_KEY' -H 'Content-Type: application/json' \
-  -d '{&quot;date&quot;:&quot;2026-03-31&quot;,&quot;timezone&quot;:&quot;+10:00&quot;}'
+  -d '{&quot;date&quot;:&quot;2026-04-01&quot;,&quot;timezone&quot;:&quot;+10:00&quot;}'
 </code></pre>
 <h3 id="crux-clock-current-position-key-required-2-credits">Crux clock: current position (key required, 2 credits)</h3>
 <pre><code class="language-bash">curl 'https://api.calculationtime.com/v1/astronomy/crux-current' \
   -X POST -H 'X-API-Key: YOUR_KEY' -H 'Content-Type: application/json' \
   -d '{&quot;timestamp&quot;:&quot;2026-04-01T00:00:00+10:00&quot;}'
 </code></pre>
-<p>The Crux clock is calibrated to Parkes Observatory (latitude -32.99, longitude 148.26, elevation 415 m), with the clock hand zeroed at local midnight on 2026-03-31.</p>
+<p>The Crux clock is calibrated to the Cumnock, NSW midnight-zero meridian at longitude 148.639301038 and Parkes Observatory latitude, with the clock hand zeroed at 2026-04-01T00:00:00+10:00. Current-position responses include <code>reference_anchor</code> and <code>zero_alignment_delta</code> so clients can see the calibration and offset from the zero reference.</p>
 <h2 id="12-what-is-not-documented-yet">12. What is not documented yet</h2>
 <p>Being direct about the gaps so you can plan around them:</p>
 <ul>
@@ -1345,6 +2060,6 @@ const { dataset_version, count, data } = await res.json();
 <li>Main site and the calculators these endpoints power: <a href="https://www.calculationtime.com">https://www.calculationtime.com</a></li>
 </ul>
 </div></main>
-<footer><div class="wrap">Contract v0.1.0 &middot; built 2026-09-21 &middot; <a href="../index.html">Portal home</a> &middot; <a href="https://www.calculationtime.com">calculationtime.com</a> &middot; <a href="https://github.com/ByeBilly/calculationtime-web">Source on GitHub</a></div></footer>
+<footer><div class="wrap">Contract v0.1.0 &middot; built 2026-09-29 &middot; <a href="../index.html">Portal home</a> &middot; <a href="https://www.calculationtime.com">calculationtime.com</a> &middot; <a href="https://github.com/ByeBilly/calculationtime-web">Source on GitHub</a></div></footer>
 </body>
 </html>

@@ -183,6 +183,18 @@ Generated from the OpenAPI contract (v0.1.0) by `build-portal.py`. "public" mean
 | GET | [`/api/v1/utility/tagline`](reference/service.html#get--api-v1-utility-tagline) | Deterministic daily CalculationTime tagline | public | - |
 | GET | [`/v1/canary`](reference/service.html#get--v1-canary) | Protected monitoring canary for API-key path checks | key | free |
 
+### [Learning and onboarding](reference/learning.html)
+
+| Method | Path | What it does | Access | Cost |
+|---|---|---|---|---|
+| GET | [`/beginner`](reference/learning.html#get--beginner) | Beginner-friendly first API call guide | public | - |
+| GET | [`/learn`](reference/learning.html#get--learn) | Kid-level clickable API learning ladder | public | - |
+| GET | [`/v1/learn/date-add-7`](reference/learning.html#get--v1-learn-date-add-7) | Learning demo: add 7 days to today | public | - |
+| GET | [`/v1/learn/date-add-30`](reference/learning.html#get--v1-learn-date-add-30) | Learning demo: add 30 days to today | public | - |
+| GET | [`/v1/learn/date-add-90`](reference/learning.html#get--v1-learn-date-add-90) | Learning demo: add 90 days to today | public | - |
+| GET | [`/v1/learn/next-saturday-business-day`](reference/learning.html#get--v1-learn-next-saturday-business-day) | Learning demo: check whether next Saturday is a business day | public | - |
+| GET | [`/v1/learn/random-id`](reference/learning.html#get--v1-learn-random-id) | Learning demo: generate a random UUID | public | - |
+
 ### [Reference data](reference/reference-data.html)
 
 | Method | Path | What it does | Access | Cost |
@@ -223,6 +235,16 @@ Generated from the OpenAPI contract (v0.1.0) by `build-portal.py`. "public" mean
 | GET | [`/v1/holidays`](reference/time-and-dates.html#get--v1-holidays) | Holidays for a jurisdiction and year | key | 1 credit |
 | GET | [`/v1/holidays/next`](reference/time-and-dates.html#get--v1-holidays-next) | Next holiday for a jurisdiction | key | 1 credit |
 | GET | [`/v1/holidays/is-business-day`](reference/time-and-dates.html#get--v1-holidays-is-business-day) | Business-day check for one date | key | 1 credit |
+| POST | [`/api/v1/schedule/cron-parser`](reference/time-and-dates.html#post--api-v1-schedule-cron-parser) | List upcoming UTC run timestamps for a 5-field cron expression | key | 1 credit |
+| POST | [`/api/v1/schedule/workday-shift`](reference/time-and-dates.html#post--api-v1-schedule-workday-shift) | Shift a date by configurable working days | key | 1 credit |
+| POST | [`/api/v1/schedule/date-range-split`](reference/time-and-dates.html#post--api-v1-schedule-date-range-split) | Split a date range into week, month, or quarter chunks | key | 1 credit |
+| POST | [`/api/v1/schedule/interval-overlap`](reference/time-and-dates.html#post--api-v1-schedule-interval-overlap) | Calculate overlap between two timestamp intervals | key | 1 credit |
+| POST | [`/api/v1/schedule/project-timeline`](reference/time-and-dates.html#post--api-v1-schedule-project-timeline) | Forward-pass project timeline and critical finish calculation | key | 1 credit |
+| POST | [`/api/v1/schedule/shift-calculator`](reference/time-and-dates.html#post--api-v1-schedule-shift-calculator) | Calculate shift hours, overtime, and night differential hours | key | 1 credit |
+| POST | [`/api/v1/schedule/countdown-workdays`](reference/time-and-dates.html#post--api-v1-schedule-countdown-workdays) | Count business days remaining until a deadline | key | 1 credit |
+| POST | [`/api/v1/schedule/recurring-monthly`](reference/time-and-dates.html#post--api-v1-schedule-recurring-monthly) | Generate nth-weekday monthly recurrence dates | key | 1 credit |
+| POST | [`/api/v1/schedule/age-in-days`](reference/time-and-dates.html#post--api-v1-schedule-age-in-days) | Calculate an exact age milestone date in days | key | 1 credit |
+| POST | [`/api/v1/schedule/time-blocks`](reference/time-and-dates.html#post--api-v1-schedule-time-blocks) | Divide a 24-hour day into equal booking blocks | key | 1 credit |
 
 ### [Geo](reference/geo.html)
 
@@ -241,9 +263,9 @@ Generated from the OpenAPI contract (v0.1.0) by `build-portal.py`. "public" mean
 |---|---|---|---|---|
 | GET | [`/v1/solar/position`](reference/astronomy.html#get--v1-solar-position) | Solar position for date and coordinate | key | 1 credit |
 | GET | [`/v1/astronomy/ephemeris`](reference/astronomy.html#get--v1-astronomy-ephemeris) | Astronomy ephemeris for a date | key | 1 credit |
-| POST | [`/v1/astronomy/crux-midnight`](reference/astronomy.html#post--v1-astronomy-crux-midnight) | Crux clock hand midnight sidereal positions from Parkes Observatory calibration | key | 2 credits |
+| POST | [`/v1/astronomy/crux-midnight`](reference/astronomy.html#post--v1-astronomy-crux-midnight) | Crux clock hand midnight sidereal positions from the Cumnock zero meridian calibration | key | 2 credits |
 | POST | [`/v1/astronomy/crux-hourly`](reference/astronomy.html#post--v1-astronomy-crux-hourly) | Crux clock hand hourly sidereal breakdown for one local date | key | 5 credits |
-| POST | [`/v1/astronomy/crux-current`](reference/astronomy.html#post--v1-astronomy-crux-current) | Current Crux clock hand position and Parkes alignment delta | key | 2 credits |
+| POST | [`/v1/astronomy/crux-current`](reference/astronomy.html#post--v1-astronomy-crux-current) | Current Crux clock hand position and zero alignment delta | key | 2 credits |
 | POST | [`/v1/astronomy/solar-noon`](reference/astronomy.html#post--v1-astronomy-solar-noon) | Solar transit/noon timestamp for a coordinate and date | key | 1 credit |
 | POST | [`/v1/astronomy/equinox-solstice`](reference/astronomy.html#post--v1-astronomy-equinox-solstice) | Equinox and solstice timestamps for a year | key | 1 credit |
 | POST | [`/v1/astronomy/moon-phase`](reference/astronomy.html#post--v1-astronomy-moon-phase) | Moon illumination, age, and phase name for a timestamp | key | 1 credit |
@@ -254,11 +276,60 @@ Generated from the OpenAPI contract (v0.1.0) by `build-portal.py`. "public" mean
 | POST | [`/v1/astronomy/moon-position`](reference/astronomy.html#post--v1-astronomy-moon-position) | Moon right ascension, declination, azimuth, and elevation | key | 1 credit |
 | POST | [`/v1/astronomy/day-length`](reference/astronomy.html#post--v1-astronomy-day-length) | Daylight duration between sunrise and sunset | key | 1 credit |
 | POST | [`/v1/astronomy/polar-night-check`](reference/astronomy.html#post--v1-astronomy-polar-night-check) | Check midnight sun or polar night state for a latitude/date | key | 1 credit |
+| POST | [`/api/v1/astronomy/solar-declination`](reference/astronomy.html#post--api-v1-astronomy-solar-declination) | Approximate solar declination angle for a date | key | 1 credit |
+| POST | [`/api/v1/astronomy/equation-of-time`](reference/astronomy.html#post--api-v1-astronomy-equation-of-time) | Approximate equation of time for a date | key | 1 credit |
+| POST | [`/api/v1/astronomy/moon-illumination`](reference/astronomy.html#post--api-v1-astronomy-moon-illumination) | Moon illumination fraction and phase angle | key | 1 credit |
+| POST | [`/api/v1/astronomy/sidereal-conversion`](reference/astronomy.html#post--api-v1-astronomy-sidereal-conversion) | Convert solar hours to sidereal interval | key | 1 credit |
+| POST | [`/api/v1/astronomy/golden-hour`](reference/astronomy.html#post--api-v1-astronomy-golden-hour) | Morning and evening golden-hour windows | key | 1 credit |
+| POST | [`/api/v1/astronomy/blue-hour`](reference/astronomy.html#post--api-v1-astronomy-blue-hour) | Morning and evening blue-hour windows | key | 1 credit |
+| POST | [`/api/v1/astronomy/season-progress`](reference/astronomy.html#post--api-v1-astronomy-season-progress) | Astronomical season progress at a timestamp | key | 1 credit |
+| POST | [`/api/v1/astronomy/zodiac-sign`](reference/astronomy.html#post--api-v1-astronomy-zodiac-sign) | Tropical zodiac sign by calendar date | key | 1 credit |
+| POST | [`/api/v1/astronomy/daylight-delta`](reference/astronomy.html#post--api-v1-astronomy-daylight-delta) | Day-length gain or loss versus previous day | key | 1 credit |
+
+### [Color and typography](reference/color-and-typography.html)
+
+| Method | Path | What it does | Access | Cost |
+|---|---|---|---|---|
+| POST | [`/api/v1/color/hex-to-rgb`](reference/color-and-typography.html#post--api-v1-color-hex-to-rgb) | Convert HEX colour to RGB array | key | 1 credit |
+| POST | [`/api/v1/color/rgb-to-hex`](reference/color-and-typography.html#post--api-v1-color-rgb-to-hex) | Convert RGB values to HEX colour | key | 1 credit |
+| POST | [`/api/v1/color/rgb-to-hsl`](reference/color-and-typography.html#post--api-v1-color-rgb-to-hsl) | Convert RGB colour to HSL | key | 1 credit |
+| POST | [`/api/v1/color/hsl-to-rgb`](reference/color-and-typography.html#post--api-v1-color-hsl-to-rgb) | Convert HSL colour to RGB and HEX | key | 1 credit |
+| POST | [`/api/v1/color/contrast-ratio`](reference/color-and-typography.html#post--api-v1-color-contrast-ratio) | Calculate WCAG contrast ratio between two colours | key | 1 credit |
+| POST | [`/api/v1/color/luminance`](reference/color-and-typography.html#post--api-v1-color-luminance) | Calculate WCAG relative luminance for a colour | key | 1 credit |
+| POST | [`/api/v1/color/tint-shade`](reference/color-and-typography.html#post--api-v1-color-tint-shade) | Generate tint and shade palette steps from a base colour | key | 1 credit |
+| POST | [`/api/v1/color/cmyk-conversion`](reference/color-and-typography.html#post--api-v1-color-cmyk-conversion) | Approximate CMYK values from RGB input | key | 1 credit |
+| POST | [`/api/v1/typography/px-to-rem`](reference/color-and-typography.html#post--api-v1-typography-px-to-rem) | Convert pixel values to rem units | key | 1 credit |
+| POST | [`/api/v1/typography/line-height`](reference/color-and-typography.html#post--api-v1-typography-line-height) | Calculate proportional line height and type scale steps | key | 1 credit |
+
+### [Network and web utilities](reference/network.html)
+
+| Method | Path | What it does | Access | Cost |
+|---|---|---|---|---|
+| POST | [`/api/v1/network/ip-parse`](reference/network.html#post--api-v1-network-ip-parse) | Parse IPv4 or IPv6 address metadata | key | 1 credit |
+| POST | [`/api/v1/network/cidr-range`](reference/network.html#post--api-v1-network-cidr-range) | Calculate IPv4 CIDR network, broadcast, and usable hosts | key | 1 credit |
+| POST | [`/api/v1/network/user-agent-parse`](reference/network.html#post--api-v1-network-user-agent-parse) | Extract browser, OS, and device class from a user-agent string | key | 1 credit |
+| POST | [`/api/v1/network/query-string-parse`](reference/network.html#post--api-v1-network-query-string-parse) | Encode or decode URL query strings | key | 1 credit |
+| POST | [`/api/v1/network/slug-sanitize`](reference/network.html#post--api-v1-network-slug-sanitize) | Normalize arbitrary text into a URL-safe slug | key | 1 credit |
+| POST | [`/api/v1/network/port-lookup`](reference/network.html#post--api-v1-network-port-lookup) | Look up standard TCP/UDP port service names | key | 1 credit |
+| POST | [`/api/v1/network/http-status-lookup`](reference/network.html#post--api-v1-network-http-status-lookup) | Look up HTTP status phrase and status class | key | 1 credit |
+| POST | [`/api/v1/network/mime-lookup`](reference/network.html#post--api-v1-network-mime-lookup) | Resolve file extension to MIME type | key | 1 credit |
+| POST | [`/api/v1/network/uuid-v5`](reference/network.html#post--api-v1-network-uuid-v5) | Generate deterministic name-based UUID v5 | key | 1 credit |
+| POST | [`/api/v1/network/mac-format`](reference/network.html#post--api-v1-network-mac-format) | Normalize and validate MAC address formatting | key | 1 credit |
 
 ### [Finance](reference/finance.html)
 
 | Method | Path | What it does | Access | Cost |
 |---|---|---|---|---|
+| POST | [`/api/v1/finance/npv`](reference/finance.html#post--api-v1-finance-npv) | Calculate net present value for uneven cash flows | key | 1 credit |
+| POST | [`/api/v1/finance/irr-approximation`](reference/finance.html#post--api-v1-finance-irr-approximation) | Approximate internal rate of return from cash flows | key | 1 credit |
+| POST | [`/api/v1/finance/bond-yield`](reference/finance.html#post--api-v1-finance-bond-yield) | Calculate current yield and approximate yield to maturity | key | 1 credit |
+| POST | [`/api/v1/finance/depreciation-straight-line`](reference/finance.html#post--api-v1-finance-depreciation-straight-line) | Generate a straight-line depreciation schedule | key | 1 credit |
+| POST | [`/api/v1/finance/depreciation-declining`](reference/finance.html#post--api-v1-finance-depreciation-declining) | Generate a declining-balance depreciation schedule | key | 1 credit |
+| POST | [`/api/v1/finance/loan-payoff-extra`](reference/finance.html#post--api-v1-finance-loan-payoff-extra) | Calculate loan payoff impact from extra monthly principal | key | 1 credit |
+| POST | [`/api/v1/finance/effective-annual-rate`](reference/finance.html#post--api-v1-finance-effective-annual-rate) | Convert nominal APR to effective annual rate | key | 1 credit |
+| POST | [`/api/v1/finance/markup-margin-split`](reference/finance.html#post--api-v1-finance-markup-margin-split) | Convert between markup, margin, cost, and selling price | key | 1 credit |
+| POST | [`/api/v1/finance/break-even-multi`](reference/finance.html#post--api-v1-finance-break-even-multi) | Calculate weighted break-even across multiple products | key | 1 credit |
+| POST | [`/api/v1/finance/tip-split`](reference/finance.html#post--api-v1-finance-tip-split) | Calculate tip, total, and per-person split | key | 1 credit |
 | POST | [`/v1/finance/margin-markup`](reference/finance.html#post--v1-finance-margin-markup) | Gross margin, markup, selling price, and cost variance | key | 1 credit |
 | POST | [`/v1/finance/loan-amortization`](reference/finance.html#post--v1-finance-loan-amortization) | Fixed-rate loan amortization schedule | key | 5 credits |
 | POST | [`/v1/finance/tax-extraction`](reference/finance.html#post--v1-finance-tax-extraction) | Tax add-on and inclusive reverse extraction | key | 2 credits |
@@ -278,6 +349,16 @@ Generated from the OpenAPI contract (v0.1.0) by `build-portal.py`. "public" mean
 
 | Method | Path | What it does | Access | Cost |
 |---|---|---|---|---|
+| POST | [`/api/v1/math/matrix-multiply`](reference/math-and-statistics.html#post--api-v1-math-matrix-multiply) | Multiply two 2x2 or 3x3-compatible matrices | key | 1 credit |
+| POST | [`/api/v1/math/vector-magnitude`](reference/math-and-statistics.html#post--api-v1-math-vector-magnitude) | Calculate vector magnitude and unit vector | key | 1 credit |
+| POST | [`/api/v1/math/vector-dot-product`](reference/math-and-statistics.html#post--api-v1-math-vector-dot-product) | Calculate vector dot product and angle | key | 1 credit |
+| POST | [`/api/v1/math/quadratic-vertex`](reference/math-and-statistics.html#post--api-v1-math-quadratic-vertex) | Calculate parabola vertex, axis, and roots | key | 1 credit |
+| POST | [`/api/v1/math/factorial-gamma`](reference/math-and-statistics.html#post--api-v1-math-factorial-gamma) | Calculate factorials and gamma approximations | key | 1 credit |
+| POST | [`/api/v1/math/fibonacci`](reference/math-and-statistics.html#post--api-v1-math-fibonacci) | Calculate Fibonacci number and sequence | key | 1 credit |
+| POST | [`/api/v1/math/base-n-convert`](reference/math-and-statistics.html#post--api-v1-math-base-n-convert) | Convert integers between base 2 and base 36 | key | 1 credit |
+| POST | [`/api/v1/math/percentile-calc`](reference/math-and-statistics.html#post--api-v1-math-percentile-calc) | Calculate statistical percentile from raw values | key | 1 credit |
+| POST | [`/api/v1/math/wind-chill`](reference/math-and-statistics.html#post--api-v1-math-wind-chill) | Calculate wind chill apparent temperature | key | 1 credit |
+| POST | [`/api/v1/math/heat-index`](reference/math-and-statistics.html#post--api-v1-math-heat-index) | Calculate heat index apparent temperature | key | 1 credit |
 | POST | [`/v1/math/quadratic-solver`](reference/math-and-statistics.html#post--v1-math-quadratic-solver) | Solve a quadratic equation with real or complex roots and vertex coordinates | key | 1 credit |
 | POST | [`/v1/math/pythagorean-solve`](reference/math-and-statistics.html#post--v1-math-pythagorean-solve) | Solve the missing side of a right triangle from any two sides | key | 1 credit |
 | POST | [`/v1/math/triangle-heron`](reference/math-and-statistics.html#post--v1-math-triangle-heron) | Triangle area, perimeter, and angles from three side lengths | key | 1 credit |
@@ -293,7 +374,41 @@ Generated from the OpenAPI contract (v0.1.0) by `build-portal.py`. "public" mean
 | POST | [`/v1/math/logarithm-eval`](reference/math-and-statistics.html#post--v1-math-logarithm-eval) | Evaluate logarithms with custom bases using change of base | key | 1 credit |
 | POST | [`/v1/math/exponent-eval`](reference/math-and-statistics.html#post--v1-math-exponent-eval) | Evaluate exponentiation and optional real root extraction | key | 1 credit |
 | POST | [`/v1/math/combinatorics`](reference/math-and-statistics.html#post--v1-math-combinatorics) | Permutations and combinations for n and r | key | 1 credit |
+| POST | [`/api/v1/math/ohm-law`](reference/math-and-statistics.html#post--api-v1-math-ohm-law) | Ohm law solver for voltage, current, resistance, and power | key | 1 credit |
+| POST | [`/api/v1/math/projectile-range`](reference/math-and-statistics.html#post--api-v1-math-projectile-range) | Ideal projectile range, flight time, and max height | key | 1 credit |
+| POST | [`/api/v1/math/kinetic-energy`](reference/math-and-statistics.html#post--api-v1-math-kinetic-energy) | Kinetic energy from mass and velocity | key | 1 credit |
+| POST | [`/api/v1/math/potential-energy`](reference/math-and-statistics.html#post--api-v1-math-potential-energy) | Gravitational potential energy | key | 1 credit |
+| POST | [`/api/v1/math/circle-sector`](reference/math-and-statistics.html#post--api-v1-math-circle-sector) | Circle sector area, arc, and chord length | key | 1 credit |
+| POST | [`/api/v1/math/sphere-surface`](reference/math-and-statistics.html#post--api-v1-math-sphere-surface) | Sphere surface area and volume alias | key | 1 credit |
+| POST | [`/api/v1/math/cone-geometry`](reference/math-and-statistics.html#post--api-v1-math-cone-geometry) | Cone slant height, surface area, and volume | key | 1 credit |
+| POST | [`/api/v1/math/torus-geometry`](reference/math-and-statistics.html#post--api-v1-math-torus-geometry) | Torus surface area and volume | key | 1 credit |
+| POST | [`/api/v1/math/arithmetic-progression`](reference/math-and-statistics.html#post--api-v1-math-arithmetic-progression) | Arithmetic progression nth term and partial sum | key | 1 credit |
+| POST | [`/api/v1/math/geometric-progression`](reference/math-and-statistics.html#post--api-v1-math-geometric-progression) | Geometric progression nth term and partial sum | key | 1 credit |
 | POST | [`/v1/stats/summary`](reference/math-and-statistics.html#post--v1-stats-summary) | Descriptive statistics for a numeric dataset | key | 3 credits |
+
+### [Unit conversion](reference/convert.html)
+
+| Method | Path | What it does | Access | Cost |
+|---|---|---|---|---|
+| POST | [`/api/v1/convert/length`](reference/convert.html#post--api-v1-convert-length) | Zero-cost length unit conversion | key | 1 credit |
+| POST | [`/api/v1/convert/weight`](reference/convert.html#post--api-v1-convert-weight) | Zero-cost weight and mass unit conversion | key | 1 credit |
+| POST | [`/api/v1/convert/temperature`](reference/convert.html#post--api-v1-convert-temperature) | Temperature scale conversion | key | 1 credit |
+| POST | [`/api/v1/convert/area`](reference/convert.html#post--api-v1-convert-area) | Area unit conversion | key | 1 credit |
+| POST | [`/api/v1/convert/volume`](reference/convert.html#post--api-v1-convert-volume) | Volume unit conversion | key | 1 credit |
+| POST | [`/api/v1/convert/speed`](reference/convert.html#post--api-v1-convert-speed) | Speed unit conversion | key | 1 credit |
+| POST | [`/api/v1/convert/pressure`](reference/convert.html#post--api-v1-convert-pressure) | Pressure unit conversion | key | 1 credit |
+| POST | [`/api/v1/convert/energy`](reference/convert.html#post--api-v1-convert-energy) | Energy unit conversion | key | 1 credit |
+| POST | [`/api/v1/convert/power`](reference/convert.html#post--api-v1-convert-power) | Power unit conversion | key | 1 credit |
+| POST | [`/api/v1/convert/data-storage`](reference/convert.html#post--api-v1-convert-data-storage) | Data storage unit conversion | key | 1 credit |
+
+### [Hashing and encoding](reference/crypto.html)
+
+| Method | Path | What it does | Access | Cost |
+|---|---|---|---|---|
+| POST | [`/api/v1/crypto/hash-sha256`](reference/crypto.html#post--api-v1-crypto-hash-sha256) | Compute SHA-256 hash for a small payload | key | 1 credit |
+| POST | [`/api/v1/crypto/hash-sha512`](reference/crypto.html#post--api-v1-crypto-hash-sha512) | Compute SHA-512 hash for a small payload | key | 1 credit |
+| POST | [`/api/v1/crypto/base64-encode`](reference/crypto.html#post--api-v1-crypto-base64-encode) | Encode text to Base64 | key | 1 credit |
+| POST | [`/api/v1/crypto/base64-decode`](reference/crypto.html#post--api-v1-crypto-base64-decode) | Decode Base64 text | key | 1 credit |
 
 ### [Health](reference/health.html)
 
@@ -354,21 +469,31 @@ curl 'https://api.calculationtime.com/v1/astronomy/crux-midnight' \
   -X POST \
   -H 'X-API-Key: YOUR_KEY' \
   -H 'Content-Type: application/json' \
-  -d '{"start_date":"2026-03-31","days":3,"timezone":"+10:00"}'
+  -d '{"start_date":"2026-04-01","days":3,"timezone":"+10:00"}'
 ```
 
-Abridged response, as published on the CalculationTime developer page:
+Abridged response from the Cumnock calibration:
 
 ```json
 {
-  "input": { "start_date": "2026-03-31", "days": 3, "timezone": "+10:00" },
+  "input": { "start_date": "2026-04-01", "days": 3, "timezone": "+10:00" },
+  "calibration": {
+    "crux_hand_ra_hours": 12.506514,
+    "gmst_formula": "IAU1982 linear",
+    "version": "2026-09-28",
+    "reference_anchor": {
+      "name": "Cumnock, NSW midnight-zero meridian",
+      "latitude_degrees": -32.99839,
+      "longitude_degrees": 148.639301038
+    }
+  },
   "count": 3,
   "positions": [
-    { "date": "2026-03-31", "day_index": 0, "crux_hand_degrees": 0 },
-    { "date": "2026-04-01", "day_index": 1, "crux_hand_degrees": 0.985647366 },
-    { "date": "2026-04-02", "day_index": 2, "crux_hand_degrees": 1.971294733 }
+    { "date": "2026-04-01", "day_index": 0, "crux_hand_degrees": 0 },
+    { "date": "2026-04-02", "day_index": 1, "crux_hand_degrees": 0.985647367 },
+    { "date": "2026-04-03", "day_index": 2, "crux_hand_degrees": 1.971294733 }
   ],
-  "method": "parkes_crux_hand_sidereal_clock_zeroed_2026_03_31_local_midnight"
+  "method": "crux_hand_sidereal_clock_zeroed_2026_04_01_aest_midnight"
 }
 ```
 
@@ -377,7 +502,7 @@ Abridged response, as published on the CalculationTime developer page:
 ```bash
 curl 'https://api.calculationtime.com/v1/astronomy/crux-hourly' \
   -X POST -H 'X-API-Key: YOUR_KEY' -H 'Content-Type: application/json' \
-  -d '{"date":"2026-03-31","timezone":"+10:00"}'
+  -d '{"date":"2026-04-01","timezone":"+10:00"}'
 ```
 
 ### Crux clock: current position (key required, 2 credits)
@@ -388,7 +513,7 @@ curl 'https://api.calculationtime.com/v1/astronomy/crux-current' \
   -d '{"timestamp":"2026-04-01T00:00:00+10:00"}'
 ```
 
-The Crux clock is calibrated to Parkes Observatory (latitude -32.99, longitude 148.26, elevation 415 m), with the clock hand zeroed at local midnight on 2026-03-31.
+The Crux clock is calibrated to the Cumnock, NSW midnight-zero meridian at longitude 148.639301038 and Parkes Observatory latitude, with the clock hand zeroed at 2026-04-01T00:00:00+10:00. Current-position responses include `reference_anchor` and `zero_alignment_delta` so clients can see the calibration and offset from the zero reference.
 
 ## 12. What is not documented yet
 

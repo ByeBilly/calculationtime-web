@@ -51,7 +51,7 @@
   footer { background:var(--brand); color:#d8cdbd; padding:24px 0; font-size:14px; }
   footer a { color:var(--gold-soft); }
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Math and statistics endpoints - CalculationTime API reference", "description": "Quadratics, triangles, circles, proportions, logarithms, exponents, percentages, combinatorics and statistics summaries.", "dateModified": "2026-09-21", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "CalculationTime", "url": "https://www.calculationtime.com"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Math and statistics endpoints - CalculationTime API reference", "description": "Quadratics, triangles, circles, proportions, logarithms, exponents, percentages, combinatorics and statistics summaries.", "dateModified": "2026-09-29", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "CalculationTime", "url": "https://www.calculationtime.com"}}</script>
 </head>
 <body>
 <header><div class="wrap">
@@ -62,16 +62,97 @@
 <p class="crumbs"><a href="../../index.html">Portal</a> / <a href="./">Endpoint reference</a> / Math and statistics</p>
 <h1>Math and statistics endpoints</h1>
 <p>Pure-maths endpoints. The request examples show the exact field names; results are computed with standard double-precision arithmetic, so display rounding is your decision.</p>
-<p class="meta">16 operations &middot; contract v0.1.0 &middot; base URL <code>https://api.calculationtime.com</code></p>
-<div class="scroll"><table><thead><tr><th>Method</th><th>Path</th><th>What it does</th><th>Access</th><th>Cost</th></tr></thead><tbody><tr><td>POST</td><td><a href="#post--v1-math-quadratic-solver"><code>/v1/math/quadratic-solver</code></a></td><td>Solve a quadratic equation with real or complex roots and vertex coordinates</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-pythagorean-solve"><code>/v1/math/pythagorean-solve</code></a></td><td>Solve the missing side of a right triangle from any two sides</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-triangle-heron"><code>/v1/math/triangle-heron</code></a></td><td>Triangle area, perimeter, and angles from three side lengths</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-circle-geometry"><code>/v1/math/circle-geometry</code></a></td><td>Circle area, circumference, diameter, arc length, and sector area</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-sphere-geometry"><code>/v1/math/sphere-geometry</code></a></td><td>Sphere diameter, surface area, and volume from radius</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-cylinder-geometry"><code>/v1/math/cylinder-geometry</code></a></td><td>Cylinder base area, surface area, and volume from radius and height</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-statistics-summary"><code>/v1/math/statistics-summary</code></a></td><td>Mean, median, mode, variance, standard deviation, and IQR for numbers</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-percentage-change"><code>/v1/math/percentage-change</code></a></td><td>Absolute and percentage change from baseline to current value</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-percent-error"><code>/v1/math/percent-error</code></a></td><td>Absolute, relative, and percent error against an accepted true value</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-gcd-lcm"><code>/v1/math/gcd-lcm</code></a></td><td>Greatest common divisor and least common multiple for integer sets</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-matrix-determinant"><code>/v1/math/matrix-determinant</code></a></td><td>Determinants for 2x2 and 3x3 matrices</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-proportion-solver"><code>/v1/math/proportion-solver</code></a></td><td>Solve x in equivalent ratios a/b = c/x</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-logarithm-eval"><code>/v1/math/logarithm-eval</code></a></td><td>Evaluate logarithms with custom bases using change of base</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-exponent-eval"><code>/v1/math/exponent-eval</code></a></td><td>Evaluate exponentiation and optional real root extraction</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-combinatorics"><code>/v1/math/combinatorics</code></a></td><td>Permutations and combinations for n and r</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-stats-summary"><code>/v1/stats/summary</code></a></td><td>Descriptive statistics for a numeric dataset</td><td>key</td><td>3 credits</td></tr></tbody></table></div>
+<p class="meta">36 operations &middot; contract v0.1.0 &middot; base URL <code>https://api.calculationtime.com</code></p>
+<div class="scroll"><table><thead><tr><th>Method</th><th>Path</th><th>What it does</th><th>Access</th><th>Cost</th></tr></thead><tbody><tr><td>POST</td><td><a href="#post--api-v1-math-matrix-multiply"><code>/api/v1/math/matrix-multiply</code></a></td><td>Multiply two 2x2 or 3x3-compatible matrices</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-math-vector-magnitude"><code>/api/v1/math/vector-magnitude</code></a></td><td>Calculate vector magnitude and unit vector</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-math-vector-dot-product"><code>/api/v1/math/vector-dot-product</code></a></td><td>Calculate vector dot product and angle</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-math-quadratic-vertex"><code>/api/v1/math/quadratic-vertex</code></a></td><td>Calculate parabola vertex, axis, and roots</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-math-factorial-gamma"><code>/api/v1/math/factorial-gamma</code></a></td><td>Calculate factorials and gamma approximations</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-math-fibonacci"><code>/api/v1/math/fibonacci</code></a></td><td>Calculate Fibonacci number and sequence</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-math-base-n-convert"><code>/api/v1/math/base-n-convert</code></a></td><td>Convert integers between base 2 and base 36</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-math-percentile-calc"><code>/api/v1/math/percentile-calc</code></a></td><td>Calculate statistical percentile from raw values</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-math-wind-chill"><code>/api/v1/math/wind-chill</code></a></td><td>Calculate wind chill apparent temperature</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-math-heat-index"><code>/api/v1/math/heat-index</code></a></td><td>Calculate heat index apparent temperature</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-quadratic-solver"><code>/v1/math/quadratic-solver</code></a></td><td>Solve a quadratic equation with real or complex roots and vertex coordinates</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-pythagorean-solve"><code>/v1/math/pythagorean-solve</code></a></td><td>Solve the missing side of a right triangle from any two sides</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-triangle-heron"><code>/v1/math/triangle-heron</code></a></td><td>Triangle area, perimeter, and angles from three side lengths</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-circle-geometry"><code>/v1/math/circle-geometry</code></a></td><td>Circle area, circumference, diameter, arc length, and sector area</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-sphere-geometry"><code>/v1/math/sphere-geometry</code></a></td><td>Sphere diameter, surface area, and volume from radius</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-cylinder-geometry"><code>/v1/math/cylinder-geometry</code></a></td><td>Cylinder base area, surface area, and volume from radius and height</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-statistics-summary"><code>/v1/math/statistics-summary</code></a></td><td>Mean, median, mode, variance, standard deviation, and IQR for numbers</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-percentage-change"><code>/v1/math/percentage-change</code></a></td><td>Absolute and percentage change from baseline to current value</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-percent-error"><code>/v1/math/percent-error</code></a></td><td>Absolute, relative, and percent error against an accepted true value</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-gcd-lcm"><code>/v1/math/gcd-lcm</code></a></td><td>Greatest common divisor and least common multiple for integer sets</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-matrix-determinant"><code>/v1/math/matrix-determinant</code></a></td><td>Determinants for 2x2 and 3x3 matrices</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-proportion-solver"><code>/v1/math/proportion-solver</code></a></td><td>Solve x in equivalent ratios a/b = c/x</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-logarithm-eval"><code>/v1/math/logarithm-eval</code></a></td><td>Evaluate logarithms with custom bases using change of base</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-exponent-eval"><code>/v1/math/exponent-eval</code></a></td><td>Evaluate exponentiation and optional real root extraction</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-math-combinatorics"><code>/v1/math/combinatorics</code></a></td><td>Permutations and combinations for n and r</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-math-ohm-law"><code>/api/v1/math/ohm-law</code></a></td><td>Ohm law solver for voltage, current, resistance, and power</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-math-projectile-range"><code>/api/v1/math/projectile-range</code></a></td><td>Ideal projectile range, flight time, and max height</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-math-kinetic-energy"><code>/api/v1/math/kinetic-energy</code></a></td><td>Kinetic energy from mass and velocity</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-math-potential-energy"><code>/api/v1/math/potential-energy</code></a></td><td>Gravitational potential energy</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-math-circle-sector"><code>/api/v1/math/circle-sector</code></a></td><td>Circle sector area, arc, and chord length</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-math-sphere-surface"><code>/api/v1/math/sphere-surface</code></a></td><td>Sphere surface area and volume alias</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-math-cone-geometry"><code>/api/v1/math/cone-geometry</code></a></td><td>Cone slant height, surface area, and volume</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-math-torus-geometry"><code>/api/v1/math/torus-geometry</code></a></td><td>Torus surface area and volume</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-math-arithmetic-progression"><code>/api/v1/math/arithmetic-progression</code></a></td><td>Arithmetic progression nth term and partial sum</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-math-geometric-progression"><code>/api/v1/math/geometric-progression</code></a></td><td>Geometric progression nth term and partial sum</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-stats-summary"><code>/v1/stats/summary</code></a></td><td>Descriptive statistics for a numeric dataset</td><td>key</td><td>3 credits</td></tr></tbody></table></div>
 <blockquote>Request bodies below are the examples published in the API's OpenAPI contract. The contract declares body fields only as free-form JSON, so it does not say which fields are required or optional; treat each example as a known-good shape and read the result's fields. Replace <code>YOUR_KEY</code> with a beta key; never put a key in public code. Endpoints marked public work as shown with no key.</blockquote>
-<h3 id="post--v1-math-quadratic-solver"><code>POST /v1/math/quadratic-solver</code></h3>
+<h3 id="post--api-v1-math-matrix-multiply"><code>POST /api/v1/math/matrix-multiply</code></h3>
+<p>Multiply two 2x2 or 3x3-compatible matrices.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/math/matrix-multiply&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;a&quot;:[[1,2],[3,4]],&quot;b&quot;:[[5,6],[7,8]]}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-math-vector-magnitude"><code>POST /api/v1/math/vector-magnitude</code></h3>
+<p>Calculate vector magnitude and unit vector.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/math/vector-magnitude&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;vector&quot;:[3,4]}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-math-vector-dot-product"><code>POST /api/v1/math/vector-dot-product</code></h3>
+<p>Calculate vector dot product and angle.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/math/vector-dot-product&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;a&quot;:[1,0],&quot;b&quot;:[0,1]}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-math-quadratic-vertex"><code>POST /api/v1/math/quadratic-vertex</code></h3>
+<p>Calculate parabola vertex, axis, and roots.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/math/quadratic-vertex&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;a&quot;:1,&quot;b&quot;:-4,&quot;c&quot;:3}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-math-factorial-gamma"><code>POST /api/v1/math/factorial-gamma</code></h3>
+<p>Calculate factorials and gamma approximations.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/math/factorial-gamma&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;n&quot;:5}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-math-fibonacci"><code>POST /api/v1/math/fibonacci</code></h3>
+<p>Calculate Fibonacci number and sequence.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/math/fibonacci&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;n&quot;:10}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-math-base-n-convert"><code>POST /api/v1/math/base-n-convert</code></h3>
+<p>Convert integers between base 2 and base 36.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/math/base-n-convert&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;value&quot;:&quot;ff&quot;,&quot;from_base&quot;:16,&quot;to_base&quot;:2}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-math-percentile-calc"><code>POST /api/v1/math/percentile-calc</code></h3>
+<p>Calculate statistical percentile from raw values.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/math/percentile-calc&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;values&quot;:[1,2,3,4,5],&quot;percentile&quot;:90}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-math-wind-chill"><code>POST /api/v1/math/wind-chill</code></h3>
+<p>Calculate wind chill apparent temperature.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/math/wind-chill&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;temperature_c&quot;:0,&quot;wind_kmh&quot;:20}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-math-heat-index"><code>POST /api/v1/math/heat-index</code></h3>
+<p>Calculate heat index apparent temperature.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/math/heat-index&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;temperature_c&quot;:32,&quot;relative_humidity&quot;:70}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-quadratic-solver"><code>POST /v1/math/quadratic-solver</code></h3>
 <p>Solve a quadratic equation with real or complex roots and vertex coordinates.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
 <pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/math/quadratic-solver&#x27; \
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;a&quot;:1,&quot;b&quot;:-3,&quot;c&quot;:2}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-pythagorean-solve"><code>POST /v1/math/pythagorean-solve</code></h3>
 <p>Solve the missing side of a right triangle from any two sides.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -79,6 +160,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;a&quot;:3,&quot;b&quot;:4}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-triangle-heron"><code>POST /v1/math/triangle-heron</code></h3>
 <p>Triangle area, perimeter, and angles from three side lengths.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -86,6 +168,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;a&quot;:3,&quot;b&quot;:4,&quot;c&quot;:5}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-circle-geometry"><code>POST /v1/math/circle-geometry</code></h3>
 <p>Circle area, circumference, diameter, arc length, and sector area.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -93,6 +176,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;radius&quot;:10,&quot;angle_degrees&quot;:90}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-sphere-geometry"><code>POST /v1/math/sphere-geometry</code></h3>
 <p>Sphere diameter, surface area, and volume from radius.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -100,6 +184,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;radius&quot;:3}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-cylinder-geometry"><code>POST /v1/math/cylinder-geometry</code></h3>
 <p>Cylinder base area, surface area, and volume from radius and height.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -107,6 +192,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;radius&quot;:3,&quot;height&quot;:10}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-statistics-summary"><code>POST /v1/math/statistics-summary</code></h3>
 <p>Mean, median, mode, variance, standard deviation, and IQR for numbers.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -114,6 +200,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;values&quot;:[1,2,2,4,9]}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-percentage-change"><code>POST /v1/math/percentage-change</code></h3>
 <p>Absolute and percentage change from baseline to current value.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -121,6 +208,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;baseline&quot;:80,&quot;current&quot;:100}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-percent-error"><code>POST /v1/math/percent-error</code></h3>
 <p>Absolute, relative, and percent error against an accepted true value.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -128,6 +216,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;true_value&quot;:100,&quot;measured_value&quot;:96}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-gcd-lcm"><code>POST /v1/math/gcd-lcm</code></h3>
 <p>Greatest common divisor and least common multiple for integer sets.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -135,6 +224,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;values&quot;:[12,18,30]}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-matrix-determinant"><code>POST /v1/math/matrix-determinant</code></h3>
 <p>Determinants for 2x2 and 3x3 matrices.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -142,6 +232,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;matrix&quot;:[[1,2],[3,4]]}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-proportion-solver"><code>POST /v1/math/proportion-solver</code></h3>
 <p>Solve x in equivalent ratios a/b = c/x.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -149,6 +240,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;a&quot;:2,&quot;b&quot;:5,&quot;c&quot;:8}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-logarithm-eval"><code>POST /v1/math/logarithm-eval</code></h3>
 <p>Evaluate logarithms with custom bases using change of base.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -156,6 +248,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;value&quot;:1000,&quot;base&quot;:10}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-exponent-eval"><code>POST /v1/math/exponent-eval</code></h3>
 <p>Evaluate exponentiation and optional real root extraction.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -163,6 +256,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;base&quot;:27,&quot;exponent&quot;:2,&quot;root&quot;:3}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-math-combinatorics"><code>POST /v1/math/combinatorics</code></h3>
 <p>Permutations and combinations for n and r.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -170,6 +264,87 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;n&quot;:10,&quot;r&quot;:3}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-math-ohm-law"><code>POST /api/v1/math/ohm-law</code></h3>
+<p>Ohm law solver for voltage, current, resistance, and power.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/math/ohm-law&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;voltage&quot;:12,&quot;resistance&quot;:4}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-math-projectile-range"><code>POST /api/v1/math/projectile-range</code></h3>
+<p>Ideal projectile range, flight time, and max height.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/math/projectile-range&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;velocity&quot;:30,&quot;angle_degrees&quot;:45}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-math-kinetic-energy"><code>POST /api/v1/math/kinetic-energy</code></h3>
+<p>Kinetic energy from mass and velocity.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/math/kinetic-energy&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;mass&quot;:10,&quot;velocity&quot;:12}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-math-potential-energy"><code>POST /api/v1/math/potential-energy</code></h3>
+<p>Gravitational potential energy.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/math/potential-energy&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;mass&quot;:10,&quot;height&quot;:5}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-math-circle-sector"><code>POST /api/v1/math/circle-sector</code></h3>
+<p>Circle sector area, arc, and chord length.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/math/circle-sector&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;radius&quot;:10,&quot;angle_degrees&quot;:90}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-math-sphere-surface"><code>POST /api/v1/math/sphere-surface</code></h3>
+<p>Sphere surface area and volume alias.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/math/sphere-surface&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;radius&quot;:3}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-math-cone-geometry"><code>POST /api/v1/math/cone-geometry</code></h3>
+<p>Cone slant height, surface area, and volume.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/math/cone-geometry&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;radius&quot;:3,&quot;height&quot;:4}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-math-torus-geometry"><code>POST /api/v1/math/torus-geometry</code></h3>
+<p>Torus surface area and volume.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/math/torus-geometry&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;major_radius&quot;:5,&quot;minor_radius&quot;:2}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-math-arithmetic-progression"><code>POST /api/v1/math/arithmetic-progression</code></h3>
+<p>Arithmetic progression nth term and partial sum.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/math/arithmetic-progression&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;first&quot;:2,&quot;difference&quot;:3,&quot;n&quot;:10}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-math-geometric-progression"><code>POST /api/v1/math/geometric-progression</code></h3>
+<p>Geometric progression nth term and partial sum.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/math/geometric-progression&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;first&quot;:2,&quot;ratio&quot;:3,&quot;n&quot;:5}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-stats-summary"><code>POST /v1/stats/summary</code></h3>
 <p>Descriptive statistics for a numeric dataset.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">3 credits</span></p>
@@ -177,9 +352,10 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;values&quot;:[1,2,2,4,9]}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p>
 <p><a href="../api-guide.html">Read the full guide</a> for authentication, limits, credits and errors, or <a href="./">browse every area</a>.</p>
 </div></main>
-<footer><div class="wrap">Contract v0.1.0 &middot; built 2026-09-21 &middot; <a href="../../index.html">Portal home</a> &middot; <a href="https://www.calculationtime.com">calculationtime.com</a> &middot; <a href="https://github.com/ByeBilly/calculationtime-web">Source on GitHub</a></div></footer>
+<footer><div class="wrap">Contract v0.1.0 &middot; built 2026-09-29 &middot; <a href="../../index.html">Portal home</a> &middot; <a href="https://www.calculationtime.com">calculationtime.com</a> &middot; <a href="https://github.com/ByeBilly/calculationtime-web">Source on GitHub</a></div></footer>
 </body>
 </html>

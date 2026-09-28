@@ -51,7 +51,7 @@
   footer { background:var(--brand); color:#d8cdbd; padding:24px 0; font-size:14px; }
   footer a { color:var(--gold-soft); }
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Geo endpoints - CalculationTime API reference", "description": "Great-circle distance, midpoint, bounding box and elevation for latitude and longitude points.", "dateModified": "2026-09-21", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "CalculationTime", "url": "https://www.calculationtime.com"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Geo endpoints - CalculationTime API reference", "description": "Great-circle distance, midpoint, bounding box and elevation for latitude and longitude points.", "dateModified": "2026-09-29", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "CalculationTime", "url": "https://www.calculationtime.com"}}</script>
 </head>
 <body>
 <header><div class="wrap">
@@ -70,6 +70,7 @@
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
 <p><strong>Parameters:</strong> <code>lat1</code> (query), <code>lon1</code> (query), <code>lat2</code> (query), <code>lon2</code> (query)</p><pre><code>curl &#x27;https://api.calculationtime.com/v1/geo/distance?from_lat=48.137154&amp;from_lon=11.576124&amp;to_lat=52.52&amp;to_lon=13.405&#x27; \
   -H &#x27;X-API-Key: YOUR_KEY&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-geo-distance-batch"><code>POST /v1/geo/distance/batch</code></h3>
 <p>Batch distance calculations.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -77,29 +78,34 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;pairs&quot;:[{&quot;from&quot;:{&quot;lat&quot;:48.137154,&quot;lon&quot;:11.576124},&quot;to&quot;:{&quot;lat&quot;:51.5072,&quot;lon&quot;:-0.1276}}]}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="get--v1-geo-midpoint"><code>GET /v1/geo/midpoint</code></h3>
 <p>Midpoint between two coordinates.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
 <p><strong>Parameters:</strong> <code>lat1</code> (query), <code>lon1</code> (query), <code>lat2</code> (query), <code>lon2</code> (query)</p><pre><code>curl &#x27;https://api.calculationtime.com/v1/geo/midpoint?from_lat=48.137154&amp;from_lon=11.576124&amp;to_lat=52.52&amp;to_lon=13.405&#x27; \
   -H &#x27;X-API-Key: YOUR_KEY&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="get--v1-geo-bounding-box"><code>GET /v1/geo/bounding-box</code></h3>
 <p>Bounding box around a coordinate.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
 <p><strong>Parameters:</strong> <code>lat</code> (query), <code>lon</code> (query), <code>radius_km</code> (query)</p><pre><code>curl &#x27;https://api.calculationtime.com/v1/geo/bounding-box?lat=48.137154&amp;lon=11.576124&amp;radius_km=50&#x27; \
   -H &#x27;X-API-Key: YOUR_KEY&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="get--v1-geo-elevation"><code>GET /v1/geo/elevation</code></h3>
 <p>Elevation for one coordinate.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
 <p><strong>Parameters:</strong> <code>lat</code> (query), <code>lon</code> (query)</p><pre><code>curl &#x27;https://api.calculationtime.com/v1/geo/elevation?lat=48.137154&amp;lon=11.576124&#x27; \
   -H &#x27;X-API-Key: YOUR_KEY&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="get--v1-geo-nearby"><code>GET /v1/geo/nearby</code></h3>
 <p>Nearby stored geo points.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
 <p><strong>Parameters:</strong> <code>lat</code> (query), <code>lon</code> (query), <code>radius_km</code> (query)</p><pre><code>curl &#x27;https://api.calculationtime.com/v1/geo/nearby?lat=LAT&amp;lon=LON&amp;radius_km=RADIUS_KM&#x27; \
   -H &#x27;X-API-Key: YOUR_KEY&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p>
 <p><a href="../api-guide.html">Read the full guide</a> for authentication, limits, credits and errors, or <a href="./">browse every area</a>.</p>
 </div></main>
-<footer><div class="wrap">Contract v0.1.0 &middot; built 2026-09-21 &middot; <a href="../../index.html">Portal home</a> &middot; <a href="https://www.calculationtime.com">calculationtime.com</a> &middot; <a href="https://github.com/ByeBilly/calculationtime-web">Source on GitHub</a></div></footer>
+<footer><div class="wrap">Contract v0.1.0 &middot; built 2026-09-29 &middot; <a href="../../index.html">Portal home</a> &middot; <a href="https://www.calculationtime.com">calculationtime.com</a> &middot; <a href="https://github.com/ByeBilly/calculationtime-web">Source on GitHub</a></div></footer>
 </body>
 </html>

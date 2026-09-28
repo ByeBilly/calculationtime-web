@@ -24,18 +24,27 @@ AREAS = [
     ("service", "Service and status", "Public probes: health, status, the OpenAPI contract and a UTC clock.",
      "The service endpoints need no key. They tell you whether the API is up, what it exposes and what time the server believes it is. Use them for health checks and for discovering the contract.",
      lambda p: p in ("/", "/health", "/openapi.json", "/v1/status", "/v1/time/utc", "/v1/canary") or "/utility/" in p),
+    ("learning", "Learning and onboarding", "Beginner guide pages and no-key demo calls for first API experiments.",
+     "The learning endpoints are public, fixed-shape demos for people trying their first CalculationTime API calls. They are safe to open in a browser and useful for tutorials, onboarding and README examples before a developer has a beta key.",
+     lambda p: p in ("/beginner", "/learn") or p.startswith("/v1/learn")),
     ("reference-data", "Reference data", "Public JSON tables: countries, time zones, elements, constants, materials, HTTP status, MIME types, Unicode blocks, constellations, bright stars, meteor showers.",
      "Every reference table is a public GET that needs no key and sends open CORS headers, so a browser can read it directly. Each response carries dataset_version, source and count. Most tables accept q (text filter) and limit. The same tables also answer under /api/v1/data/... as a frontend alias.",
      lambda p: p.startswith("/v1/data/")),
     ("time-and-dates", "Time and dates", "Local time for a coordinate, date differences, date arithmetic, business days, ISO weeks, ages, epoch conversion and more.",
      "Date and time calculations over plain JSON. Local time takes a latitude and longitude; date routines take ISO dates and return explicit, inspectable results rather than a bare number.",
-     lambda p: p.startswith("/v1/time") or p.startswith("/v1/date") or p.startswith("/v1/holidays")),
+     lambda p: p.startswith("/v1/time") or p.startswith("/v1/date") or p.startswith("/v1/holidays") or p.startswith("/v1/schedule")),
     ("geo", "Geo", "Great-circle distance, midpoint, bounding box and elevation for latitude and longitude points.",
      "Geospatial helpers that work from coordinates you supply. Distances are great-circle distances on a sphere; treat them as estimates, not survey-grade values.",
      lambda p: p.startswith("/v1/geo")),
     ("astronomy", "Astronomy and Crux clock", "Sun and moon position, twilight, sidereal time, Julian date, ephemeris, and the Crux Sky Clock engine.",
-     "The astronomy endpoints power the Crux Sky Clock and the site's sky calculators. The Crux endpoints report the Southern Cross clock position for Parkes Observatory, calibrated with the hand zeroed at local midnight on 2026-03-31.",
+     "The astronomy endpoints power the Crux Sky Clock and the site's sky calculators. The Crux endpoints report the Southern Cross clock hand position using the Cumnock, NSW midnight-zero meridian calibration, with zero at 2026-04-01T00:00:00+10:00.",
      lambda p: p.startswith("/v1/astronomy") or p.startswith("/v1/solar")),
+    ("color-and-typography", "Color and typography", "Hex/RGB/HSL conversion, contrast, luminance, tint/shade, CMYK, rem sizing and line height.",
+     "Design utility endpoints for interface work and documentation examples. They accept small JSON payloads and return deterministic colour or typography calculations that are easy to cite in developer tutorials.",
+     lambda p: p.startswith("/v1/color") or p.startswith("/v1/typography")),
+    ("network", "Network and web utilities", "IP parsing, CIDR ranges, user agents, query strings, slugs, ports, HTTP status, MIME lookup, UUIDv5 and MAC formatting.",
+     "Small deterministic web-developer utilities. They are API-key protected in this contract unless explicitly listed as public elsewhere; use them server-side or in private tooling, not with keys embedded in public browser code.",
+     lambda p: p.startswith("/v1/network")),
     ("finance", "Finance", "Loan amortization, simple and compound interest, ROI, CAGR, margin, markup, break-even, discounts and sales tax.",
      "Finance calculators that return the working, not just the answer. Amounts are decimal numbers you supply; check each example body for the field names.",
      lambda p: p.startswith("/v1/finance")),
@@ -45,8 +54,8 @@ AREAS = [
     ("convert", "Unit conversion", "Length, weight, temperature, area, volume, speed, pressure, energy, power and data-storage conversion.",
      "Convert a value from one unit to another over JSON. The request names the value and the source and target units; check each example body for the exact unit spellings the API accepts.",
      lambda p: p.startswith("/v1/convert")),
-    ("crypto", "Hashing and encoding", "SHA-256, SHA-512 and MD5 hashes and Base64 encoding and decoding for small payloads.",
-     "Hash and encode small text payloads. MD5 is included for checksums and legacy compatibility only; it is not safe for passwords or security, so use SHA-256 or SHA-512 for anything that matters. Do not send secrets to any remote service.",
+    ("crypto", "Hashing and encoding", "SHA-256, SHA-512 and Base64 encoding and decoding for small payloads.",
+     "Hash and encode small text payloads. Use SHA-256 or SHA-512 for anything that matters. Do not send secrets to any remote service.",
      lambda p: p.startswith("/v1/crypto")),
     ("health", "Health", "BMI, BMR, TDEE, macro splits and pace, with the formula named in the result.",
      "Health calculators use published formulas and state which one they used. They are aids for planning, not medical advice.",
@@ -207,10 +216,15 @@ for slug, title, short, intro, _pred in AREAS:
         if params:
             ptxt = "<p><strong>Parameters:</strong> " + ", ".join(
                 f"<code>{p['name']}</code> ({p['in']}{', required' if p.get('required') else ''})" for p in params) + "</p>"
+        response_example = (((op.get("responses", {}).get("200", {}).get("content", {}) or {}).get("application/json", {}) or {}).get("example"))
+        rex = ""
+        if response_example is not None:
+            rex = "<p><strong>Response example fields:</strong></p><pre><code>" + html.escape(json.dumps(response_example, indent=2, ensure_ascii=False)) + "</code></pre>"
         blocks.append(f"""<h3 id="{slug_of(o)}"><code>{o['method']} {html.escape(o['path'])}</code></h3>
 <p>{html.escape(op.get('summary',''))}.</p>
 <p class="meta"><span class="pill">{'API key required' if op.get('security') else 'Public, no key'}</span><span class="pill">{cost(op)}</span></p>
 {ptxt}<pre><code>{html.escape(curl_for(o))}</code></pre>
+{rex}
 {('<p class="meta">Other responses in the contract: ' + errs + '.</p>') if errs and op.get('security') else ''}""")
     body = f"""<p class="crumbs"><a href="../../index.html">Portal</a> / <a href="./">Endpoint reference</a> / {html.escape(title)}</p>
 <h1>{html.escape(title)} endpoints</h1>

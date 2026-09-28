@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Health API endpoints - CalculationTime API reference</title>
-<meta name="description" content="BMI, BMR, TDEE, macro splits and pace, with the formula named in the result.">
-<link rel="canonical" href="https://byebilly.github.io/calculationtime-web/docs/reference/health.html">
-<meta property="og:title" content="Health API endpoints - CalculationTime API reference">
-<meta property="og:description" content="BMI, BMR, TDEE, macro splits and pace, with the formula named in the result.">
+<title>Hashing and encoding API endpoints - CalculationTime API reference</title>
+<meta name="description" content="SHA-256, SHA-512 and Base64 encoding and decoding for small payloads.">
+<link rel="canonical" href="https://byebilly.github.io/calculationtime-web/docs/reference/crypto.html">
+<meta property="og:title" content="Hashing and encoding API endpoints - CalculationTime API reference">
+<meta property="og:description" content="SHA-256, SHA-512 and Base64 encoding and decoding for small payloads.">
 <meta property="og:type" content="website">
 <style>
   :root { --bg:#f7f1e4; --panel:#fff; --ink:#14110c; --muted:#5a5245; --line:#d9ccb0; --brand:#0b0d14; --gold:#c98b2c; --gold-soft:#e5b65f; --code-bg:#0d1018; --code-ink:#f3ead6; --radius:12px; }
@@ -51,7 +51,7 @@
   footer { background:var(--brand); color:#d8cdbd; padding:24px 0; font-size:14px; }
   footer a { color:var(--gold-soft); }
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Health endpoints - CalculationTime API reference", "description": "BMI, BMR, TDEE, macro splits and pace, with the formula named in the result.", "dateModified": "2026-09-29", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "CalculationTime", "url": "https://www.calculationtime.com"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Hashing and encoding endpoints - CalculationTime API reference", "description": "SHA-256, SHA-512 and Base64 encoding and decoding for small payloads.", "dateModified": "2026-09-29", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "CalculationTime", "url": "https://www.calculationtime.com"}}</script>
 </head>
 <body>
 <header><div class="wrap">
@@ -59,51 +59,43 @@
   <nav aria-label="Primary"><a href="../../docs/api-guide.html">Guide</a><a href="../../docs/reference/">Endpoint reference</a><a href="https://api.calculationtime.com/openapi.json">OpenAPI</a><a href="https://www.calculationtime.com/developers/api/beta/">Request beta access</a><a href="https://www.calculationtime.com">Main site</a></nav>
 </div></header>
 <main><div class="wrap">
-<p class="crumbs"><a href="../../index.html">Portal</a> / <a href="./">Endpoint reference</a> / Health</p>
-<h1>Health endpoints</h1>
-<p>Health calculators use published formulas and state which one they used. They are aids for planning, not medical advice.</p>
-<p class="meta">5 operations &middot; contract v0.1.0 &middot; base URL <code>https://api.calculationtime.com</code></p>
-<div class="scroll"><table><thead><tr><th>Method</th><th>Path</th><th>What it does</th><th>Access</th><th>Cost</th></tr></thead><tbody><tr><td>POST</td><td><a href="#post--v1-health-bmi"><code>/v1/health/bmi</code></a></td><td>Body Mass Index and category classification</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-health-bmr"><code>/v1/health/bmr</code></a></td><td>Basal Metabolic Rate using Mifflin-St Jeor</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-health-tdee"><code>/v1/health/tdee</code></a></td><td>Total Daily Energy Expenditure from BMR and activity multiplier</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-health-macro-split"><code>/v1/health/macro-split</code></a></td><td>Protein, carbs, and fat grams from calories and macro percentages</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-health-pace-calculator"><code>/v1/health/pace-calculator</code></a></td><td>Running or walking pace and speed from distance and duration</td><td>key</td><td>1 credit</td></tr></tbody></table></div>
+<p class="crumbs"><a href="../../index.html">Portal</a> / <a href="./">Endpoint reference</a> / Hashing and encoding</p>
+<h1>Hashing and encoding endpoints</h1>
+<p>Hash and encode small text payloads. Use SHA-256 or SHA-512 for anything that matters. Do not send secrets to any remote service.</p>
+<p class="meta">4 operations &middot; contract v0.1.0 &middot; base URL <code>https://api.calculationtime.com</code></p>
+<div class="scroll"><table><thead><tr><th>Method</th><th>Path</th><th>What it does</th><th>Access</th><th>Cost</th></tr></thead><tbody><tr><td>POST</td><td><a href="#post--api-v1-crypto-hash-sha256"><code>/api/v1/crypto/hash-sha256</code></a></td><td>Compute SHA-256 hash for a small payload</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-crypto-hash-sha512"><code>/api/v1/crypto/hash-sha512</code></a></td><td>Compute SHA-512 hash for a small payload</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-crypto-base64-encode"><code>/api/v1/crypto/base64-encode</code></a></td><td>Encode text to Base64</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-crypto-base64-decode"><code>/api/v1/crypto/base64-decode</code></a></td><td>Decode Base64 text</td><td>key</td><td>1 credit</td></tr></tbody></table></div>
 <blockquote>Request bodies below are the examples published in the API's OpenAPI contract. The contract declares body fields only as free-form JSON, so it does not say which fields are required or optional; treat each example as a known-good shape and read the result's fields. Replace <code>YOUR_KEY</code> with a beta key; never put a key in public code. Endpoints marked public work as shown with no key.</blockquote>
-<h3 id="post--v1-health-bmi"><code>POST /v1/health/bmi</code></h3>
-<p>Body Mass Index and category classification.</p>
+<h3 id="post--api-v1-crypto-hash-sha256"><code>POST /api/v1/crypto/hash-sha256</code></h3>
+<p>Compute SHA-256 hash for a small payload.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
-<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/health/bmi&#x27; \
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/crypto/hash-sha256&#x27; \
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
-  -d &#x27;{&quot;unit&quot;:&quot;metric&quot;,&quot;weight_kg&quot;:70,&quot;height_cm&quot;:175}&#x27;</code></pre>
+  -d &#x27;{&quot;text&quot;:&quot;calculationtime&quot;}&#x27;</code></pre>
 
-<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-health-bmr"><code>POST /v1/health/bmr</code></h3>
-<p>Basal Metabolic Rate using Mifflin-St Jeor.</p>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-crypto-hash-sha512"><code>POST /api/v1/crypto/hash-sha512</code></h3>
+<p>Compute SHA-512 hash for a small payload.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
-<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/health/bmr&#x27; \
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/crypto/hash-sha512&#x27; \
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
-  -d &#x27;{&quot;unit&quot;:&quot;metric&quot;,&quot;weight_kg&quot;:70,&quot;height_cm&quot;:175,&quot;age&quot;:35,&quot;sex&quot;:&quot;male&quot;}&#x27;</code></pre>
+  -d &#x27;{&quot;text&quot;:&quot;calculationtime&quot;}&#x27;</code></pre>
 
-<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-health-tdee"><code>POST /v1/health/tdee</code></h3>
-<p>Total Daily Energy Expenditure from BMR and activity multiplier.</p>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-crypto-base64-encode"><code>POST /api/v1/crypto/base64-encode</code></h3>
+<p>Encode text to Base64.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
-<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/health/tdee&#x27; \
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/crypto/base64-encode&#x27; \
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
-  -d &#x27;{&quot;unit&quot;:&quot;metric&quot;,&quot;weight_kg&quot;:70,&quot;height_cm&quot;:175,&quot;age&quot;:35,&quot;sex&quot;:&quot;male&quot;,&quot;activity_level&quot;:&quot;moderate&quot;}&#x27;</code></pre>
+  -d &#x27;{&quot;text&quot;:&quot;calculationtime&quot;}&#x27;</code></pre>
 
-<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-health-macro-split"><code>POST /v1/health/macro-split</code></h3>
-<p>Protein, carbs, and fat grams from calories and macro percentages.</p>
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-crypto-base64-decode"><code>POST /api/v1/crypto/base64-decode</code></h3>
+<p>Decode Base64 text.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
-<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/health/macro-split&#x27; \
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/crypto/base64-decode&#x27; \
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
-  -d &#x27;{&quot;calories&quot;:2000,&quot;protein_percent&quot;:30,&quot;carbs_percent&quot;:40,&quot;fat_percent&quot;:30}&#x27;</code></pre>
-
-<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-health-pace-calculator"><code>POST /v1/health/pace-calculator</code></h3>
-<p>Running or walking pace and speed from distance and duration.</p>
-<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
-<pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/health/pace-calculator&#x27; \
-  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
-  -H &#x27;Content-Type: application/json&#x27; \
-  -d &#x27;{&quot;distance&quot;:5,&quot;unit&quot;:&quot;km&quot;,&quot;minutes&quot;:25}&#x27;</code></pre>
+  -d &#x27;{&quot;base64&quot;:&quot;Y2FsY3VsYXRpb250aW1l&quot;}&#x27;</code></pre>
 
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p>
 <p><a href="../api-guide.html">Read the full guide</a> for authentication, limits, credits and errors, or <a href="./">browse every area</a>.</p>

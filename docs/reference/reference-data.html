@@ -51,7 +51,7 @@
   footer { background:var(--brand); color:#d8cdbd; padding:24px 0; font-size:14px; }
   footer a { color:var(--gold-soft); }
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Reference data endpoints - CalculationTime API reference", "description": "Public JSON tables: countries, time zones, elements, constants, materials, HTTP status, MIME types, Unicode blocks, constellations, bright stars, meteor showers.", "dateModified": "2026-09-21", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "CalculationTime", "url": "https://www.calculationtime.com"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Reference data endpoints - CalculationTime API reference", "description": "Public JSON tables: countries, time zones, elements, constants, materials, HTTP status, MIME types, Unicode blocks, constellations, bright stars, meteor showers.", "dateModified": "2026-09-29", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "CalculationTime", "url": "https://www.calculationtime.com"}}</script>
 </head>
 <body>
 <header><div class="wrap">
@@ -69,49 +69,60 @@
 <p>Country reference table with capitals, ISO codes, dialing codes, and currencies.</p>
 <p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
 <pre><code>curl &#x27;https://api.calculationtime.com/v1/data/countries?q=aus&#x27;</code></pre>
+
 <h3 id="get--v1-data-timezones"><code>GET /v1/data/timezones</code></h3>
 <p>IANA timezone reference with current UTC offsets and DST status.</p>
 <p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
 <pre><code>curl &#x27;https://api.calculationtime.com/v1/data/timezones?q=Australia&amp;at=2026-09-21T00:00:00Z&#x27;</code></pre>
+
 <h3 id="get--v1-data-elements"><code>GET /v1/data/elements</code></h3>
 <p>Periodic table reference values.</p>
 <p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
 <pre><code>curl &#x27;https://api.calculationtime.com/v1/data/elements?q=oxygen&#x27;</code></pre>
+
 <h3 id="get--v1-data-constants"><code>GET /v1/data/constants</code></h3>
 <p>Physical and mathematical constants reference table.</p>
 <p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
 <pre><code>curl &#x27;https://api.calculationtime.com/v1/data/constants?q=planck&#x27;</code></pre>
+
 <h3 id="get--v1-data-materials-density"><code>GET /v1/data/materials/density</code></h3>
 <p>Common material density reference table.</p>
 <p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
 <pre><code>curl &#x27;https://api.calculationtime.com/v1/data/materials/density?q=aluminium&#x27;</code></pre>
+
 <h3 id="get--v1-data-http-status"><code>GET /v1/data/http-status</code></h3>
 <p>HTTP status code directory.</p>
 <p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
 <pre><code>curl &#x27;https://api.calculationtime.com/v1/data/http-status?q=429&#x27;</code></pre>
+
 <h3 id="get--v1-data-mime-types"><code>GET /v1/data/mime-types</code></h3>
 <p>MIME type and extension reference table.</p>
 <p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
 <pre><code>curl &#x27;https://api.calculationtime.com/v1/data/mime-types?extension=json&#x27;</code></pre>
+
 <h3 id="get--v1-data-unicode-blocks"><code>GET /v1/data/unicode-blocks</code></h3>
 <p>Unicode block range reference table.</p>
 <p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
 <pre><code>curl &#x27;https://api.calculationtime.com/v1/data/unicode-blocks?q=currency&#x27;</code></pre>
+
 <h3 id="get--v1-data-constellations"><code>GET /v1/data/constellations</code></h3>
 <p>IAU constellation names, genitives, abbreviations, and quadrants.</p>
 <p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
 <pre><code>curl &#x27;https://api.calculationtime.com/v1/data/constellations?q=crux&#x27;</code></pre>
+
 <h3 id="get--v1-data-stars-bright"><code>GET /v1/data/stars/bright</code></h3>
 <p>Bright star reference table.</p>
 <p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
 <pre><code>curl &#x27;https://api.calculationtime.com/v1/data/stars/bright?q=sirius&#x27;</code></pre>
+
 <h3 id="get--v1-data-meteor-showers"><code>GET /v1/data/meteor-showers</code></h3>
 <p>Major annual meteor shower reference table.</p>
 <p class="meta"><span class="pill">Public, no key</span><span class="pill">-</span></p>
 <pre><code>curl &#x27;https://api.calculationtime.com/v1/data/meteor-showers?q=perseids&#x27;</code></pre>
 
+
 <p><a href="../api-guide.html">Read the full guide</a> for authentication, limits, credits and errors, or <a href="./">browse every area</a>.</p>
 </div></main>
-<footer><div class="wrap">Contract v0.1.0 &middot; built 2026-09-21 &middot; <a href="../../index.html">Portal home</a> &middot; <a href="https://www.calculationtime.com">calculationtime.com</a> &middot; <a href="https://github.com/ByeBilly/calculationtime-web">Source on GitHub</a></div></footer>
+<footer><div class="wrap">Contract v0.1.0 &middot; built 2026-09-29 &middot; <a href="../../index.html">Portal home</a> &middot; <a href="https://www.calculationtime.com">calculationtime.com</a> &middot; <a href="https://github.com/ByeBilly/calculationtime-web">Source on GitHub</a></div></footer>
 </body>
 </html>

@@ -51,7 +51,7 @@
   footer { background:var(--brand); color:#d8cdbd; padding:24px 0; font-size:14px; }
   footer a { color:var(--gold-soft); }
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Account endpoints - CalculationTime API reference", "description": "Credit balance, usage and plan limits for the key you call with.", "dateModified": "2026-09-21", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "CalculationTime", "url": "https://www.calculationtime.com"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Account endpoints - CalculationTime API reference", "description": "Credit balance, usage and plan limits for the key you call with.", "dateModified": "2026-09-29", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "CalculationTime", "url": "https://www.calculationtime.com"}}</script>
 </head>
 <body>
 <header><div class="wrap">
@@ -70,24 +70,28 @@
 <p class="meta"><span class="pill">API key required</span><span class="pill">free</span></p>
 <pre><code>curl &#x27;https://api.calculationtime.com/v1/account/profile&#x27; \
   -H &#x27;X-API-Key: YOUR_KEY&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="get--v1-account-usage"><code>GET /v1/account/usage</code></h3>
 <p>Authenticated customer usage summary.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">free</span></p>
 <pre><code>curl &#x27;https://api.calculationtime.com/v1/account/usage&#x27; \
   -H &#x27;X-API-Key: YOUR_KEY&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="get--v1-account-limits"><code>GET /v1/account/limits</code></h3>
 <p>Authenticated customer plan and batch limits.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">free</span></p>
 <pre><code>curl &#x27;https://api.calculationtime.com/v1/account/limits&#x27; \
   -H &#x27;X-API-Key: YOUR_KEY&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="get--v1-account-credits"><code>GET /v1/account/credits</code></h3>
 <p>Authenticated customer credit balance.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">free</span></p>
 <pre><code>curl &#x27;https://api.calculationtime.com/v1/account/credits&#x27; \
   -H &#x27;X-API-Key: YOUR_KEY&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p>
 <p><a href="../api-guide.html">Read the full guide</a> for authentication, limits, credits and errors, or <a href="./">browse every area</a>.</p>
 </div></main>
-<footer><div class="wrap">Contract v0.1.0 &middot; built 2026-09-21 &middot; <a href="../../index.html">Portal home</a> &middot; <a href="https://www.calculationtime.com">calculationtime.com</a> &middot; <a href="https://github.com/ByeBilly/calculationtime-web">Source on GitHub</a></div></footer>
+<footer><div class="wrap">Contract v0.1.0 &middot; built 2026-09-29 &middot; <a href="../../index.html">Portal home</a> &middot; <a href="https://www.calculationtime.com">calculationtime.com</a> &middot; <a href="https://github.com/ByeBilly/calculationtime-web">Source on GitHub</a></div></footer>
 </body>
 </html>

@@ -51,7 +51,7 @@
   footer { background:var(--brand); color:#d8cdbd; padding:24px 0; font-size:14px; }
   footer a { color:var(--gold-soft); }
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Astronomy and Crux clock endpoints - CalculationTime API reference", "description": "Sun and moon position, twilight, sidereal time, Julian date, ephemeris, and the Crux Sky Clock engine.", "dateModified": "2026-09-21", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "CalculationTime", "url": "https://www.calculationtime.com"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Astronomy and Crux clock endpoints - CalculationTime API reference", "description": "Sun and moon position, twilight, sidereal time, Julian date, ephemeris, and the Crux Sky Clock engine.", "dateModified": "2026-09-29", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "CalculationTime", "url": "https://www.calculationtime.com"}}</script>
 </head>
 <body>
 <header><div class="wrap">
@@ -61,41 +61,103 @@
 <main><div class="wrap">
 <p class="crumbs"><a href="../../index.html">Portal</a> / <a href="./">Endpoint reference</a> / Astronomy and Crux clock</p>
 <h1>Astronomy and Crux clock endpoints</h1>
-<p>The astronomy endpoints power the Crux Sky Clock and the site&#x27;s sky calculators. The Crux endpoints report the Southern Cross clock position for Parkes Observatory, calibrated with the hand zeroed at local midnight on 2026-03-31.</p>
-<p class="meta">15 operations &middot; contract v0.1.0 &middot; base URL <code>https://api.calculationtime.com</code></p>
-<div class="scroll"><table><thead><tr><th>Method</th><th>Path</th><th>What it does</th><th>Access</th><th>Cost</th></tr></thead><tbody><tr><td>GET</td><td><a href="#get--v1-solar-position"><code>/v1/solar/position</code></a></td><td>Solar position for date and coordinate</td><td>key</td><td>1 credit</td></tr><tr><td>GET</td><td><a href="#get--v1-astronomy-ephemeris"><code>/v1/astronomy/ephemeris</code></a></td><td>Astronomy ephemeris for a date</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-astronomy-crux-midnight"><code>/v1/astronomy/crux-midnight</code></a></td><td>Crux clock hand midnight sidereal positions from Parkes Observatory calibration</td><td>key</td><td>2 credits</td></tr><tr><td>POST</td><td><a href="#post--v1-astronomy-crux-hourly"><code>/v1/astronomy/crux-hourly</code></a></td><td>Crux clock hand hourly sidereal breakdown for one local date</td><td>key</td><td>5 credits</td></tr><tr><td>POST</td><td><a href="#post--v1-astronomy-crux-current"><code>/v1/astronomy/crux-current</code></a></td><td>Current Crux clock hand position and Parkes alignment delta</td><td>key</td><td>2 credits</td></tr><tr><td>POST</td><td><a href="#post--v1-astronomy-solar-noon"><code>/v1/astronomy/solar-noon</code></a></td><td>Solar transit/noon timestamp for a coordinate and date</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-astronomy-equinox-solstice"><code>/v1/astronomy/equinox-solstice</code></a></td><td>Equinox and solstice timestamps for a year</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-astronomy-moon-phase"><code>/v1/astronomy/moon-phase</code></a></td><td>Moon illumination, age, and phase name for a timestamp</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-astronomy-julian-date"><code>/v1/astronomy/julian-date</code></a></td><td>Gregorian timestamp to Julian Day and Modified Julian Date</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-astronomy-sidereal-time"><code>/v1/astronomy/sidereal-time</code></a></td><td>Greenwich and local sidereal time for a timestamp and longitude</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-astronomy-twilight-calculator"><code>/v1/astronomy/twilight-calculator</code></a></td><td>Civil, nautical, and astronomical twilight crossings</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-astronomy-sun-position"><code>/v1/astronomy/sun-position</code></a></td><td>Sun right ascension, declination, azimuth, and elevation</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-astronomy-moon-position"><code>/v1/astronomy/moon-position</code></a></td><td>Moon right ascension, declination, azimuth, and elevation</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-astronomy-day-length"><code>/v1/astronomy/day-length</code></a></td><td>Daylight duration between sunrise and sunset</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-astronomy-polar-night-check"><code>/v1/astronomy/polar-night-check</code></a></td><td>Check midnight sun or polar night state for a latitude/date</td><td>key</td><td>1 credit</td></tr></tbody></table></div>
+<p>The astronomy endpoints power the Crux Sky Clock and the site&#x27;s sky calculators. The Crux endpoints report the Southern Cross clock hand position using the Cumnock, NSW midnight-zero meridian calibration, with zero at 2026-04-01T00:00:00+10:00.</p>
+<p class="meta">24 operations &middot; contract v0.1.0 &middot; base URL <code>https://api.calculationtime.com</code></p>
+<div class="scroll"><table><thead><tr><th>Method</th><th>Path</th><th>What it does</th><th>Access</th><th>Cost</th></tr></thead><tbody><tr><td>GET</td><td><a href="#get--v1-solar-position"><code>/v1/solar/position</code></a></td><td>Solar position for date and coordinate</td><td>key</td><td>1 credit</td></tr><tr><td>GET</td><td><a href="#get--v1-astronomy-ephemeris"><code>/v1/astronomy/ephemeris</code></a></td><td>Astronomy ephemeris for a date</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-astronomy-crux-midnight"><code>/v1/astronomy/crux-midnight</code></a></td><td>Crux clock hand midnight sidereal positions from the Cumnock zero meridian calibration</td><td>key</td><td>2 credits</td></tr><tr><td>POST</td><td><a href="#post--v1-astronomy-crux-hourly"><code>/v1/astronomy/crux-hourly</code></a></td><td>Crux clock hand hourly sidereal breakdown for one local date</td><td>key</td><td>5 credits</td></tr><tr><td>POST</td><td><a href="#post--v1-astronomy-crux-current"><code>/v1/astronomy/crux-current</code></a></td><td>Current Crux clock hand position and zero alignment delta</td><td>key</td><td>2 credits</td></tr><tr><td>POST</td><td><a href="#post--v1-astronomy-solar-noon"><code>/v1/astronomy/solar-noon</code></a></td><td>Solar transit/noon timestamp for a coordinate and date</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-astronomy-equinox-solstice"><code>/v1/astronomy/equinox-solstice</code></a></td><td>Equinox and solstice timestamps for a year</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-astronomy-moon-phase"><code>/v1/astronomy/moon-phase</code></a></td><td>Moon illumination, age, and phase name for a timestamp</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-astronomy-julian-date"><code>/v1/astronomy/julian-date</code></a></td><td>Gregorian timestamp to Julian Day and Modified Julian Date</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-astronomy-sidereal-time"><code>/v1/astronomy/sidereal-time</code></a></td><td>Greenwich and local sidereal time for a timestamp and longitude</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-astronomy-twilight-calculator"><code>/v1/astronomy/twilight-calculator</code></a></td><td>Civil, nautical, and astronomical twilight crossings</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-astronomy-sun-position"><code>/v1/astronomy/sun-position</code></a></td><td>Sun right ascension, declination, azimuth, and elevation</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-astronomy-moon-position"><code>/v1/astronomy/moon-position</code></a></td><td>Moon right ascension, declination, azimuth, and elevation</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-astronomy-day-length"><code>/v1/astronomy/day-length</code></a></td><td>Daylight duration between sunrise and sunset</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--v1-astronomy-polar-night-check"><code>/v1/astronomy/polar-night-check</code></a></td><td>Check midnight sun or polar night state for a latitude/date</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-astronomy-solar-declination"><code>/api/v1/astronomy/solar-declination</code></a></td><td>Approximate solar declination angle for a date</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-astronomy-equation-of-time"><code>/api/v1/astronomy/equation-of-time</code></a></td><td>Approximate equation of time for a date</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-astronomy-moon-illumination"><code>/api/v1/astronomy/moon-illumination</code></a></td><td>Moon illumination fraction and phase angle</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-astronomy-sidereal-conversion"><code>/api/v1/astronomy/sidereal-conversion</code></a></td><td>Convert solar hours to sidereal interval</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-astronomy-golden-hour"><code>/api/v1/astronomy/golden-hour</code></a></td><td>Morning and evening golden-hour windows</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-astronomy-blue-hour"><code>/api/v1/astronomy/blue-hour</code></a></td><td>Morning and evening blue-hour windows</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-astronomy-season-progress"><code>/api/v1/astronomy/season-progress</code></a></td><td>Astronomical season progress at a timestamp</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-astronomy-zodiac-sign"><code>/api/v1/astronomy/zodiac-sign</code></a></td><td>Tropical zodiac sign by calendar date</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-astronomy-daylight-delta"><code>/api/v1/astronomy/daylight-delta</code></a></td><td>Day-length gain or loss versus previous day</td><td>key</td><td>1 credit</td></tr></tbody></table></div>
 <blockquote>Request bodies below are the examples published in the API's OpenAPI contract. The contract declares body fields only as free-form JSON, so it does not say which fields are required or optional; treat each example as a known-good shape and read the result's fields. Replace <code>YOUR_KEY</code> with a beta key; never put a key in public code. Endpoints marked public work as shown with no key.</blockquote>
 <h3 id="get--v1-solar-position"><code>GET /v1/solar/position</code></h3>
 <p>Solar position for date and coordinate.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
 <p><strong>Parameters:</strong> <code>lat</code> (query), <code>lon</code> (query), <code>at</code> (query)</p><pre><code>curl &#x27;https://api.calculationtime.com/v1/solar/position?lat=48.137154&amp;lon=11.576124&amp;at=2026-07-26T12:00:00Z&#x27; \
   -H &#x27;X-API-Key: YOUR_KEY&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="get--v1-astronomy-ephemeris"><code>GET /v1/astronomy/ephemeris</code></h3>
 <p>Astronomy ephemeris for a date.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
 <p><strong>Parameters:</strong> <code>date</code> (query)</p><pre><code>curl &#x27;https://api.calculationtime.com/v1/astronomy/ephemeris?date=2029-10-21&#x27; \
   -H &#x27;X-API-Key: YOUR_KEY&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-astronomy-crux-midnight"><code>POST /v1/astronomy/crux-midnight</code></h3>
-<p>Crux clock hand midnight sidereal positions from Parkes Observatory calibration.</p>
+<p>Crux clock hand midnight sidereal positions from the Cumnock zero meridian calibration.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">2 credits</span></p>
 <pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/astronomy/crux-midnight&#x27; \
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
-  -d &#x27;{&quot;start_date&quot;:&quot;2026-03-31&quot;,&quot;days&quot;:365,&quot;timezone&quot;:&quot;+10:00&quot;}&#x27;</code></pre>
+  -d &#x27;{&quot;start_date&quot;:&quot;2026-04-01&quot;,&quot;days&quot;:365,&quot;timezone&quot;:&quot;+10:00&quot;}&#x27;</code></pre>
+<p><strong>Response example fields:</strong></p><pre><code>{
+  &quot;reference_anchor&quot;: {
+    &quot;name&quot;: &quot;Cumnock, NSW midnight-zero meridian&quot;,
+    &quot;latitude_degrees&quot;: -32.99839,
+    &quot;longitude_degrees&quot;: 148.639301038,
+    &quot;note&quot;: &quot;Parkes Observatory latitude, 35 km due east of the Dish&quot;
+  },
+  &quot;calibration&quot;: {
+    &quot;crux_hand_ra_hours&quot;: 12.506514,
+    &quot;gmst_formula&quot;: &quot;IAU1982 linear&quot;,
+    &quot;version&quot;: &quot;2026-09-28&quot;
+  },
+  &quot;crux_hand_degrees&quot;: 0,
+  &quot;zero_alignment_delta&quot;: {
+    &quot;from_zero_degrees&quot;: 0,
+    &quot;from_zero_sidereal_hours&quot;: 0,
+    &quot;zero_reference&quot;: &quot;2026-04-01T00:00:00+10:00&quot;
+  },
+  &quot;method&quot;: &quot;crux_current_sidereal_clock_position&quot;
+}</code></pre>
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-astronomy-crux-hourly"><code>POST /v1/astronomy/crux-hourly</code></h3>
 <p>Crux clock hand hourly sidereal breakdown for one local date.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">5 credits</span></p>
 <pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/astronomy/crux-hourly&#x27; \
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
-  -d &#x27;{&quot;date&quot;:&quot;2026-03-31&quot;,&quot;timezone&quot;:&quot;+10:00&quot;}&#x27;</code></pre>
+  -d &#x27;{&quot;date&quot;:&quot;2026-04-01&quot;,&quot;timezone&quot;:&quot;+10:00&quot;}&#x27;</code></pre>
+<p><strong>Response example fields:</strong></p><pre><code>{
+  &quot;reference_anchor&quot;: {
+    &quot;name&quot;: &quot;Cumnock, NSW midnight-zero meridian&quot;,
+    &quot;latitude_degrees&quot;: -32.99839,
+    &quot;longitude_degrees&quot;: 148.639301038,
+    &quot;note&quot;: &quot;Parkes Observatory latitude, 35 km due east of the Dish&quot;
+  },
+  &quot;calibration&quot;: {
+    &quot;crux_hand_ra_hours&quot;: 12.506514,
+    &quot;gmst_formula&quot;: &quot;IAU1982 linear&quot;,
+    &quot;version&quot;: &quot;2026-09-28&quot;
+  },
+  &quot;crux_hand_degrees&quot;: 0,
+  &quot;zero_alignment_delta&quot;: {
+    &quot;from_zero_degrees&quot;: 0,
+    &quot;from_zero_sidereal_hours&quot;: 0,
+    &quot;zero_reference&quot;: &quot;2026-04-01T00:00:00+10:00&quot;
+  },
+  &quot;method&quot;: &quot;crux_current_sidereal_clock_position&quot;
+}</code></pre>
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-astronomy-crux-current"><code>POST /v1/astronomy/crux-current</code></h3>
-<p>Current Crux clock hand position and Parkes alignment delta.</p>
+<p>Current Crux clock hand position and zero alignment delta.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">2 credits</span></p>
 <pre><code>curl -X POST &#x27;https://api.calculationtime.com/v1/astronomy/crux-current&#x27; \
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;timestamp&quot;:&quot;2026-04-01T00:00:00+10:00&quot;}&#x27;</code></pre>
+<p><strong>Response example fields:</strong></p><pre><code>{
+  &quot;reference_anchor&quot;: {
+    &quot;name&quot;: &quot;Cumnock, NSW midnight-zero meridian&quot;,
+    &quot;latitude_degrees&quot;: -32.99839,
+    &quot;longitude_degrees&quot;: 148.639301038,
+    &quot;note&quot;: &quot;Parkes Observatory latitude, 35 km due east of the Dish&quot;
+  },
+  &quot;calibration&quot;: {
+    &quot;crux_hand_ra_hours&quot;: 12.506514,
+    &quot;gmst_formula&quot;: &quot;IAU1982 linear&quot;,
+    &quot;version&quot;: &quot;2026-09-28&quot;
+  },
+  &quot;crux_hand_degrees&quot;: 0,
+  &quot;zero_alignment_delta&quot;: {
+    &quot;from_zero_degrees&quot;: 0,
+    &quot;from_zero_sidereal_hours&quot;: 0,
+    &quot;zero_reference&quot;: &quot;2026-04-01T00:00:00+10:00&quot;
+  },
+  &quot;method&quot;: &quot;crux_current_sidereal_clock_position&quot;
+}</code></pre>
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-astronomy-solar-noon"><code>POST /v1/astronomy/solar-noon</code></h3>
 <p>Solar transit/noon timestamp for a coordinate and date.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -103,6 +165,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;date&quot;:&quot;2026-06-21&quot;,&quot;lat&quot;:48.137154,&quot;lon&quot;:11.576124}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-astronomy-equinox-solstice"><code>POST /v1/astronomy/equinox-solstice</code></h3>
 <p>Equinox and solstice timestamps for a year.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -110,6 +173,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;year&quot;:2026}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-astronomy-moon-phase"><code>POST /v1/astronomy/moon-phase</code></h3>
 <p>Moon illumination, age, and phase name for a timestamp.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -117,6 +181,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;timestamp&quot;:&quot;2026-06-21T00:00:00Z&quot;}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-astronomy-julian-date"><code>POST /v1/astronomy/julian-date</code></h3>
 <p>Gregorian timestamp to Julian Day and Modified Julian Date.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -124,6 +189,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;timestamp&quot;:&quot;2026-06-21T00:00:00Z&quot;}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-astronomy-sidereal-time"><code>POST /v1/astronomy/sidereal-time</code></h3>
 <p>Greenwich and local sidereal time for a timestamp and longitude.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -131,6 +197,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;timestamp&quot;:&quot;2026-06-21T00:00:00Z&quot;,&quot;lon&quot;:11.576124}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-astronomy-twilight-calculator"><code>POST /v1/astronomy/twilight-calculator</code></h3>
 <p>Civil, nautical, and astronomical twilight crossings.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -138,6 +205,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;date&quot;:&quot;2026-06-21&quot;,&quot;lat&quot;:48.137154,&quot;lon&quot;:11.576124}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-astronomy-sun-position"><code>POST /v1/astronomy/sun-position</code></h3>
 <p>Sun right ascension, declination, azimuth, and elevation.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -145,6 +213,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;timestamp&quot;:&quot;2026-06-21T12:00:00Z&quot;,&quot;lat&quot;:48.137154,&quot;lon&quot;:11.576124}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-astronomy-moon-position"><code>POST /v1/astronomy/moon-position</code></h3>
 <p>Moon right ascension, declination, azimuth, and elevation.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -152,6 +221,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;timestamp&quot;:&quot;2026-06-21T00:00:00Z&quot;,&quot;lat&quot;:48.137154,&quot;lon&quot;:11.576124}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-astronomy-day-length"><code>POST /v1/astronomy/day-length</code></h3>
 <p>Daylight duration between sunrise and sunset.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -159,6 +229,7 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;date&quot;:&quot;2026-06-21&quot;,&quot;lat&quot;:48.137154,&quot;lon&quot;:11.576124}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--v1-astronomy-polar-night-check"><code>POST /v1/astronomy/polar-night-check</code></h3>
 <p>Check midnight sun or polar night state for a latitude/date.</p>
 <p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
@@ -166,9 +237,82 @@
   -H &#x27;X-API-Key: YOUR_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27; \
   -d &#x27;{&quot;date&quot;:&quot;2026-06-21&quot;,&quot;lat&quot;:80,&quot;lon&quot;:0}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-astronomy-solar-declination"><code>POST /api/v1/astronomy/solar-declination</code></h3>
+<p>Approximate solar declination angle for a date.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/astronomy/solar-declination&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;date&quot;:&quot;2026-06-21&quot;}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-astronomy-equation-of-time"><code>POST /api/v1/astronomy/equation-of-time</code></h3>
+<p>Approximate equation of time for a date.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/astronomy/equation-of-time&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;date&quot;:&quot;2026-06-21&quot;}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-astronomy-moon-illumination"><code>POST /api/v1/astronomy/moon-illumination</code></h3>
+<p>Moon illumination fraction and phase angle.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/astronomy/moon-illumination&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;timestamp&quot;:&quot;2026-06-21T00:00:00Z&quot;}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-astronomy-sidereal-conversion"><code>POST /api/v1/astronomy/sidereal-conversion</code></h3>
+<p>Convert solar hours to sidereal interval.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/astronomy/sidereal-conversion&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;solar_hours&quot;:24}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-astronomy-golden-hour"><code>POST /api/v1/astronomy/golden-hour</code></h3>
+<p>Morning and evening golden-hour windows.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/astronomy/golden-hour&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;date&quot;:&quot;2026-06-21&quot;,&quot;lat&quot;:48.137154,&quot;lon&quot;:11.576124}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-astronomy-blue-hour"><code>POST /api/v1/astronomy/blue-hour</code></h3>
+<p>Morning and evening blue-hour windows.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/astronomy/blue-hour&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;date&quot;:&quot;2026-06-21&quot;,&quot;lat&quot;:48.137154,&quot;lon&quot;:11.576124}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-astronomy-season-progress"><code>POST /api/v1/astronomy/season-progress</code></h3>
+<p>Astronomical season progress at a timestamp.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/astronomy/season-progress&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;timestamp&quot;:&quot;2026-06-21T00:00:00Z&quot;}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-astronomy-zodiac-sign"><code>POST /api/v1/astronomy/zodiac-sign</code></h3>
+<p>Tropical zodiac sign by calendar date.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/astronomy/zodiac-sign&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;date&quot;:&quot;2026-06-21&quot;}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-astronomy-daylight-delta"><code>POST /api/v1/astronomy/daylight-delta</code></h3>
+<p>Day-length gain or loss versus previous day.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/astronomy/daylight-delta&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;date&quot;:&quot;2026-06-21&quot;,&quot;lat&quot;:48.137154,&quot;lon&quot;:11.576124}&#x27;</code></pre>
+
 <p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p>
 <p><a href="../api-guide.html">Read the full guide</a> for authentication, limits, credits and errors, or <a href="./">browse every area</a>.</p>
 </div></main>
-<footer><div class="wrap">Contract v0.1.0 &middot; built 2026-09-21 &middot; <a href="../../index.html">Portal home</a> &middot; <a href="https://www.calculationtime.com">calculationtime.com</a> &middot; <a href="https://github.com/ByeBilly/calculationtime-web">Source on GitHub</a></div></footer>
+<footer><div class="wrap">Contract v0.1.0 &middot; built 2026-09-29 &middot; <a href="../../index.html">Portal home</a> &middot; <a href="https://www.calculationtime.com">calculationtime.com</a> &middot; <a href="https://github.com/ByeBilly/calculationtime-web">Source on GitHub</a></div></footer>
 </body>
 </html>

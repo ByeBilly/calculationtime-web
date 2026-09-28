@@ -3,7 +3,7 @@
   "info": {
     "title": "CalculationTime API",
     "version": "0.1.0",
-    "description": "CalculationTime v1 API for time, date, holiday, geospatial, solar, astronomy, finance, payroll, statistics, tradie accounting, tenant account, admin, and webhook-management workflows."
+    "description": "CalculationTime v1 API for time, date, holiday, geospatial, solar, astronomy, finance, payroll, statistics, tradie accounting, tenant account, and webhook-management workflows."
   },
   "servers": [
     {
@@ -17,6 +17,83 @@
     "/": {
       "get": {
         "summary": "Markdown API documentation",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "security": []
+      }
+    },
+    "/beginner": {
+      "get": {
+        "summary": "Beginner-friendly first API call guide",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "security": []
+      }
+    },
+    "/learn": {
+      "get": {
+        "summary": "Kid-level clickable API learning ladder",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "security": []
+      }
+    },
+    "/v1/learn/date-add-7": {
+      "get": {
+        "summary": "Learning demo: add 7 days to today",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "security": []
+      }
+    },
+    "/v1/learn/date-add-30": {
+      "get": {
+        "summary": "Learning demo: add 30 days to today",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "security": []
+      }
+    },
+    "/v1/learn/date-add-90": {
+      "get": {
+        "summary": "Learning demo: add 90 days to today",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "security": []
+      }
+    },
+    "/v1/learn/next-saturday-business-day": {
+      "get": {
+        "summary": "Learning demo: check whether next Saturday is a business day",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "security": []
+      }
+    },
+    "/v1/learn/random-id": {
+      "get": {
+        "summary": "Learning demo: generate a random UUID",
         "responses": {
           "200": {
             "description": "Successful response"
@@ -1366,6 +1443,3231 @@
         "x-credit-cost": 1
       }
     },
+    "/api/v1/convert/length": {
+      "post": {
+        "summary": "Zero-cost length unit conversion",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "value": 1,
+                "from": "mile",
+                "to": "kilometer"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/convert/weight": {
+      "post": {
+        "summary": "Zero-cost weight and mass unit conversion",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "value": 10,
+                "from": "pound",
+                "to": "kilogram"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/convert/temperature": {
+      "post": {
+        "summary": "Temperature scale conversion",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "value": 32,
+                "from": "fahrenheit",
+                "to": "celsius"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/convert/area": {
+      "post": {
+        "summary": "Area unit conversion",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "value": 1,
+                "from": "acre",
+                "to": "square_meter"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/convert/volume": {
+      "post": {
+        "summary": "Volume unit conversion",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "value": 1,
+                "from": "gallon",
+                "to": "liter"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/convert/speed": {
+      "post": {
+        "summary": "Speed unit conversion",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "value": 100,
+                "from": "kmh",
+                "to": "mph"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/convert/pressure": {
+      "post": {
+        "summary": "Pressure unit conversion",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "value": 1,
+                "from": "atmosphere",
+                "to": "psi"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/convert/energy": {
+      "post": {
+        "summary": "Energy unit conversion",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "value": 1,
+                "from": "kilowatt_hour",
+                "to": "joule"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/convert/power": {
+      "post": {
+        "summary": "Power unit conversion",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "value": 1,
+                "from": "horsepower",
+                "to": "watt"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/convert/data-storage": {
+      "post": {
+        "summary": "Data storage unit conversion",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "value": 1,
+                "from": "gigabyte",
+                "to": "megabyte"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/crypto/hash-sha256": {
+      "post": {
+        "summary": "Compute SHA-256 hash for a small payload",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "text": "calculationtime"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/crypto/hash-sha512": {
+      "post": {
+        "summary": "Compute SHA-512 hash for a small payload",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "text": "calculationtime"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/crypto/base64-encode": {
+      "post": {
+        "summary": "Encode text to Base64",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "text": "calculationtime"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/crypto/base64-decode": {
+      "post": {
+        "summary": "Decode Base64 text",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "base64": "Y2FsY3VsYXRpb250aW1l"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/schedule/cron-parser": {
+      "post": {
+        "summary": "List upcoming UTC run timestamps for a 5-field cron expression",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "expression": "*/15 9-17 * * 1-5",
+                "from": "2026-09-21T08:00:00Z",
+                "count": 5
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/schedule/workday-shift": {
+      "post": {
+        "summary": "Shift a date by configurable working days",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "date": "2026-09-21",
+                "days": 10,
+                "weekend_days": [
+                  6,
+                  7
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/schedule/date-range-split": {
+      "post": {
+        "summary": "Split a date range into week, month, or quarter chunks",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "start": "2026-01-01",
+                "end": "2026-03-31",
+                "unit": "month"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/schedule/interval-overlap": {
+      "post": {
+        "summary": "Calculate overlap between two timestamp intervals",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "a_start": "2026-09-21T09:00:00Z",
+                "a_end": "2026-09-21T12:00:00Z",
+                "b_start": "2026-09-21T11:00:00Z",
+                "b_end": "2026-09-21T13:00:00Z"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/schedule/project-timeline": {
+      "post": {
+        "summary": "Forward-pass project timeline and critical finish calculation",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "start": "2026-09-21",
+                "tasks": [
+                  {
+                    "id": "design",
+                    "duration_days": 3
+                  },
+                  {
+                    "id": "build",
+                    "duration_days": 5,
+                    "dependencies": [
+                      "design"
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/schedule/shift-calculator": {
+      "post": {
+        "summary": "Calculate shift hours, overtime, and night differential hours",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "start": "2026-09-21T20:00:00Z",
+                "end": "2026-09-22T06:00:00Z",
+                "overtime_after_hours": 8
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/schedule/countdown-workdays": {
+      "post": {
+        "summary": "Count business days remaining until a deadline",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "start": "2026-09-21",
+                "target": "2026-10-02",
+                "weekend_days": [
+                  6,
+                  7
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/schedule/recurring-monthly": {
+      "post": {
+        "summary": "Generate nth-weekday monthly recurrence dates",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "year": 2026,
+                "start_month": 1,
+                "months": 3,
+                "ordinal": 3,
+                "weekday": "tuesday"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/schedule/age-in-days": {
+      "post": {
+        "summary": "Calculate an exact age milestone date in days",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "birth_date": "1990-05-15",
+                "days": 10000
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/schedule/time-blocks": {
+      "post": {
+        "summary": "Divide a 24-hour day into equal booking blocks",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "minutes": 30
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/color/hex-to-rgb": {
+      "post": {
+        "summary": "Convert HEX colour to RGB array",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "hex": "#336699"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/color/rgb-to-hex": {
+      "post": {
+        "summary": "Convert RGB values to HEX colour",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "r": 51,
+                "g": 102,
+                "b": 153
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/color/rgb-to-hsl": {
+      "post": {
+        "summary": "Convert RGB colour to HSL",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "r": 51,
+                "g": 102,
+                "b": 153
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/color/hsl-to-rgb": {
+      "post": {
+        "summary": "Convert HSL colour to RGB and HEX",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "h": 210,
+                "s": 50,
+                "l": 40
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/color/contrast-ratio": {
+      "post": {
+        "summary": "Calculate WCAG contrast ratio between two colours",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "foreground": "#000000",
+                "background": "#ffffff"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/color/luminance": {
+      "post": {
+        "summary": "Calculate WCAG relative luminance for a colour",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "hex": "#336699"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/color/tint-shade": {
+      "post": {
+        "summary": "Generate tint and shade palette steps from a base colour",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "hex": "#336699",
+                "steps": 5
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/color/cmyk-conversion": {
+      "post": {
+        "summary": "Approximate CMYK values from RGB input",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "r": 51,
+                "g": 102,
+                "b": 153
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/typography/px-to-rem": {
+      "post": {
+        "summary": "Convert pixel values to rem units",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "px": 24,
+                "base_px": 16
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/typography/line-height": {
+      "post": {
+        "summary": "Calculate proportional line height and type scale steps",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "font_size_px": 16,
+                "ratio": 1.5,
+                "steps": 5
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/ip-parse": {
+      "post": {
+        "summary": "Parse IPv4 or IPv6 address metadata",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "ip": "192.168.1.10"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/cidr-range": {
+      "post": {
+        "summary": "Calculate IPv4 CIDR network, broadcast, and usable hosts",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "cidr": "192.168.1.0/24"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/user-agent-parse": {
+      "post": {
+        "summary": "Extract browser, OS, and device class from a user-agent string",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/120 Safari/537.36"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/query-string-parse": {
+      "post": {
+        "summary": "Encode or decode URL query strings",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "mode": "decode",
+                "query": "a=1&b=two"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/slug-sanitize": {
+      "post": {
+        "summary": "Normalize arbitrary text into a URL-safe slug",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "text": "Café Invoice #42!"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/port-lookup": {
+      "post": {
+        "summary": "Look up standard TCP/UDP port service names",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "port": 443
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/http-status-lookup": {
+      "post": {
+        "summary": "Look up HTTP status phrase and status class",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "code": 429
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/mime-lookup": {
+      "post": {
+        "summary": "Resolve file extension to MIME type",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "extension": "json"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/uuid-v5": {
+      "post": {
+        "summary": "Generate deterministic name-based UUID v5",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "namespace": "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
+                "name": "calculationtime.com"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/mac-format": {
+      "post": {
+        "summary": "Normalize and validate MAC address formatting",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "mac": "aabb.ccdd.eeff"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/finance/npv": {
+      "post": {
+        "summary": "Calculate net present value for uneven cash flows",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "discount_rate_percent": 8,
+                "cashflows": [
+                  -1000,
+                  400,
+                  400,
+                  400
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/finance/irr-approximation": {
+      "post": {
+        "summary": "Approximate internal rate of return from cash flows",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "cashflows": [
+                  -1000,
+                  400,
+                  400,
+                  400
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/finance/bond-yield": {
+      "post": {
+        "summary": "Calculate current yield and approximate yield to maturity",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "face_value": 1000,
+                "price": 950,
+                "coupon_rate_percent": 5,
+                "years_to_maturity": 10
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/finance/depreciation-straight-line": {
+      "post": {
+        "summary": "Generate a straight-line depreciation schedule",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "cost": 10000,
+                "salvage_value": 1000,
+                "life_years": 5
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/finance/depreciation-declining": {
+      "post": {
+        "summary": "Generate a declining-balance depreciation schedule",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "cost": 10000,
+                "salvage_value": 1000,
+                "life_years": 5
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/finance/loan-payoff-extra": {
+      "post": {
+        "summary": "Calculate loan payoff impact from extra monthly principal",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "principal": 200000,
+                "annual_rate_percent": 5,
+                "monthly_payment": 1200,
+                "extra_payment": 100
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/finance/effective-annual-rate": {
+      "post": {
+        "summary": "Convert nominal APR to effective annual rate",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "nominal_rate_percent": 6,
+                "compounds_per_year": 12
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/finance/markup-margin-split": {
+      "post": {
+        "summary": "Convert between markup, margin, cost, and selling price",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "cost": 60,
+                "price": 100
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/finance/break-even-multi": {
+      "post": {
+        "summary": "Calculate weighted break-even across multiple products",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "fixed_costs": 10000,
+                "products": [
+                  {
+                    "name": "A",
+                    "price": 50,
+                    "variable_cost": 20,
+                    "mix": 2
+                  },
+                  {
+                    "name": "B",
+                    "price": 80,
+                    "variable_cost": 40,
+                    "mix": 1
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/finance/tip-split": {
+      "post": {
+        "summary": "Calculate tip, total, and per-person split",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "subtotal": 120,
+                "tip_percent": 20,
+                "people": 4
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/math/matrix-multiply": {
+      "post": {
+        "summary": "Multiply two 2x2 or 3x3-compatible matrices",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "a": [
+                  [
+                    1,
+                    2
+                  ],
+                  [
+                    3,
+                    4
+                  ]
+                ],
+                "b": [
+                  [
+                    5,
+                    6
+                  ],
+                  [
+                    7,
+                    8
+                  ]
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/math/vector-magnitude": {
+      "post": {
+        "summary": "Calculate vector magnitude and unit vector",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "vector": [
+                  3,
+                  4
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/math/vector-dot-product": {
+      "post": {
+        "summary": "Calculate vector dot product and angle",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "a": [
+                  1,
+                  0
+                ],
+                "b": [
+                  0,
+                  1
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/math/quadratic-vertex": {
+      "post": {
+        "summary": "Calculate parabola vertex, axis, and roots",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "a": 1,
+                "b": -4,
+                "c": 3
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/math/factorial-gamma": {
+      "post": {
+        "summary": "Calculate factorials and gamma approximations",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "n": 5
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/math/fibonacci": {
+      "post": {
+        "summary": "Calculate Fibonacci number and sequence",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "n": 10
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/math/base-n-convert": {
+      "post": {
+        "summary": "Convert integers between base 2 and base 36",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "value": "ff",
+                "from_base": 16,
+                "to_base": 2
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/math/percentile-calc": {
+      "post": {
+        "summary": "Calculate statistical percentile from raw values",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "values": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ],
+                "percentile": 90
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/math/wind-chill": {
+      "post": {
+        "summary": "Calculate wind chill apparent temperature",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "temperature_c": 0,
+                "wind_kmh": 20
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/math/heat-index": {
+      "post": {
+        "summary": "Calculate heat index apparent temperature",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "temperature_c": 32,
+                "relative_humidity": 70
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/geo/distance": {
       "get": {
         "summary": "Distance between two coordinates",
@@ -1839,10 +5141,38 @@
     },
     "/v1/astronomy/crux-midnight": {
       "post": {
-        "summary": "Crux clock hand midnight sidereal positions from Parkes Observatory calibration",
+        "summary": "Crux clock hand midnight sidereal positions from the Cumnock zero meridian calibration",
         "responses": {
           "200": {
-            "description": "Successful response"
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                },
+                "example": {
+                  "reference_anchor": {
+                    "name": "Cumnock, NSW midnight-zero meridian",
+                    "latitude_degrees": -32.99839,
+                    "longitude_degrees": 148.639301038,
+                    "note": "Parkes Observatory latitude, 35 km due east of the Dish"
+                  },
+                  "calibration": {
+                    "crux_hand_ra_hours": 12.506514,
+                    "gmst_formula": "IAU1982 linear",
+                    "version": "2026-09-28"
+                  },
+                  "crux_hand_degrees": 0,
+                  "zero_alignment_delta": {
+                    "from_zero_degrees": 0,
+                    "from_zero_sidereal_hours": 0,
+                    "zero_reference": "2026-04-01T00:00:00+10:00"
+                  },
+                  "method": "crux_current_sidereal_clock_position"
+                }
+              }
+            }
           },
           "400": {
             "description": "Invalid request input"
@@ -1878,7 +5208,7 @@
                 "additionalProperties": true
               },
               "example": {
-                "start_date": "2026-03-31",
+                "start_date": "2026-04-01",
                 "days": 365,
                 "timezone": "+10:00"
               }
@@ -1892,7 +5222,35 @@
         "summary": "Crux clock hand hourly sidereal breakdown for one local date",
         "responses": {
           "200": {
-            "description": "Successful response"
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                },
+                "example": {
+                  "reference_anchor": {
+                    "name": "Cumnock, NSW midnight-zero meridian",
+                    "latitude_degrees": -32.99839,
+                    "longitude_degrees": 148.639301038,
+                    "note": "Parkes Observatory latitude, 35 km due east of the Dish"
+                  },
+                  "calibration": {
+                    "crux_hand_ra_hours": 12.506514,
+                    "gmst_formula": "IAU1982 linear",
+                    "version": "2026-09-28"
+                  },
+                  "crux_hand_degrees": 0,
+                  "zero_alignment_delta": {
+                    "from_zero_degrees": 0,
+                    "from_zero_sidereal_hours": 0,
+                    "zero_reference": "2026-04-01T00:00:00+10:00"
+                  },
+                  "method": "crux_current_sidereal_clock_position"
+                }
+              }
+            }
           },
           "400": {
             "description": "Invalid request input"
@@ -1928,7 +5286,7 @@
                 "additionalProperties": true
               },
               "example": {
-                "date": "2026-03-31",
+                "date": "2026-04-01",
                 "timezone": "+10:00"
               }
             }
@@ -1938,10 +5296,38 @@
     },
     "/v1/astronomy/crux-current": {
       "post": {
-        "summary": "Current Crux clock hand position and Parkes alignment delta",
+        "summary": "Current Crux clock hand position and zero alignment delta",
         "responses": {
           "200": {
-            "description": "Successful response"
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                },
+                "example": {
+                  "reference_anchor": {
+                    "name": "Cumnock, NSW midnight-zero meridian",
+                    "latitude_degrees": -32.99839,
+                    "longitude_degrees": 148.639301038,
+                    "note": "Parkes Observatory latitude, 35 km due east of the Dish"
+                  },
+                  "calibration": {
+                    "crux_hand_ra_hours": 12.506514,
+                    "gmst_formula": "IAU1982 linear",
+                    "version": "2026-09-28"
+                  },
+                  "crux_hand_degrees": 0,
+                  "zero_alignment_delta": {
+                    "from_zero_degrees": 0,
+                    "from_zero_sidereal_hours": 0,
+                    "zero_reference": "2026-04-01T00:00:00+10:00"
+                  },
+                  "method": "crux_current_sidereal_clock_position"
+                }
+              }
+            }
           },
           "400": {
             "description": "Invalid request input"
@@ -2471,6 +5857,444 @@
                 "date": "2026-06-21",
                 "lat": 80,
                 "lon": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/astronomy/solar-declination": {
+      "post": {
+        "summary": "Approximate solar declination angle for a date",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "date": "2026-06-21"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/astronomy/equation-of-time": {
+      "post": {
+        "summary": "Approximate equation of time for a date",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "date": "2026-06-21"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/astronomy/moon-illumination": {
+      "post": {
+        "summary": "Moon illumination fraction and phase angle",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "timestamp": "2026-06-21T00:00:00Z"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/astronomy/sidereal-conversion": {
+      "post": {
+        "summary": "Convert solar hours to sidereal interval",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "solar_hours": 24
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/astronomy/golden-hour": {
+      "post": {
+        "summary": "Morning and evening golden-hour windows",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "date": "2026-06-21",
+                "lat": 48.137154,
+                "lon": 11.576124
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/astronomy/blue-hour": {
+      "post": {
+        "summary": "Morning and evening blue-hour windows",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "date": "2026-06-21",
+                "lat": 48.137154,
+                "lon": 11.576124
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/astronomy/season-progress": {
+      "post": {
+        "summary": "Astronomical season progress at a timestamp",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "timestamp": "2026-06-21T00:00:00Z"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/astronomy/zodiac-sign": {
+      "post": {
+        "summary": "Tropical zodiac sign by calendar date",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "date": "2026-06-21"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/astronomy/daylight-delta": {
+      "post": {
+        "summary": "Day-length gain or loss versus previous day",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "date": "2026-06-21",
+                "lat": 48.137154,
+                "lon": 11.576124
               }
             }
           }
@@ -4189,6 +8013,497 @@
         }
       }
     },
+    "/api/v1/math/ohm-law": {
+      "post": {
+        "summary": "Ohm law solver for voltage, current, resistance, and power",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "voltage": 12,
+                "resistance": 4
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/math/projectile-range": {
+      "post": {
+        "summary": "Ideal projectile range, flight time, and max height",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "velocity": 30,
+                "angle_degrees": 45
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/math/kinetic-energy": {
+      "post": {
+        "summary": "Kinetic energy from mass and velocity",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "mass": 10,
+                "velocity": 12
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/math/potential-energy": {
+      "post": {
+        "summary": "Gravitational potential energy",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "mass": 10,
+                "height": 5
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/math/circle-sector": {
+      "post": {
+        "summary": "Circle sector area, arc, and chord length",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "radius": 10,
+                "angle_degrees": 90
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/math/sphere-surface": {
+      "post": {
+        "summary": "Sphere surface area and volume alias",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "radius": 3
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/math/cone-geometry": {
+      "post": {
+        "summary": "Cone slant height, surface area, and volume",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "radius": 3,
+                "height": 4
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/math/torus-geometry": {
+      "post": {
+        "summary": "Torus surface area and volume",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "major_radius": 5,
+                "minor_radius": 2
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/math/arithmetic-progression": {
+      "post": {
+        "summary": "Arithmetic progression nth term and partial sum",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "first": 2,
+                "difference": 3,
+                "n": 10
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/math/geometric-progression": {
+      "post": {
+        "summary": "Geometric progression nth term and partial sum",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request input"
+          },
+          "401": {
+            "description": "A valid API key is required"
+          },
+          "402": {
+            "description": "API credit balance is exhausted"
+          },
+          "403": {
+            "description": "Customer account is suspended or trial has expired"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-credit-cost": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {
+                "first": 2,
+                "ratio": 3,
+                "n": 5
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/stats/summary": {
       "post": {
         "summary": "Descriptive statistics for a numeric dataset",
@@ -4777,338 +9092,6 @@
         ]
       }
     },
-    "/v1/admin/customers": {
-      "get": {
-        "summary": "Admin customer list and usage summary",
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          },
-          "400": {
-            "description": "Invalid request input"
-          },
-          "401": {
-            "description": "A valid API key is required"
-          },
-          "402": {
-            "description": "API credit balance is exhausted"
-          },
-          "403": {
-            "description": "Customer account is suspended or trial has expired"
-          },
-          "429": {
-            "description": "Rate limit exceeded"
-          }
-        },
-        "security": [
-          {
-            "AdminKeyAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "include_inactive",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      },
-      "post": {
-        "summary": "Admin create or update customer",
-        "responses": {
-          "201": {
-            "description": "Successful response"
-          },
-          "400": {
-            "description": "Invalid request input"
-          },
-          "401": {
-            "description": "A valid API key is required"
-          },
-          "402": {
-            "description": "API credit balance is exhausted"
-          },
-          "403": {
-            "description": "Customer account is suspended or trial has expired"
-          },
-          "429": {
-            "description": "Rate limit exceeded"
-          }
-        },
-        "security": [
-          {
-            "AdminKeyAuth": []
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "additionalProperties": true
-              },
-              "example": {
-                "customer_id": "taxserve-demo",
-                "display_name": "Tax Serve Demo",
-                "rate_limit_per_minute": 240,
-                "status": "active"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/admin/customers/{customer_id}": {
-      "get": {
-        "summary": "Admin customer detail",
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          },
-          "400": {
-            "description": "Invalid request input"
-          },
-          "401": {
-            "description": "A valid API key is required"
-          },
-          "402": {
-            "description": "API credit balance is exhausted"
-          },
-          "403": {
-            "description": "Customer account is suspended or trial has expired"
-          },
-          "429": {
-            "description": "Rate limit exceeded"
-          }
-        },
-        "security": [
-          {
-            "AdminKeyAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "customer_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
-    },
-    "/v1/admin/customers/{customer_id}/credits": {
-      "post": {
-        "summary": "Admin append credit ledger event",
-        "responses": {
-          "201": {
-            "description": "Successful response"
-          },
-          "400": {
-            "description": "Invalid request input"
-          },
-          "401": {
-            "description": "A valid API key is required"
-          },
-          "402": {
-            "description": "API credit balance is exhausted"
-          },
-          "403": {
-            "description": "Customer account is suspended or trial has expired"
-          },
-          "429": {
-            "description": "Rate limit exceeded"
-          }
-        },
-        "security": [
-          {
-            "AdminKeyAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "customer_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "additionalProperties": true
-              },
-              "example": {
-                "delta": 1000000,
-                "reason": "trial grant",
-                "reference": "manual:onboarding",
-                "metadata": {
-                  "trial_ends_at": "2027-09-19T00:00:00.000Z"
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "summary": "Admin customer credit ledger",
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          },
-          "400": {
-            "description": "Invalid request input"
-          },
-          "401": {
-            "description": "A valid API key is required"
-          },
-          "402": {
-            "description": "API credit balance is exhausted"
-          },
-          "403": {
-            "description": "Customer account is suspended or trial has expired"
-          },
-          "429": {
-            "description": "Rate limit exceeded"
-          }
-        },
-        "security": [
-          {
-            "AdminKeyAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "customer_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
-    },
-    "/v1/admin/customers/{customer_id}/webhooks": {
-      "get": {
-        "summary": "Admin list customer webhooks",
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          },
-          "400": {
-            "description": "Invalid request input"
-          },
-          "401": {
-            "description": "A valid API key is required"
-          },
-          "402": {
-            "description": "API credit balance is exhausted"
-          },
-          "403": {
-            "description": "Customer account is suspended or trial has expired"
-          },
-          "429": {
-            "description": "Rate limit exceeded"
-          }
-        },
-        "security": [
-          {
-            "AdminKeyAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "customer_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      },
-      "put": {
-        "summary": "Admin register or update customer webhook",
-        "responses": {
-          "201": {
-            "description": "Successful response"
-          },
-          "400": {
-            "description": "Invalid request input"
-          },
-          "401": {
-            "description": "A valid API key is required"
-          },
-          "402": {
-            "description": "API credit balance is exhausted"
-          },
-          "403": {
-            "description": "Customer account is suspended or trial has expired"
-          },
-          "429": {
-            "description": "Rate limit exceeded"
-          }
-        },
-        "security": [
-          {
-            "AdminKeyAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "customer_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "additionalProperties": true
-              },
-              "example": {
-                "event_type": "calculation.heavy.completed",
-                "destination_url": "https://integrator.example/webhooks/calculationtime",
-                "status": "active"
-              }
-            }
-          }
-        }
-      }
-    },
     "/v1/observatory/share": {
       "post": {
         "summary": "Create private Observatory share token",
@@ -5168,11 +9151,6 @@
       "BearerAuth": {
         "type": "http",
         "scheme": "bearer"
-      },
-      "AdminKeyAuth": {
-        "type": "apiKey",
-        "in": "header",
-        "name": "X-Admin-Key"
       }
     },
     "schemas": {

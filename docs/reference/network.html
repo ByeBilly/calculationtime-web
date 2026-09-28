@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Network and web utilities API endpoints - CalculationTime API reference</title>
+<meta name="description" content="IP parsing, CIDR ranges, user agents, query strings, slugs, ports, HTTP status, MIME lookup, UUIDv5 and MAC formatting.">
+<link rel="canonical" href="https://byebilly.github.io/calculationtime-web/docs/reference/network.html">
+<meta property="og:title" content="Network and web utilities API endpoints - CalculationTime API reference">
+<meta property="og:description" content="IP parsing, CIDR ranges, user agents, query strings, slugs, ports, HTTP status, MIME lookup, UUIDv5 and MAC formatting.">
+<meta property="og:type" content="website">
+<style>
+  :root { --bg:#f7f1e4; --panel:#fff; --ink:#14110c; --muted:#5a5245; --line:#d9ccb0; --brand:#0b0d14; --gold:#c98b2c; --gold-soft:#e5b65f; --code-bg:#0d1018; --code-ink:#f3ead6; --radius:12px; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0b0d14; --panel:#12151f; --ink:#f4ecd9; --muted:#b9ae98; --line:#2b2f3d; --code-bg:#07080d; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; }
+  header { background:var(--brand); color:#f4ecd9; }
+  header .wrap { display:flex; flex-wrap:wrap; gap:12px 20px; align-items:center; justify-content:space-between; padding:14px 0; }
+  .wrap { width:min(880px, 100% - 32px); margin-inline:auto; }
+  header a { color:inherit; text-decoration:none; font-size:14px; margin-left:16px; }
+  header a.logo { margin:0; font:700 20px Georgia,"Times New Roman",serif; }
+  header a.logo span { color:var(--gold-soft); }
+  header a:hover { text-decoration:underline; }
+  main { padding:36px 0 64px; }
+  h1,h2,h3 { font-family:Georgia,"Times New Roman",serif; line-height:1.15; }
+  h1 { font-size:clamp(30px,5vw,44px); margin:0 0 12px; }
+  h2 { font-size:28px; margin:44px 0 10px; padding-top:20px; border-top:1px solid var(--line); }
+  h3 { font-size:20px; margin:28px 0 6px; }
+  h3 code { font-size:.85em; }
+  a { color:var(--gold); }
+  code { font-family:ui-monospace,SFMono-Regular,Consolas,monospace; font-size:.9em; background:rgba(201,139,44,.12); padding:1px 5px; border-radius:5px; }
+  pre { margin:12px 0; padding:16px 18px; overflow-x:auto; background:var(--code-bg); color:var(--code-ink); border-radius:var(--radius); font-size:13.5px; line-height:1.55; }
+  pre code { background:none; padding:0; color:inherit; }
+  .scroll { overflow-x:auto; margin:14px 0; }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--line); font-size:14.5px; }
+  th,td { padding:9px 12px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+  details.toc { margin:18px 0 8px; padding:12px 18px; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); }
+  details.toc summary { cursor:pointer; font-weight:800; }
+  .toc ul { margin:8px 0 0; padding-left:20px; }
+  blockquote { margin:14px 0; padding:10px 16px; border-left:4px solid var(--gold); background:rgba(201,139,44,.09); }
+  .meta { color:var(--muted); font-size:14px; margin:0 0 6px; }
+  .pill { display:inline-block; padding:1px 9px; border-radius:99px; font-size:12px; font-weight:700; border:1px solid var(--line); background:var(--panel); margin-right:6px; }
+  .crumbs { font-size:14px; color:var(--muted); margin:0 0 10px; }
+  .areas { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px; margin:18px 0; padding:0; list-style:none; }
+  .areas a { display:block; height:100%; padding:16px; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); text-decoration:none; color:inherit; }
+  .areas a:hover { border-color:var(--gold); }
+  .areas strong { display:block; font:700 18px Georgia,serif; }
+  .areas span { font-size:14px; color:var(--muted); }
+  li, p, td { overflow-wrap:anywhere; }
+  footer { background:var(--brand); color:#d8cdbd; padding:24px 0; font-size:14px; }
+  footer a { color:var(--gold-soft); }
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Network and web utilities endpoints - CalculationTime API reference", "description": "IP parsing, CIDR ranges, user agents, query strings, slugs, ports, HTTP status, MIME lookup, UUIDv5 and MAC formatting.", "dateModified": "2026-09-29", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "CalculationTime", "url": "https://www.calculationtime.com"}}</script>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="logo" href="../../index.html">Calculation<span>Time</span> API</a>
+  <nav aria-label="Primary"><a href="../../docs/api-guide.html">Guide</a><a href="../../docs/reference/">Endpoint reference</a><a href="https://api.calculationtime.com/openapi.json">OpenAPI</a><a href="https://www.calculationtime.com/developers/api/beta/">Request beta access</a><a href="https://www.calculationtime.com">Main site</a></nav>
+</div></header>
+<main><div class="wrap">
+<p class="crumbs"><a href="../../index.html">Portal</a> / <a href="./">Endpoint reference</a> / Network and web utilities</p>
+<h1>Network and web utilities endpoints</h1>
+<p>Small deterministic web-developer utilities. They are API-key protected in this contract unless explicitly listed as public elsewhere; use them server-side or in private tooling, not with keys embedded in public browser code.</p>
+<p class="meta">10 operations &middot; contract v0.1.0 &middot; base URL <code>https://api.calculationtime.com</code></p>
+<div class="scroll"><table><thead><tr><th>Method</th><th>Path</th><th>What it does</th><th>Access</th><th>Cost</th></tr></thead><tbody><tr><td>POST</td><td><a href="#post--api-v1-network-ip-parse"><code>/api/v1/network/ip-parse</code></a></td><td>Parse IPv4 or IPv6 address metadata</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-network-cidr-range"><code>/api/v1/network/cidr-range</code></a></td><td>Calculate IPv4 CIDR network, broadcast, and usable hosts</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-network-user-agent-parse"><code>/api/v1/network/user-agent-parse</code></a></td><td>Extract browser, OS, and device class from a user-agent string</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-network-query-string-parse"><code>/api/v1/network/query-string-parse</code></a></td><td>Encode or decode URL query strings</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-network-slug-sanitize"><code>/api/v1/network/slug-sanitize</code></a></td><td>Normalize arbitrary text into a URL-safe slug</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-network-port-lookup"><code>/api/v1/network/port-lookup</code></a></td><td>Look up standard TCP/UDP port service names</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-network-http-status-lookup"><code>/api/v1/network/http-status-lookup</code></a></td><td>Look up HTTP status phrase and status class</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-network-mime-lookup"><code>/api/v1/network/mime-lookup</code></a></td><td>Resolve file extension to MIME type</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-network-uuid-v5"><code>/api/v1/network/uuid-v5</code></a></td><td>Generate deterministic name-based UUID v5</td><td>key</td><td>1 credit</td></tr><tr><td>POST</td><td><a href="#post--api-v1-network-mac-format"><code>/api/v1/network/mac-format</code></a></td><td>Normalize and validate MAC address formatting</td><td>key</td><td>1 credit</td></tr></tbody></table></div>
+<blockquote>Request bodies below are the examples published in the API's OpenAPI contract. The contract declares body fields only as free-form JSON, so it does not say which fields are required or optional; treat each example as a known-good shape and read the result's fields. Replace <code>YOUR_KEY</code> with a beta key; never put a key in public code. Endpoints marked public work as shown with no key.</blockquote>
+<h3 id="post--api-v1-network-ip-parse"><code>POST /api/v1/network/ip-parse</code></h3>
+<p>Parse IPv4 or IPv6 address metadata.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/network/ip-parse&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;ip&quot;:&quot;192.168.1.10&quot;}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-network-cidr-range"><code>POST /api/v1/network/cidr-range</code></h3>
+<p>Calculate IPv4 CIDR network, broadcast, and usable hosts.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/network/cidr-range&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;cidr&quot;:&quot;192.168.1.0/24&quot;}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-network-user-agent-parse"><code>POST /api/v1/network/user-agent-parse</code></h3>
+<p>Extract browser, OS, and device class from a user-agent string.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/network/user-agent-parse&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;user_agent&quot;:&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/120 Safari/537.36&quot;}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-network-query-string-parse"><code>POST /api/v1/network/query-string-parse</code></h3>
+<p>Encode or decode URL query strings.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/network/query-string-parse&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;mode&quot;:&quot;decode&quot;,&quot;query&quot;:&quot;a=1&amp;b=two&quot;}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-network-slug-sanitize"><code>POST /api/v1/network/slug-sanitize</code></h3>
+<p>Normalize arbitrary text into a URL-safe slug.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/network/slug-sanitize&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;text&quot;:&quot;Caf\u00e9 Invoice #42!&quot;}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-network-port-lookup"><code>POST /api/v1/network/port-lookup</code></h3>
+<p>Look up standard TCP/UDP port service names.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/network/port-lookup&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;port&quot;:443}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-network-http-status-lookup"><code>POST /api/v1/network/http-status-lookup</code></h3>
+<p>Look up HTTP status phrase and status class.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/network/http-status-lookup&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;code&quot;:429}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-network-mime-lookup"><code>POST /api/v1/network/mime-lookup</code></h3>
+<p>Resolve file extension to MIME type.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/network/mime-lookup&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;extension&quot;:&quot;json&quot;}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-network-uuid-v5"><code>POST /api/v1/network/uuid-v5</code></h3>
+<p>Generate deterministic name-based UUID v5.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/network/uuid-v5&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;namespace&quot;:&quot;6ba7b810-9dad-11d1-80b4-00c04fd430c8&quot;,&quot;name&quot;:&quot;calculationtime.com&quot;}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p><h3 id="post--api-v1-network-mac-format"><code>POST /api/v1/network/mac-format</code></h3>
+<p>Normalize and validate MAC address formatting.</p>
+<p class="meta"><span class="pill">API key required</span><span class="pill">1 credit</span></p>
+<pre><code>curl -X POST &#x27;https://api.calculationtime.com/api/v1/network/mac-format&#x27; \
+  -H &#x27;X-API-Key: YOUR_KEY&#x27; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;mac&quot;:&quot;aabb.ccdd.eeff&quot;}&#x27;</code></pre>
+
+<p class="meta">Other responses in the contract: <code>400</code> invalid input, <code>401</code> missing or invalid key, <code>402</code> credits exhausted, <code>403</code> account suspended or trial expired, <code>429</code> rate limited.</p>
+<p><a href="../api-guide.html">Read the full guide</a> for authentication, limits, credits and errors, or <a href="./">browse every area</a>.</p>
+</div></main>
+<footer><div class="wrap">Contract v0.1.0 &middot; built 2026-09-29 &middot; <a href="../../index.html">Portal home</a> &middot; <a href="https://www.calculationtime.com">calculationtime.com</a> &middot; <a href="https://github.com/ByeBilly/calculationtime-web">Source on GitHub</a></div></footer>
+</body>
+</html>
