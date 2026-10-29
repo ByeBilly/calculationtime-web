@@ -1,4 +1,2 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://byebilly.github.io/calculationtime-web/sitemap.xml
